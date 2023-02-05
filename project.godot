@@ -129,7 +129,16 @@ _global_script_class_icons={
 [application]
 
 config/name="CashCache"
+run/low_processor_mode=true
 config/icon="res://icon.png"
+
+[display]
+
+window/size/width=1080
+window/size/height=1920
+window/size/test_width=540
+window/size/test_height=960
+window/handheld/orientation="sensor"
 
 [gui]
 
