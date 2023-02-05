@@ -8,9 +8,127 @@
 
 config_version=4
 
+_global_script_classes=[ {
+"base": "Control",
+"class": "AbstractChart",
+"language": "GDScript",
+"path": "res://addons/easy_charts/control_charts/abstract_chart.gd"
+}, {
+"base": "LineChart",
+"class": "AreaChart",
+"language": "GDScript",
+"path": "res://addons/easy_charts/control_charts/AreaChart/area_chart.gd"
+}, {
+"base": "Reference",
+"class": "ArrayOperations",
+"language": "GDScript",
+"path": "res://addons/easy_charts/utilities/classes/structures/array_operations.gd"
+}, {
+"base": "Reference",
+"class": "Bar",
+"language": "GDScript",
+"path": "res://addons/easy_charts/utilities/classes/plotting/bar.gd"
+}, {
+"base": "Chart",
+"class": "BarChart",
+"language": "GDScript",
+"path": "res://addons/easy_charts/control_charts/BarChart/bar_chart.gd"
+}, {
+"base": "AbstractChart",
+"class": "Chart",
+"language": "GDScript",
+"path": "res://addons/easy_charts/control_charts/chart.gd"
+}, {
+"base": "Reference",
+"class": "ChartProperties",
+"language": "GDScript",
+"path": "res://addons/easy_charts/utilities/classes/plotting/chart_properties.gd"
+}, {
+"base": "Resource",
+"class": "DataFrame",
+"language": "GDScript",
+"path": "res://addons/easy_charts/utilities/classes/structures/data_frame.gd"
+}, {
+"base": "PanelContainer",
+"class": "DataTooltip",
+"language": "GDScript",
+"path": "res://addons/easy_charts/utilities/containers/data_tooltip/data_tooltip.gd"
+}, {
+"base": "VBoxContainer",
+"class": "LegendElement",
+"language": "GDScript",
+"path": "res://addons/easy_charts/utilities/containers/legend/function_legend.gd"
+}, {
+"base": "ScatterChart",
+"class": "LineChart",
+"language": "GDScript",
+"path": "res://addons/easy_charts/control_charts/LineChart/line_chart.gd"
+}, {
+"base": "Resource",
+"class": "Matrix",
+"language": "GDScript",
+"path": "res://addons/easy_charts/utilities/classes/structures/matrix.gd"
+}, {
+"base": "Reference",
+"class": "MatrixGenerator",
+"language": "GDScript",
+"path": "res://addons/easy_charts/utilities/classes/structures/matrix_generator.gd"
+}, {
+"base": "Reference",
+"class": "Pair",
+"language": "GDScript",
+"path": "res://addons/easy_charts/utilities/classes/structures/pair.gd"
+}, {
+"base": "AbstractChart",
+"class": "PieChart",
+"language": "GDScript",
+"path": "res://addons/easy_charts/control_charts/PieChart/pie_chart.gd"
+}, {
+"base": "Reference",
+"class": "Point",
+"language": "GDScript",
+"path": "res://addons/easy_charts/utilities/classes/plotting/point.gd"
+}, {
+"base": "Reference",
+"class": "SampledAxis",
+"language": "GDScript",
+"path": "res://addons/easy_charts/utilities/classes/plotting/sampled_axis.gd"
+}, {
+"base": "Chart",
+"class": "ScatterChart",
+"language": "GDScript",
+"path": "res://addons/easy_charts/control_charts/ScatterChart/scatter_chart.gd"
+}, {
+"base": "Reference",
+"class": "Slice",
+"language": "GDScript",
+"path": "res://addons/easy_charts/utilities/components/slice/slice.gd"
+} ]
+_global_script_class_icons={
+"AbstractChart": "",
+"AreaChart": "",
+"ArrayOperations": "",
+"Bar": "",
+"BarChart": "",
+"Chart": "",
+"ChartProperties": "",
+"DataFrame": "",
+"DataTooltip": "",
+"LegendElement": "",
+"LineChart": "",
+"Matrix": "",
+"MatrixGenerator": "",
+"Pair": "",
+"PieChart": "",
+"Point": "",
+"SampledAxis": "",
+"ScatterChart": "",
+"Slice": ""
+}
+
 [application]
 
-config/name="CashZipper"
+config/name="CashCache"
 config/icon="res://icon.png"
 
 [gui]
