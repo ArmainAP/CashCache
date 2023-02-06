@@ -1,0 +1,133 @@
+[gd_scene load_steps=3 format=2]
+
+[sub_resource type="StyleBoxFlat" id=1]
+bg_color = Color( 0.2, 0.231373, 0.309804, 1 )
+
+[sub_resource type="StyleBoxFlat" id=2]
+bg_color = Color( 0.12549, 0.145098, 0.192157, 1 )
+
+[node name="Control" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="TopBarContainer" type="PanelContainer" parent="VBoxContainer"]
+margin_right = 1080.0
+margin_bottom = 147.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+size_flags_stretch_ratio = 0.1
+custom_styles/panel = SubResource( 1 )
+
+[node name="Label" type="Label" parent="VBoxContainer/TopBarContainer"]
+margin_right = 1080.0
+margin_bottom = 147.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+text = "Account Wizard
+"
+align = 1
+valign = 1
+
+[node name="PanelContainer" type="PanelContainer" parent="VBoxContainer"]
+anchor_bottom = 0.085
+margin_top = 151.0
+margin_right = 1080.0
+margin_bottom = 1621.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+custom_styles/panel = SubResource( 2 )
+
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/PanelContainer"]
+margin_right = 1080.0
+margin_bottom = 1633.2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+alignment = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/PanelContainer/VBoxContainer"]
+margin_top = 786.0
+margin_right = 1080.0
+margin_bottom = 800.0
+size_flags_horizontal = 3
+
+[node name="Label" type="Label" parent="VBoxContainer/PanelContainer/VBoxContainer/HBoxContainer"]
+margin_right = 538.0
+margin_bottom = 14.0
+size_flags_horizontal = 3
+size_flags_vertical = 1
+text = "Account Name:"
+align = 1
+valign = 1
+
+[node name="TextEdit" type="TextEdit" parent="VBoxContainer/PanelContainer/VBoxContainer/HBoxContainer"]
+margin_left = 542.0
+margin_right = 1080.0
+margin_bottom = 14.0
+size_flags_horizontal = 3
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="VBoxContainer/PanelContainer/VBoxContainer"]
+margin_top = 804.0
+margin_right = 1080.0
+margin_bottom = 818.0
+size_flags_horizontal = 3
+
+[node name="Label" type="Label" parent="VBoxContainer/PanelContainer/VBoxContainer/HBoxContainer2"]
+margin_right = 538.0
+margin_bottom = 14.0
+size_flags_horizontal = 3
+size_flags_vertical = 1
+text = "Account Currency:"
+align = 1
+valign = 1
+
+[node name="TextEdit" type="TextEdit" parent="VBoxContainer/PanelContainer/VBoxContainer/HBoxContainer2"]
+margin_left = 542.0
+margin_right = 1080.0
+margin_bottom = 14.0
+size_flags_horizontal = 3
+text = "EUR"
+
+[node name="HBoxContainer3" type="HBoxContainer" parent="VBoxContainer/PanelContainer/VBoxContainer"]
+margin_top = 822.0
+margin_right = 1080.0
+margin_bottom = 846.0
+size_flags_horizontal = 3
+
+[node name="Label" type="Label" parent="VBoxContainer/PanelContainer/VBoxContainer/HBoxContainer3"]
+margin_right = 538.0
+margin_bottom = 24.0
+size_flags_horizontal = 3
+size_flags_vertical = 1
+text = "Account NET Worth:"
+align = 1
+valign = 1
+
+[node name="SpinBox" type="SpinBox" parent="VBoxContainer/PanelContainer/VBoxContainer/HBoxContainer3"]
+margin_left = 542.0
+margin_right = 1080.0
+margin_bottom = 24.0
+size_flags_horizontal = 3
+allow_greater = true
+allow_lesser = true
+align = 1
+
+[node name="Button" type="Button" parent="VBoxContainer"]
+margin_top = 1625.0
+margin_right = 1080.0
+margin_bottom = 1920.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+size_flags_stretch_ratio = 0.2
+
+[node name="Label" type="Label" parent="VBoxContainer/Button"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+text = "Create"
+align = 1
+valign = 1
