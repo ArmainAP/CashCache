@@ -59,11 +59,6 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://addons/easy_charts/utilities/classes/structures/data_frame.gd"
 }, {
-"base": "PanelContainer",
-"class": "DataTooltip",
-"language": "GDScript",
-"path": "res://addons/easy_charts/utilities/containers/data_tooltip/data_tooltip.gd"
-}, {
 "base": "Reference",
 "class": "Date",
 "language": "GDScript",
@@ -135,7 +130,6 @@ _global_script_class_icons={
 "Chart": "",
 "ChartProperties": "",
 "DataFrame": "",
-"DataTooltip": "",
 "Date": "",
 "LegendElement": "",
 "LineChart": "",
