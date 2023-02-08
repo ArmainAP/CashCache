@@ -162,7 +162,7 @@ _global_script_classes=[ {
 "base": "Label",
 "class": "ResizableLabel",
 "language": "GDScript",
-"path": "res://scripts/ResizableLabel.gd"
+"path": "res://scripts/nodes/ResizableLabel.gd"
 }, {
 "base": "Reference",
 "class": "SampledAxis",
@@ -178,6 +178,11 @@ _global_script_classes=[ {
 "class": "ScatterPlotter",
 "language": "GDScript",
 "path": "res://addons/easy_charts/control_charts/plotters/scatter_plotter.gd"
+}, {
+"base": "Button",
+"class": "SceneLoadButton",
+"language": "GDScript",
+"path": "res://scripts/nodes/SceneLoadButton.gd"
 }, {
 "base": "Reference",
 "class": "Slice",
@@ -224,6 +229,7 @@ _global_script_class_icons={
 "SampledAxis": "",
 "ScatterChart": "",
 "ScatterPlotter": "",
+"SceneLoadButton": "",
 "Slice": "",
 "WindowRestrictor": ""
 }
@@ -231,18 +237,28 @@ _global_script_class_icons={
 [application]
 
 config/name="CashCache"
+run/main_scene="res://screens/entry_screen/entry_screen.tscn"
 run/low_processor_mode=true
 config/icon="res://icon.png"
 
+[autoload]
+
+ScreenStack="*res://scripts/autoload/ScreenStack.gd"
+UserConfig="*res://scripts/autoload/UserConfig.gd"
+
 [display]
 
-window/size/width=540
-window/size/height=960
+window/size/width=1080
+window/size/height=1920
 window/size/test_width=540
 window/size/test_height=960
 window/handheld/orientation="sensor"
 window/stretch/mode="2d"
 window/stretch/aspect="expand"
+
+[editor_plugins]
+
+enabled=PoolStringArray( "res://addons/calendar_button/plugin.cfg", "res://addons/easy_charts/plugin.cfg" )
 
 [gui]
 
