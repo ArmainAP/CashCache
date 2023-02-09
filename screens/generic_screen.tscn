@@ -17,17 +17,31 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
+custom_constants/separation = 0
 
-[node name="Header" type="Panel" parent="VBoxContainer"]
-margin_right = 1080.0
-margin_bottom = 136.0
+[node name="Header" type="PanelContainer" parent="VBoxContainer"]
+margin_right = 720.0
+margin_bottom = 90.0
 size_flags_horizontal = 3
-size_flags_vertical = 3
-size_flags_stretch_ratio = 0.1
 
-[node name="ResizeableLabel" type="Label" parent="VBoxContainer/Header"]
-anchor_right = 1.0
-anchor_bottom = 1.0
+[node name="Panel" type="Panel" parent="VBoxContainer/Header"]
+margin_left = 7.0
+margin_top = 7.0
+margin_right = 713.0
+margin_bottom = 83.0
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/Header"]
+margin_left = 7.0
+margin_top = 7.0
+margin_right = 713.0
+margin_bottom = 83.0
+size_flags_horizontal = 3
+
+[node name="ResizeableLabel" type="Label" parent="VBoxContainer/Header/HBoxContainer"]
+margin_right = 341.0
+margin_bottom = 76.0
+size_flags_horizontal = 2
+size_flags_vertical = 3
 custom_fonts/font = SubResource( 1 )
 text = "Cash Cache"
 align = 1
@@ -35,17 +49,15 @@ valign = 1
 script = ExtResource( 1 )
 font_size = 64
 
-[node name="Body" type="Panel" parent="VBoxContainer"]
-margin_top = 140.0
-margin_right = 1080.0
-margin_bottom = 1506.0
+[node name="Body" type="PanelContainer" parent="VBoxContainer"]
+margin_top = 90.0
+margin_right = 720.0
+margin_bottom = 1280.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
-[node name="Footer" type="Panel" parent="VBoxContainer"]
-margin_top = 1510.0
-margin_right = 1080.0
-margin_bottom = 1920.0
-size_flags_horizontal = 3
-size_flags_vertical = 3
-size_flags_stretch_ratio = 0.3
+[node name="Panel" type="Panel" parent="VBoxContainer/Body"]
+margin_left = 7.0
+margin_top = 7.0
+margin_right = 713.0
+margin_bottom = 1183.0
