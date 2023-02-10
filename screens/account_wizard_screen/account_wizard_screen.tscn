@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=2]
+[gd_scene load_steps=16 format=2]
 
 [ext_resource path="res://screens/generic_screen.tscn" type="PackedScene" id=1]
 [ext_resource path="res://fonts/import/Roboto/Roboto-Regular.ttf" type="DynamicFontData" id=2]
@@ -7,164 +7,212 @@
 [ext_resource path="res://icons/cancel_white_48dp.svg" type="Texture" id=5]
 [ext_resource path="res://icons/check_circle_white_48dp.svg" type="Texture" id=6]
 [ext_resource path="res://icons/folder_white_48dp.svg" type="Texture" id=7]
-[ext_resource path="res://screens/account_wizard_screen/SaveLocationButton.gd" type="Script" id=8]
 [ext_resource path="res://scripts/nodes/FullRectFileDialog.gd" type="Script" id=9]
+[ext_resource path="res://scripts/nodes/NumericLineEdit.gd" type="Script" id=10]
+[ext_resource path="res://screens/account_wizard_screen/account_wizard_screen.gd" type="Script" id=13]
 
 [sub_resource type="DynamicFont" id=1]
 resource_local_to_scene = true
-size = 64
+size = 24
 font_data = ExtResource( 2 )
 
 [sub_resource type="DynamicFont" id=2]
 resource_local_to_scene = true
-size = 32
 font_data = ExtResource( 2 )
 
 [sub_resource type="DynamicFont" id=3]
 resource_local_to_scene = true
-size = 32
 font_data = ExtResource( 2 )
 
 [sub_resource type="DynamicFont" id=4]
 resource_local_to_scene = true
-size = 32
+font_data = ExtResource( 2 )
+
+[sub_resource type="DynamicFont" id=5]
+resource_local_to_scene = true
 font_data = ExtResource( 2 )
 
 [node name="Control" instance=ExtResource( 1 )]
+script = ExtResource( 13 )
+
+[node name="Header" parent="VBoxContainer" index="0"]
+margin_bottom = 68.0
+
+[node name="Panel" parent="VBoxContainer/Header" index="0"]
+margin_bottom = 61.0
+
+[node name="HBoxContainer" parent="VBoxContainer/Header" index="1"]
+margin_bottom = 61.0
 
 [node name="ScenePopButtons" type="Button" parent="VBoxContainer/Header/HBoxContainer" index="0"]
 margin_right = 60.0
-margin_bottom = 76.0
+margin_bottom = 54.0
+size_flags_horizontal = 2
+size_flags_vertical = 2
 icon = ExtResource( 5 )
 icon_align = 1
 script = ExtResource( 4 )
 
 [node name="ResizeableLabel" parent="VBoxContainer/Header/HBoxContainer" index="1"]
-margin_left = 64.0
-margin_right = 642.0
+margin_left = 119.0
+margin_right = 263.0
+margin_bottom = 54.0
 size_flags_horizontal = 3
 custom_fonts/font = SubResource( 1 )
+text = "New Account"
+font_size = 24
 
-[node name="SceneLoadButton" type="Button" parent="VBoxContainer/Header/HBoxContainer" index="2"]
-margin_left = 646.0
-margin_right = 706.0
-margin_bottom = 76.0
+[node name="ConfirmButton" type="Button" parent="VBoxContainer/Header/HBoxContainer" index="2"]
+margin_left = 322.0
+margin_right = 382.0
+margin_bottom = 54.0
+size_flags_horizontal = 10
+size_flags_vertical = 2
 icon = ExtResource( 6 )
 icon_align = 1
+script = ExtResource( 4 )
 
-[node name="MarginContainer" type="MarginContainer" parent="VBoxContainer/Body" index="1"]
+[node name="Body" parent="VBoxContainer" index="1"]
+margin_top = 68.0
+
+[node name="Panel" parent="VBoxContainer/Body" index="0"]
+margin_bottom = 629.0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/Body" index="1"]
 margin_left = 7.0
 margin_top = 7.0
-margin_right = 713.0
-margin_bottom = 1183.0
-size_flags_horizontal = 3
-size_flags_vertical = 3
-custom_constants/margin_right = 25
-custom_constants/margin_top = 25
-custom_constants/margin_left = 25
-custom_constants/margin_bottom = 25
+margin_right = 389.0
+margin_bottom = 629.0
 
-[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/Body/MarginContainer" index="0"]
-margin_left = 25.0
-margin_top = 25.0
-margin_right = 681.0
-margin_bottom = 1151.0
-size_flags_horizontal = 3
-size_flags_vertical = 3
-
-[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/Body/MarginContainer/VBoxContainer" index="0"]
-margin_right = 656.0
+[node name="SaveLocationButton" type="Button" parent="VBoxContainer/Body/VBoxContainer" index="0"]
+margin_right = 382.0
 margin_bottom = 54.0
-
-[node name="SaveLocationButton" type="Button" parent="VBoxContainer/Body/MarginContainer/VBoxContainer/HBoxContainer" index="0"]
-margin_right = 656.0
-margin_bottom = 54.0
-size_flags_horizontal = 3
 icon = ExtResource( 7 )
-script = ExtResource( 8 )
 
-[node name="HBoxContainer2" type="HBoxContainer" parent="VBoxContainer/Body/MarginContainer/VBoxContainer" index="1"]
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/Body/VBoxContainer" index="1"]
 margin_top = 58.0
-margin_right = 656.0
-margin_bottom = 96.0
+margin_right = 382.0
+margin_bottom = 622.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
 
-[node name="ResizableLabel" type="Label" parent="VBoxContainer/Body/MarginContainer/VBoxContainer/HBoxContainer2" index="0"]
-margin_right = 220.0
-margin_bottom = 38.0
+[node name="HBoxContainer2" type="HBoxContainer" parent="VBoxContainer/Body/VBoxContainer/VBoxContainer" index="0"]
+margin_right = 382.0
+margin_bottom = 29.0
+
+[node name="ResizableLabel" type="Label" parent="VBoxContainer/Body/VBoxContainer/VBoxContainer/HBoxContainer2" index="0"]
+margin_right = 46.0
+margin_bottom = 29.0
 size_flags_horizontal = 2
 size_flags_vertical = 3
 custom_fonts/font = SubResource( 2 )
-text = "Account Name:"
+text = "Name:"
 valign = 1
 script = ExtResource( 3 )
-font_size = 32
 
-[node name="LineEdit" type="LineEdit" parent="VBoxContainer/Body/MarginContainer/VBoxContainer/HBoxContainer2" index="1"]
-margin_left = 330.0
-margin_right = 656.0
-margin_bottom = 38.0
+[node name="LineEdit" type="LineEdit" parent="VBoxContainer/Body/VBoxContainer/VBoxContainer/HBoxContainer2" index="1"]
+margin_left = 193.0
+margin_right = 382.0
+margin_bottom = 29.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
+text = "Account"
 align = 1
 
-[node name="HBoxContainer3" type="HBoxContainer" parent="VBoxContainer/Body/MarginContainer/VBoxContainer" index="2"]
-margin_top = 100.0
-margin_right = 656.0
-margin_bottom = 138.0
+[node name="HBoxContainer3" type="HBoxContainer" parent="VBoxContainer/Body/VBoxContainer/VBoxContainer" index="1"]
+margin_top = 33.0
+margin_right = 382.0
+margin_bottom = 62.0
 
-[node name="ResizableLabel" type="Label" parent="VBoxContainer/Body/MarginContainer/VBoxContainer/HBoxContainer3" index="0"]
-margin_right = 263.0
-margin_bottom = 38.0
+[node name="ResizableLabel" type="Label" parent="VBoxContainer/Body/VBoxContainer/VBoxContainer/HBoxContainer3" index="0"]
+margin_right = 66.0
+margin_bottom = 29.0
 size_flags_horizontal = 2
 size_flags_vertical = 3
 custom_fonts/font = SubResource( 3 )
-text = "Account Currency:"
+text = "Currency:"
 valign = 1
 script = ExtResource( 3 )
-font_size = 32
 
-[node name="LineEdit" type="LineEdit" parent="VBoxContainer/Body/MarginContainer/VBoxContainer/HBoxContainer3" index="1"]
-margin_left = 330.0
-margin_right = 656.0
-margin_bottom = 38.0
+[node name="LineEdit" type="LineEdit" parent="VBoxContainer/Body/VBoxContainer/VBoxContainer/HBoxContainer3" index="1"]
+margin_left = 193.0
+margin_right = 382.0
+margin_bottom = 29.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
-text = "USD"
+text = "RON"
 align = 1
 
-[node name="HBoxContainer4" type="HBoxContainer" parent="VBoxContainer/Body/MarginContainer/VBoxContainer" index="3"]
-margin_top = 142.0
-margin_right = 656.0
-margin_bottom = 180.0
+[node name="HBoxContainer4" type="HBoxContainer" parent="VBoxContainer/Body/VBoxContainer/VBoxContainer" index="2"]
+margin_top = 66.0
+margin_right = 382.0
+margin_bottom = 95.0
 
-[node name="ResizableLabel" type="Label" parent="VBoxContainer/Body/MarginContainer/VBoxContainer/HBoxContainer4" index="0"]
-margin_right = 243.0
-margin_bottom = 38.0
+[node name="ResizableLabel" type="Label" parent="VBoxContainer/Body/VBoxContainer/VBoxContainer/HBoxContainer4" index="0"]
+margin_right = 121.0
+margin_bottom = 29.0
 size_flags_horizontal = 2
 size_flags_vertical = 3
 custom_fonts/font = SubResource( 4 )
 text = "Initial NET worth:"
 valign = 1
 script = ExtResource( 3 )
-font_size = 32
 
-[node name="SpinBox" type="SpinBox" parent="VBoxContainer/Body/MarginContainer/VBoxContainer/HBoxContainer4" index="1"]
-margin_left = 330.0
-margin_right = 656.0
-margin_bottom = 38.0
+[node name="LineEdit" type="LineEdit" parent="VBoxContainer/Body/VBoxContainer/VBoxContainer/HBoxContainer4" index="1"]
+margin_left = 193.0
+margin_right = 382.0
+margin_bottom = 29.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+text = "0"
+align = 1
+script = ExtResource( 10 )
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="VBoxContainer/Body/VBoxContainer/VBoxContainer" index="3"]
+margin_top = 99.0
+margin_right = 382.0
+margin_bottom = 184.0
+
+[node name="ResizableLabel" type="Label" parent="VBoxContainer/Body/VBoxContainer/VBoxContainer/VBoxContainer2" index="0"]
+margin_right = 74.0
+margin_bottom = 19.0
+size_flags_horizontal = 2
+size_flags_vertical = 3
+custom_fonts/font = SubResource( 5 )
+text = "Password:"
+valign = 1
+script = ExtResource( 3 )
+
+[node name="Password" type="LineEdit" parent="VBoxContainer/Body/VBoxContainer/VBoxContainer/VBoxContainer2" index="1"]
+margin_top = 23.0
+margin_right = 382.0
+margin_bottom = 52.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 align = 1
+secret = true
 
-[node name="FullRectFileDialog" type="FileDialog" parent="." index="1"]
-visible = true
-anchor_right = 1.0
-anchor_bottom = 1.0
+[node name="ConfirmPassword" type="LineEdit" parent="VBoxContainer/Body/VBoxContainer/VBoxContainer/VBoxContainer2" index="2"]
+margin_top = 56.0
+margin_right = 382.0
+margin_bottom = 85.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
+align = 1
+secret = true
+
+[node name="FullRectFileDialog" type="FileDialog" parent="." index="1"]
+anchor_right = 1.0
+anchor_bottom = 1.0
 popup_exclusive = true
 window_title = "Open a Directory"
 mode = 2
+access = 2
 script = ExtResource( 9 )
 
-[connection signal="pressed" from="VBoxContainer/Body/MarginContainer/VBoxContainer/HBoxContainer/SaveLocationButton" to="FullRectFileDialog" method="_on_popup_button_pressed"]
+[connection signal="pressed" from="VBoxContainer/Header/HBoxContainer/ConfirmButton" to="." method="_on_ConfirmButton_pressed"]
+[connection signal="pressed" from="VBoxContainer/Body/VBoxContainer/SaveLocationButton" to="FullRectFileDialog" method="_on_popup_button_pressed"]
+[connection signal="text_changed" from="VBoxContainer/Body/VBoxContainer/VBoxContainer/VBoxContainer2/Password" to="." method="_on_password_text_changed"]
+[connection signal="text_changed" from="VBoxContainer/Body/VBoxContainer/VBoxContainer/VBoxContainer2/ConfirmPassword" to="." method="_on_password_text_changed"]
+[connection signal="confirmed" from="FullRectFileDialog" to="." method="_on_FullRectFileDialog_confirmed"]
+[connection signal="dir_selected" from="FullRectFileDialog" to="." method="_on_FullRectFileDialog_dir_selected"]

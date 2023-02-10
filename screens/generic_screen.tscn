@@ -20,20 +20,20 @@ size_flags_vertical = 3
 custom_constants/separation = 0
 
 [node name="Header" type="PanelContainer" parent="VBoxContainer"]
-margin_right = 720.0
+margin_right = 396.0
 margin_bottom = 90.0
 size_flags_horizontal = 3
 
 [node name="Panel" type="Panel" parent="VBoxContainer/Header"]
 margin_left = 7.0
 margin_top = 7.0
-margin_right = 713.0
+margin_right = 389.0
 margin_bottom = 83.0
 
 [node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/Header"]
 margin_left = 7.0
 margin_top = 7.0
-margin_right = 713.0
+margin_right = 389.0
 margin_bottom = 83.0
 size_flags_horizontal = 3
 
@@ -51,13 +51,13 @@ font_size = 64
 
 [node name="Body" type="PanelContainer" parent="VBoxContainer"]
 margin_top = 90.0
-margin_right = 720.0
-margin_bottom = 1280.0
+margin_right = 396.0
+margin_bottom = 704.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
 [node name="Panel" type="Panel" parent="VBoxContainer/Body"]
 margin_left = 7.0
 margin_top = 7.0
-margin_right = 713.0
-margin_bottom = 1183.0
+margin_right = 389.0
+margin_bottom = 607.0

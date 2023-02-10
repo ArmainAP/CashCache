@@ -2,6 +2,7 @@ extends FileDialog
 class_name FullRectFileDialog
 
 func _ready():
+	self.current_dir = DataManager.get_default_folder()
 	get_viewport().connect("size_changed", self, "_on_Viewport_size_changed")
 
 

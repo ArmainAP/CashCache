@@ -1,37 +1,65 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://screens/generic_screen.tscn" type="PackedScene" id=1]
 [ext_resource path="res://fonts/import/Roboto/Roboto-Regular.ttf" type="DynamicFontData" id=2]
 [ext_resource path="res://scripts/nodes/SceneLoadButton.gd" type="Script" id=3]
+[ext_resource path="res://screens/entry_screen/entry_screen.gd" type="Script" id=4]
 [ext_resource path="res://icons/note_add_white_48dp.svg" type="Texture" id=6]
 [ext_resource path="res://icons/upload_file_white_48dp.svg" type="Texture" id=7]
 [ext_resource path="res://scripts/nodes/FullRectFileDialog.gd" type="Script" id=8]
 
 [sub_resource type="DynamicFont" id=1]
 resource_local_to_scene = true
-size = 64
+size = 24
 font_data = ExtResource( 2 )
 
 [node name="Control" instance=ExtResource( 1 )]
+script = ExtResource( 4 )
+
+[node name="Header" parent="VBoxContainer" index="0"]
+margin_bottom = 68.0
+
+[node name="Panel" parent="VBoxContainer/Header" index="0"]
+margin_bottom = 61.0
+
+[node name="HBoxContainer" parent="VBoxContainer/Header" index="1"]
+margin_bottom = 61.0
 
 [node name="ResizeableLabel" parent="VBoxContainer/Header/HBoxContainer" index="0"]
+margin_left = 22.0
+margin_right = 150.0
+margin_bottom = 54.0
+size_flags_horizontal = 6
 custom_fonts/font = SubResource( 1 )
+font_size = 24
 
 [node name="ImportAccount" type="Button" parent="VBoxContainer/Header/HBoxContainer" index="1"]
-margin_left = 501.0
-margin_right = 609.0
-margin_bottom = 76.0
+margin_left = 177.0
+margin_right = 285.0
+margin_bottom = 54.0
 text = "Import"
 icon = ExtResource( 7 )
 
 [node name="NewAccount" type="Button" parent="VBoxContainer/Header/HBoxContainer" index="2"]
-margin_left = 613.0
-margin_right = 706.0
-margin_bottom = 76.0
+margin_left = 289.0
+margin_right = 382.0
+margin_bottom = 54.0
 text = "New"
 icon = ExtResource( 6 )
 script = ExtResource( 3 )
 screen_path = "res://screens/account_wizard_screen/account_wizard_screen.tscn"
+
+[node name="Body" parent="VBoxContainer" index="1"]
+margin_top = 68.0
+
+[node name="Panel" parent="VBoxContainer/Body" index="0"]
+margin_bottom = 629.0
+
+[node name="ItemList" type="ItemList" parent="VBoxContainer/Body" index="1"]
+margin_left = 7.0
+margin_top = 7.0
+margin_right = 389.0
+margin_bottom = 629.0
 
 [node name="FullRectFileDialog" type="FileDialog" parent="." index="1"]
 anchor_right = 1.0
@@ -41,7 +69,10 @@ size_flags_vertical = 3
 popup_exclusive = true
 window_title = "Open a File"
 mode = 0
-filters = PoolStringArray( ".ccf" )
+access = 2
+filters = PoolStringArray( "*.ccf" )
 script = ExtResource( 8 )
 
 [connection signal="pressed" from="VBoxContainer/Header/HBoxContainer/ImportAccount" to="FullRectFileDialog" method="_on_popup_button_pressed"]
+[connection signal="confirmed" from="FullRectFileDialog" to="." method="_on_FullRectFileDialog_confirmed"]
+[connection signal="file_selected" from="FullRectFileDialog" to="." method="_on_FullRectFileDialog_file_selected"]
