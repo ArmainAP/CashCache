@@ -1,5 +1,8 @@
 extends Node
 
+const ACCOUNT_WIZARD_SCREEN := "res://screens/account_wizard_screen/account_wizard_screen.tscn"
+const ACCOUNT_SCREEN := "res://screens/account_screen/account_screen.tscn"
+
 var scene_stack : PoolStringArray
 
 func _ready():

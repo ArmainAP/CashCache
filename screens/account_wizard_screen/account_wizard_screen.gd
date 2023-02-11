@@ -4,13 +4,13 @@ onready var confirm_button : Button = $VBoxContainer/Header/HBoxContainer/Confir
 onready var save_location_button : Button = $VBoxContainer/Body/VBoxContainer/SaveLocationButton
 onready var account_name_line_edit : LineEdit = $VBoxContainer/Body/VBoxContainer/VBoxContainer/HBoxContainer2/LineEdit
 onready var account_currency_line_edit : LineEdit = $VBoxContainer/Body/VBoxContainer/VBoxContainer/HBoxContainer3/LineEdit
-onready var account_net_worth_line_edit : LineEdit = $VBoxContainer/Body/VBoxContainer/VBoxContainer/HBoxContainer4/LineEdit
 onready var password_line_edit : LineEdit = $VBoxContainer/Body/VBoxContainer/VBoxContainer/VBoxContainer2/Password
 onready var confirm_password_line_edit : LineEdit = $VBoxContainer/Body/VBoxContainer/VBoxContainer/VBoxContainer2/ConfirmPassword
 onready var file_dialog : FileDialog = $FullRectFileDialog
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	file_dialog.current_dir = DataManager.get_default_folder()
 	save_location_button.text = DataManager.get_default_folder()
 	account_name_line_edit.text = "Account" + String(DataManager.account_paths.size() + 1)
 

@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=2]
+[gd_scene load_steps=15 format=2]
 
 [ext_resource path="res://screens/generic_screen.tscn" type="PackedScene" id=1]
 [ext_resource path="res://fonts/import/Roboto/Roboto-Regular.ttf" type="DynamicFontData" id=2]
@@ -7,8 +7,8 @@
 [ext_resource path="res://icons/cancel_white_48dp.svg" type="Texture" id=5]
 [ext_resource path="res://icons/check_circle_white_48dp.svg" type="Texture" id=6]
 [ext_resource path="res://icons/folder_white_48dp.svg" type="Texture" id=7]
-[ext_resource path="res://scripts/nodes/FullRectFileDialog.gd" type="Script" id=9]
-[ext_resource path="res://scripts/nodes/NumericLineEdit.gd" type="Script" id=10]
+[ext_resource path="res://scripts/nodes/SceneLoadButton.gd" type="Script" id=8]
+[ext_resource path="res://scripts/nodes/FullRectDialog.gd" type="Script" id=9]
 [ext_resource path="res://screens/account_wizard_screen/account_wizard_screen.gd" type="Script" id=13]
 
 [sub_resource type="DynamicFont" id=1]
@@ -25,10 +25,6 @@ resource_local_to_scene = true
 font_data = ExtResource( 2 )
 
 [sub_resource type="DynamicFont" id=4]
-resource_local_to_scene = true
-font_data = ExtResource( 2 )
-
-[sub_resource type="DynamicFont" id=5]
 resource_local_to_scene = true
 font_data = ExtResource( 2 )
 
@@ -60,7 +56,6 @@ margin_bottom = 54.0
 size_flags_horizontal = 3
 custom_fonts/font = SubResource( 1 )
 text = "New Account"
-font_size = 24
 
 [node name="ConfirmButton" type="Button" parent="VBoxContainer/Header/HBoxContainer" index="2"]
 margin_left = 322.0
@@ -70,7 +65,8 @@ size_flags_horizontal = 10
 size_flags_vertical = 2
 icon = ExtResource( 6 )
 icon_align = 1
-script = ExtResource( 4 )
+script = ExtResource( 8 )
+screen_path = "res://screens/account_screen/account_screen.tscn"
 
 [node name="Body" parent="VBoxContainer" index="1"]
 margin_top = 68.0
@@ -143,42 +139,17 @@ size_flags_vertical = 3
 text = "RON"
 align = 1
 
-[node name="HBoxContainer4" type="HBoxContainer" parent="VBoxContainer/Body/VBoxContainer/VBoxContainer" index="2"]
+[node name="VBoxContainer2" type="VBoxContainer" parent="VBoxContainer/Body/VBoxContainer/VBoxContainer" index="2"]
 margin_top = 66.0
 margin_right = 382.0
-margin_bottom = 95.0
-
-[node name="ResizableLabel" type="Label" parent="VBoxContainer/Body/VBoxContainer/VBoxContainer/HBoxContainer4" index="0"]
-margin_right = 121.0
-margin_bottom = 29.0
-size_flags_horizontal = 2
-size_flags_vertical = 3
-custom_fonts/font = SubResource( 4 )
-text = "Initial NET worth:"
-valign = 1
-script = ExtResource( 3 )
-
-[node name="LineEdit" type="LineEdit" parent="VBoxContainer/Body/VBoxContainer/VBoxContainer/HBoxContainer4" index="1"]
-margin_left = 193.0
-margin_right = 382.0
-margin_bottom = 29.0
-size_flags_horizontal = 3
-size_flags_vertical = 3
-text = "0"
-align = 1
-script = ExtResource( 10 )
-
-[node name="VBoxContainer2" type="VBoxContainer" parent="VBoxContainer/Body/VBoxContainer/VBoxContainer" index="3"]
-margin_top = 99.0
-margin_right = 382.0
-margin_bottom = 184.0
+margin_bottom = 151.0
 
 [node name="ResizableLabel" type="Label" parent="VBoxContainer/Body/VBoxContainer/VBoxContainer/VBoxContainer2" index="0"]
 margin_right = 74.0
 margin_bottom = 19.0
 size_flags_horizontal = 2
 size_flags_vertical = 3
-custom_fonts/font = SubResource( 5 )
+custom_fonts/font = SubResource( 4 )
 text = "Password:"
 valign = 1
 script = ExtResource( 3 )

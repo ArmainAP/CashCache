@@ -94,10 +94,10 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://addons/easy_charts/utilities/scripts/ec_utilities.gd"
 }, {
-"base": "FileDialog",
-"class": "FullRectFileDialog",
+"base": "Popup",
+"class": "FullRectDialog",
 "language": "GDScript",
-"path": "res://scripts/nodes/FullRectFileDialog.gd"
+"path": "res://scripts/nodes/FullRectDialog.gd"
 }, {
 "base": "Reference",
 "class": "Function",
@@ -158,6 +158,11 @@ _global_script_classes=[ {
 "class": "Pair",
 "language": "GDScript",
 "path": "res://addons/easy_charts/utilities/classes/structures/pair.gd"
+}, {
+"base": "FullRectDialog",
+"class": "PasswordDialog",
+"language": "GDScript",
+"path": "res://scripts/nodes/PasswordDialog/PasswordDialog.gd"
 }, {
 "base": "AbstractChart",
 "class": "PieChart",
@@ -237,7 +242,7 @@ _global_script_class_icons={
 "DataTooltip": "",
 "Date": "",
 "ECUtilities": "",
-"FullRectFileDialog": "",
+"FullRectDialog": "",
 "Function": "",
 "FunctionLabel": "",
 "FunctionLegend": "",
@@ -250,6 +255,7 @@ _global_script_class_icons={
 "MatrixGenerator": "",
 "NumericLineEdit": "",
 "Pair": "",
+"PasswordDialog": "",
 "PieChart": "",
 "PiePlotter": "",
 "PlotBox": "",

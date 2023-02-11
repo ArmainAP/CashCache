@@ -5,7 +5,7 @@
 
 [sub_resource type="DynamicFont" id=1]
 resource_local_to_scene = true
-size = 64
+size = 24
 font_data = ExtResource( 2 )
 
 [node name="Control" type="Control"]
@@ -21,25 +21,25 @@ custom_constants/separation = 0
 
 [node name="Header" type="PanelContainer" parent="VBoxContainer"]
 margin_right = 396.0
-margin_bottom = 90.0
+margin_bottom = 43.0
 size_flags_horizontal = 3
 
 [node name="Panel" type="Panel" parent="VBoxContainer/Header"]
 margin_left = 7.0
 margin_top = 7.0
 margin_right = 389.0
-margin_bottom = 83.0
+margin_bottom = 36.0
 
 [node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/Header"]
 margin_left = 7.0
 margin_top = 7.0
 margin_right = 389.0
-margin_bottom = 83.0
+margin_bottom = 36.0
 size_flags_horizontal = 3
 
 [node name="ResizeableLabel" type="Label" parent="VBoxContainer/Header/HBoxContainer"]
-margin_right = 341.0
-margin_bottom = 76.0
+margin_right = 128.0
+margin_bottom = 29.0
 size_flags_horizontal = 2
 size_flags_vertical = 3
 custom_fonts/font = SubResource( 1 )
@@ -47,10 +47,10 @@ text = "Cash Cache"
 align = 1
 valign = 1
 script = ExtResource( 1 )
-font_size = 64
+font_size = 24
 
 [node name="Body" type="PanelContainer" parent="VBoxContainer"]
-margin_top = 90.0
+margin_top = 43.0
 margin_right = 396.0
 margin_bottom = 704.0
 size_flags_horizontal = 3
@@ -60,4 +60,4 @@ size_flags_vertical = 3
 margin_left = 7.0
 margin_top = 7.0
 margin_right = 389.0
-margin_bottom = 607.0
+margin_bottom = 654.0

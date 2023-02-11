@@ -47,12 +47,14 @@ func create_account(var folder_path : String, var account_data : AccountData, va
 	var file_path = folder_path.plus_file(account_data.name + ".ccf")
 	save_account(file_path, account_data, password)
 	import_account(file_path)
+	load_account(file_path, password)
 
 
 func save_account(var file_path : String, var account_data : AccountData, var password : String) -> void:
 	var new_file = File.new()
 	new_file.open_encrypted_with_pass(file_path, File.WRITE, password)
-	new_file.store_var(account_data)
+	var account_json := JSON.print(account_data.to_dictionary())
+	new_file.store_string(account_json)
 	new_file.close()
 
 
@@ -64,5 +66,12 @@ func import_account(var file_path : String) -> bool:
 	return found_account
 
 
-func load_account(var file_path : String):
-	pass
+func load_account(var file_path : String, var password : String) -> bool:
+	var new_file = File.new()
+	new_file.open_encrypted_with_pass(file_path, File.READ, password)
+	var json_result = JSON.parse(new_file.get_as_text()).result
+	new_file.close()
+	if json_result is Dictionary:
+		current_account = AccountData.new().from_dictionary(json_result as Dictionary)
+		return true
+	return false
