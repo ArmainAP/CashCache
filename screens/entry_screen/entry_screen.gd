@@ -27,4 +27,4 @@ func _on_PasswordDialog_confirmed():
 
 
 func _on_ItemList_item_selected(index):
-	password_dialog.popup()
+	password_dialog._on_popup_button_pressed()
