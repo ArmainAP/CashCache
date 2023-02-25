@@ -75,6 +75,7 @@ filters = PoolStringArray( "*.ccf" )
 script = ExtResource( 8 )
 
 [node name="PasswordDialog" parent="." index="2" instance=ExtResource( 5 )]
+visible = false
 anchor_left = 0.0
 anchor_top = 0.0
 anchor_right = 1.0
