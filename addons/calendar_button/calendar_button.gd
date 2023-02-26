@@ -3,8 +3,8 @@ extends EditorPlugin
 
 const NODE_NAME = "CalendarButton"
 const INHERITANCE = "TextureButton"
-const CALENDAR_SCRIPT = preload("scripts/calendar_script.gd")
-const CALENDAR_ICON = preload("icon.png")
+const CALENDAR_SCRIPT = preload("res://addons/calendar_button/scripts/calendar_script.gd")
+const CALENDAR_ICON = preload("res://addons/calendar_button/icon.png")
 
 func _enter_tree():
 	add_custom_type(NODE_NAME, INHERITANCE, CALENDAR_SCRIPT, CALENDAR_ICON)
