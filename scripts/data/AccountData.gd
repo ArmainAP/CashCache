@@ -1,3 +1,4 @@
+extends Reference
 class_name AccountData
 
 const NAME_FIELD = "name"
@@ -6,8 +7,7 @@ const TRANSACTIONS_FIELD = "transactions"
 
 var name : String
 var currency : String
-var transactions : Array
-
+var transactions : Dictionary
 
 func from_dictionary(var dictionary : Dictionary) -> AccountData:
 	self.name = dictionary.get(NAME_FIELD, "")
@@ -22,3 +22,8 @@ func to_dictionary() -> Dictionary:
 		CURRENCY_FIELD: self.currency,
 		TRANSACTIONS_FIELD: self.transactions
 	}
+
+func add_transaction(var in_date : String, var in_transaction : TransactionData) -> void:
+	if not transactions.has(in_date):
+		transactions[in_date] = []
+	transactions[in_date].append(in_transaction)

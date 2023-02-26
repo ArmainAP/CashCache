@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://screens/generic_screen.tscn" type="PackedScene" id=1]
 [ext_resource path="res://fonts/import/Roboto/Roboto-Regular.ttf" type="DynamicFontData" id=2]
@@ -8,10 +8,10 @@
 [ext_resource path="res://icons/note_add_white_48dp.svg" type="Texture" id=6]
 [ext_resource path="res://icons/upload_file_white_48dp.svg" type="Texture" id=7]
 [ext_resource path="res://scripts/nodes/FullRectDialog.gd" type="Script" id=8]
+[ext_resource path="res://icons/settings_white_48dp.svg" type="Texture" id=9]
 
 [sub_resource type="DynamicFont" id=1]
 resource_local_to_scene = true
-size = 24
 font_data = ExtResource( 2 )
 
 [node name="Control" instance=ExtResource( 1 )]
@@ -26,21 +26,29 @@ margin_bottom = 61.0
 [node name="HBoxContainer" parent="VBoxContainer/Header" index="1"]
 margin_bottom = 61.0
 
-[node name="ResizeableLabel" parent="VBoxContainer/Header/HBoxContainer" index="0"]
-margin_left = 22.0
-margin_right = 150.0
+[node name="SettingsButton" type="Button" parent="VBoxContainer/Header/HBoxContainer" index="0"]
+margin_right = 60.0
+margin_bottom = 54.0
+icon = ExtResource( 9 )
+script = ExtResource( 3 )
+screen_path = "res://screens/settings_screen/settings_screen.tscn"
+
+[node name="ResizeableLabel" parent="VBoxContainer/Header/HBoxContainer" index="1"]
+margin_left = 76.0
+margin_right = 160.0
 margin_bottom = 54.0
 size_flags_horizontal = 6
 custom_fonts/font = SubResource( 1 )
+font_size = 16
 
-[node name="ImportAccount" type="Button" parent="VBoxContainer/Header/HBoxContainer" index="1"]
+[node name="ImportAccount" type="Button" parent="VBoxContainer/Header/HBoxContainer" index="2"]
 margin_left = 177.0
 margin_right = 285.0
 margin_bottom = 54.0
 text = "Import"
 icon = ExtResource( 7 )
 
-[node name="NewAccount" type="Button" parent="VBoxContainer/Header/HBoxContainer" index="2"]
+[node name="NewAccount" type="Button" parent="VBoxContainer/Header/HBoxContainer" index="3"]
 margin_left = 289.0
 margin_right = 382.0
 margin_bottom = 54.0

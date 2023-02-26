@@ -15,6 +15,11 @@ _global_script_classes=[ {
 "path": "res://scripts/data/AccountData.gd"
 }, {
 "base": "Reference",
+"class": "BudgetData",
+"language": "GDScript",
+"path": "res://scripts/data/BudgetData.gd"
+}, {
+"base": "Reference",
 "class": "Calendar",
 "language": "GDScript",
 "path": "res://addons/calendar_button/class/Calendar.gd"
@@ -60,12 +65,18 @@ _global_script_classes=[ {
 "path": "res://scripts/nodes/ScenePopButton.gd"
 }, {
 "base": "Reference",
+"class": "TransactionData",
+"language": "GDScript",
+"path": "res://scripts/data/TransactionData.gd"
+}, {
+"base": "Reference",
 "class": "WindowRestrictor",
 "language": "GDScript",
 "path": "res://addons/calendar_button/scripts/window_restrictor.gd"
 } ]
 _global_script_class_icons={
 "AccountData": "",
+"BudgetData": "",
 "Calendar": "",
 "CalendarButtons": "",
 "Date": "",
@@ -75,6 +86,7 @@ _global_script_class_icons={
 "ResizableLabel": "",
 "SceneLoadButton": "",
 "ScenePopButtons": "",
+"TransactionData": "",
 "WindowRestrictor": ""
 }
 
@@ -102,7 +114,7 @@ window/stretch/aspect="expand"
 
 [editor_plugins]
 
-enabled=PoolStringArray( "res://addons/easy_charts/plugin.cfg" )
+enabled=PoolStringArray( "res://addons/calendar_button/plugin.cfg" )
 
 [gui]
 
