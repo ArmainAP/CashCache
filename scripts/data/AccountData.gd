@@ -4,6 +4,8 @@ class_name AccountData
 const NAME_FIELD = "name"
 const CURRENCY_FIELD = "currency"
 const TRANSACTIONS_FIELD = "transactions"
+const TRANSACTION_TYPE_FIELD = "type"
+const TRANSACTION_VALUE_FIELD = "value"
 
 var name : String
 var currency : String
@@ -23,7 +25,18 @@ func to_dictionary() -> Dictionary:
 		TRANSACTIONS_FIELD: self.transactions
 	}
 
-func add_transaction(var in_date : String, var in_transaction : TransactionData) -> void:
+func save_account(var file_path : String, var password : String) -> void:
+	var new_file = File.new()
+	new_file.open_encrypted_with_pass(file_path, File.WRITE, password)
+	var account_json := JSON.print(self.to_dictionary())
+	new_file.store_string(account_json)
+	new_file.close()
+
+func add_transaction(var in_date : String, type : String, value : float) -> void:
+	var transaction_dic := {
+		TRANSACTION_TYPE_FIELD: type,
+		TRANSACTION_VALUE_FIELD: value
+	}
 	if not transactions.has(in_date):
 		transactions[in_date] = []
-	transactions[in_date].append(in_transaction)
+	transactions[in_date].append(transaction_dic)

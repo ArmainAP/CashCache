@@ -10,8 +10,6 @@ onready var file := ConfigFile.new()
 onready var file_error := file.load(get_config_path())
 onready var account_paths : PoolStringArray = file.get_value(APP_SECTION_NAME, ACCOUNTS_KEY_NAME, PoolStringArray())
 
-var current_account : AccountData
-var current_filepath : String
 
 func _ready():
 	_cull_invalid_paths()
@@ -43,19 +41,12 @@ func save_user_data() -> void:
 	file.set_value(APP_SECTION_NAME, ACCOUNTS_KEY_NAME, account_paths)
 	file.save(get_config_path())
 
+
 func create_account(var folder_path : String, var account_data : AccountData, var password : String) -> void:
 	var file_path = folder_path.plus_file(account_data.name + ".ccf")
-	save_account(file_path, account_data, password)
+	account_data.save_account(file_path, password)
 	import_account(file_path)
-	load_account(file_path, password)
-
-
-func save_account(var file_path : String, var account_data : AccountData, var password : String) -> void:
-	var new_file = File.new()
-	new_file.open_encrypted_with_pass(file_path, File.WRITE, password)
-	var account_json := JSON.print(account_data.to_dictionary())
-	new_file.store_string(account_json)
-	new_file.close()
+	ActiveAccount.load_account(file_path, password)
 
 
 func import_account(var file_path : String) -> bool:
@@ -64,14 +55,3 @@ func import_account(var file_path : String) -> bool:
 		account_paths.append(file_path)
 		save_user_data()
 	return found_account
-
-
-func load_account(var file_path : String, var password : String) -> bool:
-	var new_file = File.new()
-	new_file.open_encrypted_with_pass(file_path, File.READ, password)
-	var json_result = JSON.parse(new_file.get_as_text()).result
-	new_file.close()
-	if json_result is Dictionary:
-		current_account = AccountData.new().from_dictionary(json_result as Dictionary)
-		return true
-	return false
