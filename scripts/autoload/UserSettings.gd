@@ -42,13 +42,6 @@ func save_user_data() -> void:
 	file.save(get_config_path())
 
 
-func create_account(var folder_path : String, var account_data : AccountData, var password : String) -> void:
-	var file_path = folder_path.plus_file(account_data.name + ".ccf")
-	account_data.save_account(file_path, password)
-	import_account(file_path)
-	ActiveAccount.load_account(file_path, password)
-
-
 func import_account(var file_path : String) -> bool:
 	var found_account := account_paths.find(file_path) == -1
 	if found_account:

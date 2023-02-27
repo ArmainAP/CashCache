@@ -1,10 +1,14 @@
-[gd_scene load_steps=13 format=2]
+[gd_scene load_steps=17 format=2]
 
 [ext_resource path="res://fonts/import/Roboto/Roboto-Regular.ttf" type="DynamicFontData" id=1]
 [ext_resource path="res://screens/generic_screen.tscn" type="PackedScene" id=2]
 [ext_resource path="res://screens/account_screen/account_screen.gd" type="Script" id=3]
 [ext_resource path="res://scripts/nodes/ResizableLabel.gd" type="Script" id=4]
 [ext_resource path="res://addons/calendar_button/scripts/calendar_script.gd" type="Script" id=5]
+[ext_resource path="res://icons/cancel_white_48dp.svg" type="Texture" id=6]
+[ext_resource path="res://scripts/nodes/ScenePopButton.gd" type="Script" id=7]
+[ext_resource path="res://icons/payments_white_48dp.svg" type="Texture" id=8]
+[ext_resource path="res://scripts/nodes/SceneLoadButton.gd" type="Script" id=9]
 
 [sub_resource type="Image" id=8]
 data = {
@@ -15,7 +19,7 @@ data = {
 "width": 32
 }
 
-[sub_resource type="ImageTexture" id=3]
+[sub_resource type="ImageTexture" id=2]
 image = SubResource( 8 )
 size = Vector2( 32, 32 )
 
@@ -28,11 +32,11 @@ data = {
 "width": 32
 }
 
-[sub_resource type="ImageTexture" id=5]
+[sub_resource type="ImageTexture" id=4]
 image = SubResource( 9 )
 size = Vector2( 32, 32 )
 
-[sub_resource type="DynamicFont" id=1]
+[sub_resource type="DynamicFont" id=5]
 resource_local_to_scene = true
 size = 24
 font_data = ExtResource( 1 )
@@ -49,33 +53,54 @@ font_data = ExtResource( 1 )
 script = ExtResource( 3 )
 
 [node name="Header" parent="VBoxContainer" index="0"]
-margin_bottom = 46.0
+margin_bottom = 68.0
 
 [node name="Panel" parent="VBoxContainer/Header" index="0"]
-margin_bottom = 39.0
+margin_bottom = 61.0
 
 [node name="HBoxContainer" parent="VBoxContainer/Header" index="1"]
-margin_bottom = 39.0
+margin_bottom = 61.0
+alignment = 1
 
-[node name="CalendarButton" type="TextureButton" parent="VBoxContainer/Header/HBoxContainer" index="0"]
-margin_right = 32.0
-margin_bottom = 32.0
+[node name="ScenePopButtons" type="Button" parent="VBoxContainer/Header/HBoxContainer" index="0"]
+margin_right = 60.0
+margin_bottom = 54.0
+icon = ExtResource( 6 )
+icon_align = 1
+script = ExtResource( 7 )
+
+[node name="CalendarButton" type="TextureButton" parent="VBoxContainer/Header/HBoxContainer" index="1"]
+margin_left = 64.0
+margin_top = 11.0
+margin_right = 96.0
+margin_bottom = 43.0
+size_flags_vertical = 4
 toggle_mode = true
-texture_normal = SubResource( 3 )
-texture_pressed = SubResource( 5 )
+texture_normal = SubResource( 2 )
+texture_pressed = SubResource( 4 )
 script = ExtResource( 5 )
 
-[node name="ResizeableLabel" parent="VBoxContainer/Header/HBoxContainer" index="1"]
-margin_left = 36.0
-margin_right = 164.0
-margin_bottom = 32.0
-custom_fonts/font = SubResource( 1 )
+[node name="ResizeableLabel" parent="VBoxContainer/Header/HBoxContainer" index="2"]
+margin_left = 100.0
+margin_right = 228.0
+margin_bottom = 54.0
+custom_fonts/font = SubResource( 5 )
+
+[node name="ConfirmButton" type="Button" parent="VBoxContainer/Header/HBoxContainer" index="3"]
+margin_left = 322.0
+margin_right = 382.0
+margin_bottom = 54.0
+size_flags_horizontal = 10
+icon = ExtResource( 8 )
+icon_align = 1
+script = ExtResource( 9 )
+screen_path = "res://screens/transaction_screen/transaction_screen.tscn"
 
 [node name="Body" parent="VBoxContainer" index="1"]
-margin_top = 46.0
+margin_top = 68.0
 
 [node name="Panel" parent="VBoxContainer/Body" index="0"]
-margin_bottom = 651.0
+margin_bottom = 629.0
 
 [node name="MarginContainer" type="MarginContainer" parent="VBoxContainer/Body/Panel" index="0"]
 anchor_right = 1.0
@@ -91,7 +116,7 @@ custom_constants/margin_bottom = 5
 margin_left = 5.0
 margin_top = 5.0
 margin_right = 377.0
-margin_bottom = 639.0
+margin_bottom = 617.0
 
 [node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/Body/Panel/MarginContainer/VBoxContainer" index="0"]
 margin_right = 372.0
@@ -116,21 +141,3 @@ script = ExtResource( 4 )
 margin_top = 46.0
 margin_right = 372.0
 margin_bottom = 65.0
-
-[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/Body/Panel/MarginContainer/VBoxContainer" index="1"]
-margin_top = 69.0
-margin_right = 372.0
-margin_bottom = 94.0
-
-[node name="IncomeButton" type="Button" parent="VBoxContainer/Body/Panel/MarginContainer/VBoxContainer/HBoxContainer" index="0"]
-margin_right = 184.0
-margin_bottom = 25.0
-size_flags_horizontal = 3
-text = "Add Income"
-
-[node name="ExpenseButton" type="Button" parent="VBoxContainer/Body/Panel/MarginContainer/VBoxContainer/HBoxContainer" index="1"]
-margin_left = 188.0
-margin_right = 372.0
-margin_bottom = 25.0
-size_flags_horizontal = 3
-text = "Add Expense"

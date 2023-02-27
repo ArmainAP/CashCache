@@ -23,7 +23,7 @@ func _on_ConfirmButton_pressed():
 	var account_data := AccountData.new()
 	account_data.name = account_name_line_edit.text
 	account_data.currency = account_currency_line_edit.text
-	UserSettings.create_account(save_location_button.text, account_data, password_line_edit.text)
+	ActiveAccount.create_account(save_location_button.text, account_data, password_line_edit.text)
 
 
 func _on_FullRectFileDialog_dir_selected(dir):
