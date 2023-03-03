@@ -15,6 +15,11 @@ _global_script_classes=[ {
 "path": "res://scripts/data/AccountData.gd"
 }, {
 "base": "Reference",
+"class": "BudgetCategoryData",
+"language": "GDScript",
+"path": "res://scripts/data/BudgetCategoryData.gd"
+}, {
+"base": "Reference",
 "class": "BudgetData",
 "language": "GDScript",
 "path": "res://scripts/data/BudgetData.gd"
@@ -28,6 +33,11 @@ _global_script_classes=[ {
 "class": "CalendarButtons",
 "language": "GDScript",
 "path": "res://addons/calendar_button/scripts/calendar_buttons.gd"
+}, {
+"base": "VBoxContainer",
+"class": "CategoryRow",
+"language": "GDScript",
+"path": "res://scripts/nodes/BudgetWidget/CategoryRow.gd"
 }, {
 "base": "Reference",
 "class": "Date",
@@ -71,9 +81,11 @@ _global_script_classes=[ {
 } ]
 _global_script_class_icons={
 "AccountData": "",
+"BudgetCategoryData": "",
 "BudgetData": "",
 "Calendar": "",
 "CalendarButtons": "",
+"CategoryRow": "",
 "Date": "",
 "FullRectDialog": "",
 "NumericLineEdit": "",

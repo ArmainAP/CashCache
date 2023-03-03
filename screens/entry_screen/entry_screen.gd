@@ -26,5 +26,5 @@ func _on_PasswordDialog_confirmed():
 		ScreenStack.push_scene(ScreenStack.ACCOUNT_SCREEN)
 
 
-func _on_ItemList_item_selected(index):
+func _on_ItemList_item_selected(_index):
 	password_dialog._on_popup_button_pressed()

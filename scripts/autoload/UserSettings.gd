@@ -10,7 +10,7 @@ onready var filesystem = Directory.new()
 onready var file := ConfigFile.new()
 onready var file_error := file.load(get_config_path())
 onready var account_paths : PoolStringArray = file.get_value(APP_SECTION_NAME, ACCOUNTS_KEY_NAME, PoolStringArray())
-onready var user_budgets : Array = file.get_value(APP_SECTION_NAME, BUDGETS_KEY_NAME, [])
+onready var user_budgets : Array = file.get_value(APP_SECTION_NAME, BUDGETS_KEY_NAME, [default_budget()])
 
 func _ready():
 	_cull_invalid_paths()
@@ -49,3 +49,33 @@ func import_account(var file_path : String) -> bool:
 		account_paths.append(file_path)
 		save_user_data()
 	return found_account
+
+static func default_budget() -> BudgetData:
+	var new_default_budget = BudgetData.new()
+	new_default_budget.name = "Default"
+	new_default_budget.categories.append(BudgetCategoryData.new("Income", 1, Color.forestgreen,
+	[
+		"Salary", "Business", "Grant", "Other"
+	]))
+	new_default_budget.categories.append(BudgetCategoryData.new("Investment", 1, Color.olivedrab,
+	[
+		"Capital gains and dividends", "Real estate", "Royalties"
+	]))
+	
+	new_default_budget.categories.append(BudgetCategoryData.new("Expense", 0.6, Color.crimson,
+	[
+		"Food", "Clothes", "Home", "Credit", "Health", "Transport", "Communications", "Personal care", "Taxes", "Other"
+	]))
+	new_default_budget.categories.append(BudgetCategoryData.new("Investment", 0.2, Color.olivedrab,
+	[
+		"Education", "Savings", "Investements"
+	]))
+	new_default_budget.categories.append(BudgetCategoryData.new("Donation", 0.1, Color.orchid,
+	[
+		"Gifts", "Charity"
+	]))
+	new_default_budget.categories.append(BudgetCategoryData.new("Fun", 0.1, Color.peru, 
+	[
+		"Joyful"
+	]))
+	return new_default_budget
