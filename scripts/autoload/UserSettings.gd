@@ -4,12 +4,13 @@ const SAVE_FOLDER_NAME = "CashCache"
 const CONFIG_FILE_NAME = "app.cfg"
 const APP_SECTION_NAME = "app"
 const ACCOUNTS_KEY_NAME = "accounts"
+const BUDGETS_KEY_NAME = "budgets"
 
 onready var filesystem = Directory.new()
 onready var file := ConfigFile.new()
 onready var file_error := file.load(get_config_path())
 onready var account_paths : PoolStringArray = file.get_value(APP_SECTION_NAME, ACCOUNTS_KEY_NAME, PoolStringArray())
-
+onready var user_budgets : Array = file.get_value(APP_SECTION_NAME, BUDGETS_KEY_NAME, [])
 
 func _ready():
 	_cull_invalid_paths()

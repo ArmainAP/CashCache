@@ -1,0 +1,27 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://icons/delete_white_48dp.svg" type="Texture" id=1]
+[ext_resource path="res://icons/add_white_48dp.svg" type="Texture" id=2]
+[ext_resource path="res://scripts/nodes/BudgetWidget/BudgetRow.gd" type="Script" id=3]
+
+[node name="HBoxContainer" type="HBoxContainer"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource( 3 )
+
+[node name="Add" type="Button" parent="."]
+margin_right = 60.0
+margin_bottom = 704.0
+icon = ExtResource( 2 )
+
+[node name="LineEdit" type="LineEdit" parent="."]
+margin_left = 64.0
+margin_right = 332.0
+margin_bottom = 704.0
+size_flags_horizontal = 3
+
+[node name="Delete" type="Button" parent="."]
+margin_left = 336.0
+margin_right = 396.0
+margin_bottom = 704.0
+icon = ExtResource( 1 )
