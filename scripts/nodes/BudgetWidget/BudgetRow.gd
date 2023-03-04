@@ -19,7 +19,8 @@ func setup(_budget_index : int):
 		incomes_box.add_child(setup_rows(income))
 	
 	for expense in budget.expenses:
-		incomes_box.add_child(setup_rows(expense))
+		expenses_box.add_child(setup_rows(expense))
+
 
 func setup_rows(category : BudgetCategoryData):
 	var new_category = category_row.instance()
@@ -29,3 +30,23 @@ func setup_rows(category : BudgetCategoryData):
 		new_transaction.get_node("LineEdit").text = type
 	new_category.get_node("HBoxContainer2/VBoxContainer/HBoxContainer/LineEdit").text = category.name
 	return new_category
+
+
+func _on_LineEdit_text_entered(new_text : String):
+	UserSettings.rename_budget(budget_index, new_text)
+
+
+func _on_DeleteButton_pressed():
+	UserSettings.delete_budget(budget_index)
+
+
+func _on_AddIncomeCategory_pressed():
+	var new_budget = UserSettings.add_budget_category(budget_index, true)
+	if new_budget:
+		incomes_box.add_child(setup_rows(new_budget))
+
+
+func _on_AddExpenseCategory_pressed():
+	var new_budget = UserSettings.add_budget_category(budget_index, false)
+	if new_budget:
+		expenses_box.add_child(setup_rows(new_budget))
