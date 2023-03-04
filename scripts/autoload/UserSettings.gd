@@ -17,7 +17,7 @@ func _ready():
 
 
 func _cull_invalid_paths() -> void:
-	var indices : PoolIntArray
+	var indices : PoolIntArray = []
 	for idx in account_paths.size():
 		if !filesystem.file_exists(account_paths[idx]):
 			indices.append(idx)
@@ -40,6 +40,7 @@ func get_config_path() -> String:
 
 func save_user_data() -> void:
 	file.set_value(APP_SECTION_NAME, ACCOUNTS_KEY_NAME, account_paths)
+	file.set_value(APP_SECTION_NAME, BUDGETS_KEY_NAME, user_budgets)
 	file.save(get_config_path())
 
 
@@ -49,6 +50,16 @@ func import_account(var file_path : String) -> bool:
 		account_paths.append(file_path)
 		save_user_data()
 	return found_account
+
+
+func create_budget():
+	var new_default_budget = BudgetData.new()
+	new_default_budget.name = "Budget " + String(user_budgets.size())
+	new_default_budget.incomes.append(BudgetCategoryData.new("Income", 1, Color.forestgreen, ["Income"]))
+	new_default_budget.expenses.append(BudgetCategoryData.new("Expense", 1, Color.crimson, ["Expense"]))
+	user_budgets.append(new_default_budget)
+	save_user_data()
+
 
 static func default_budget() -> BudgetData:
 	var new_default_budget = BudgetData.new()

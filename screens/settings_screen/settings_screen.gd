@@ -9,3 +9,10 @@ func _ready():
 		var new_row = budget_row.instance()
 		budgets_box.add_child(new_row)
 		new_row.setup(index)
+
+
+func _on_AddBudgetButton_pressed():
+	UserSettings.create_budget()
+	var new_row = budget_row.instance()
+	budgets_box.add_child(new_row)
+	new_row.setup(UserSettings.user_budgets.size() - 1)

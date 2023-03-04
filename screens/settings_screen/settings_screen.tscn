@@ -57,7 +57,7 @@ margin_top = 3.0
 margin_right = 379.0
 margin_bottom = 622.0
 
-[node name="Button" type="Button" parent="VBoxContainer/Body/Panel/MarginContainer/VBoxContainer" index="0"]
+[node name="AddBudgetButton" type="Button" parent="VBoxContainer/Body/Panel/MarginContainer/VBoxContainer" index="0"]
 margin_right = 376.0
 margin_bottom = 25.0
 text = "Add Budget"
@@ -76,3 +76,5 @@ margin_right = 376.0
 margin_bottom = 590.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
+
+[connection signal="pressed" from="VBoxContainer/Body/Panel/MarginContainer/VBoxContainer/AddBudgetButton" to="." method="_on_AddBudgetButton_pressed"]
