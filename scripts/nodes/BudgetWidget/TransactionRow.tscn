@@ -1,26 +1,17 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=2 format=2]
 
 [ext_resource path="res://icons/delete_white_48dp.svg" type="Texture" id=1]
-[ext_resource path="res://scripts/nodes/BudgetWidget/TransactionRow.gd" type="Script" id=2]
 
 [node name="HBoxContainer" type="HBoxContainer"]
 anchor_right = 1.0
 anchor_bottom = 1.0
-script = ExtResource( 2 )
-
-[node name="HSplitContainer" type="HSplitContainer" parent="."]
-margin_right = 29.0
-margin_bottom = 704.0
-size_flags_horizontal = 3
-size_flags_stretch_ratio = 0.1
 
 [node name="LineEdit" type="LineEdit" parent="."]
-margin_left = 33.0
 margin_right = 332.0
 margin_bottom = 704.0
 size_flags_horizontal = 3
 
-[node name="Button2" type="Button" parent="."]
+[node name="DeleteButton" type="Button" parent="."]
 margin_left = 336.0
 margin_right = 396.0
 margin_bottom = 704.0

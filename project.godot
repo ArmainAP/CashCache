@@ -34,11 +34,6 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://addons/calendar_button/scripts/calendar_buttons.gd"
 }, {
-"base": "VBoxContainer",
-"class": "CategoryRow",
-"language": "GDScript",
-"path": "res://scripts/nodes/BudgetWidget/CategoryRow.gd"
-}, {
 "base": "Reference",
 "class": "Date",
 "language": "GDScript",
@@ -85,7 +80,6 @@ _global_script_class_icons={
 "BudgetData": "",
 "Calendar": "",
 "CalendarButtons": "",
-"CategoryRow": "",
 "Date": "",
 "FullRectDialog": "",
 "NumericLineEdit": "",

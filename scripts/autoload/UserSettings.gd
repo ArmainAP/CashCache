@@ -53,28 +53,28 @@ func import_account(var file_path : String) -> bool:
 static func default_budget() -> BudgetData:
 	var new_default_budget = BudgetData.new()
 	new_default_budget.name = "Default"
-	new_default_budget.categories.append(BudgetCategoryData.new("Income", 1, Color.forestgreen,
+	new_default_budget.incomes.append(BudgetCategoryData.new("Income", 1, Color.forestgreen,
 	[
 		"Salary", "Business", "Grant", "Other"
 	]))
-	new_default_budget.categories.append(BudgetCategoryData.new("Investment", 1, Color.olivedrab,
+	new_default_budget.incomes.append(BudgetCategoryData.new("Investment", 1, Color.olivedrab,
 	[
 		"Capital gains and dividends", "Real estate", "Royalties"
 	]))
 	
-	new_default_budget.categories.append(BudgetCategoryData.new("Expense", 0.6, Color.crimson,
+	new_default_budget.expenses.append(BudgetCategoryData.new("Expense", 0.6, Color.crimson,
 	[
 		"Food", "Clothes", "Home", "Credit", "Health", "Transport", "Communications", "Personal care", "Taxes", "Other"
 	]))
-	new_default_budget.categories.append(BudgetCategoryData.new("Investment", 0.2, Color.olivedrab,
+	new_default_budget.expenses.append(BudgetCategoryData.new("Investment", 0.2, Color.olivedrab,
 	[
 		"Education", "Savings", "Investements"
 	]))
-	new_default_budget.categories.append(BudgetCategoryData.new("Donation", 0.1, Color.orchid,
+	new_default_budget.expenses.append(BudgetCategoryData.new("Donation", 0.1, Color.orchid,
 	[
 		"Gifts", "Charity"
 	]))
-	new_default_budget.categories.append(BudgetCategoryData.new("Fun", 0.1, Color.peru, 
+	new_default_budget.expenses.append(BudgetCategoryData.new("Fun", 0.1, Color.peru, 
 	[
 		"Joyful"
 	]))

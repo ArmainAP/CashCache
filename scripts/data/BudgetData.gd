@@ -2,4 +2,5 @@ extends Reference
 class_name BudgetData
 
 var name : String
-var categories : Array
+var incomes : Array
+var expenses : Array
