@@ -5,21 +5,17 @@ onready var budgets_box : VBoxContainer = $VBoxContainer/Body/Panel/MarginContai
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	for index in UserSettings.user_budgets.size():
-		if !UserSettings.user_budgets[index]:
-			continue
-		var new_row = budget_row.instance()
-		budgets_box.add_child(new_row)
-		new_row.setup(index)
-		new_row.get_node("HBoxContainer/DeleteButton").connect("pressed", self, "_on_DeleteButton_pressed", [new_row])
+	for budget in UserSettings.user_budgets:
+		if budget:
+			create_row(budget)
+
+
+func create_row(budget : BudgetData):
+	var new_row = budget_row.instance()
+	budgets_box.add_child(new_row)
+	new_row.setup(budget)
 
 
 func _on_AddBudgetButton_pressed():
-	UserSettings.create_budget()
-	var new_row = budget_row.instance()
-	budgets_box.add_child(new_row)
-	new_row.setup(UserSettings.user_budgets.size() - 1)
-
-
-func _on_DeleteButton_pressed(new_row):
-	budgets_box.remove_child(new_row)
+	var newbudget = UserSettings.create_budget()
+	create_row(newbudget)

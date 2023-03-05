@@ -6,7 +6,14 @@
 anchor_right = 1.0
 anchor_bottom = 1.0
 
+[node name="HSeparator" type="HSeparator" parent="."]
+margin_right = 29.0
+margin_bottom = 704.0
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 0.1
+
 [node name="LineEdit" type="LineEdit" parent="."]
+margin_left = 33.0
 margin_right = 332.0
 margin_bottom = 704.0
 size_flags_horizontal = 3

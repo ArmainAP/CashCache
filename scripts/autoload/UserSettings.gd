@@ -33,9 +33,11 @@ func _cull_invalid_budgets() -> void:
 	for idx in user_budgets.size():
 		if user_budgets[idx] == null:
 			indices.append(idx)
-	if indices.size() > 0:
+	if indices.size() == user_budgets.size():
+		user_budgets = [default_budget()]
+	elif indices.size() > 0:
 		for idx in indices:
-			account_paths.remove(idx)
+			user_budgets.remove(idx)
 		save_user_data()
 
 
@@ -64,16 +66,17 @@ func import_account(var file_path : String) -> bool:
 	return found_account
 
 
-func create_budget() -> void:
-	var new_default_budget = BudgetData.new()
-	new_default_budget.name = "Budget " + String(user_budgets.size())
-	new_default_budget.incomes.append(BudgetCategoryData.new("Income", 1, Color.forestgreen, ["Income"]))
-	new_default_budget.expenses.append(BudgetCategoryData.new("Expense", 1, Color.crimson, ["Expense"]))
-	user_budgets.append(new_default_budget)
+func create_budget() -> BudgetData:
+	var new_budget = BudgetData.new()
+	new_budget.name = "Budget " + String(user_budgets.size())
+	new_budget.incomes.append(BudgetCategoryData.new("Income", 1, Color.forestgreen, ["Income"]))
+	new_budget.expenses.append(BudgetCategoryData.new("Expense", 1, Color.crimson, ["Expense"]))
+	user_budgets.append(new_budget)
 	save_user_data()
+	return new_budget
 
 
-func rename_budget(budget_index : int, new_name : String) -> bool:
+func rename_budget(new_name : String, budget_index : int) -> bool:
 	if user_budgets[budget_index] == null:
 		return false
 	user_budgets[budget_index].name = new_name
@@ -81,21 +84,19 @@ func rename_budget(budget_index : int, new_name : String) -> bool:
 	return true
 
 
-func delete_budget(budget_index : int) -> void:
-	user_budgets[budget_index] = null
-	save_user_data()
-
-
-func add_budget_category(budget_index : int, is_income := true) -> BudgetCategoryData:
-	var new_budget = null
+func rename_budget_category(new_name : String, budget_index : int, category_index : int, is_income := true) -> bool:
+	if user_budgets[budget_index] == null:
+		return false
 	if is_income:
-		new_budget = BudgetCategoryData.new("Category " + String(user_budgets[budget_index].incomes.size()))
-		user_budgets[budget_index].incomes.append(new_budget)
+		if user_budgets[budget_index].incomes[category_index] == null:
+			return false
+		user_budgets[budget_index].incomes[category_index].name = new_name
 	else:
-		new_budget = BudgetCategoryData.new("Category " + String(user_budgets[budget_index].expenses.size()))
-		user_budgets[budget_index].expenses.append(new_budget)
+		if user_budgets[budget_index].expenses[category_index] == null:
+			return false
+		user_budgets[budget_index].expenses[category_index].name = new_name
 	save_user_data()
-	return new_budget
+	return true
 
 
 static func default_budget() -> BudgetData:

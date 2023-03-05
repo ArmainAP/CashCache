@@ -1,52 +1,54 @@
 extends VBoxContainer
 
+export(NodePath) var income_box_path : NodePath
+export(NodePath) var expenses_box_path : NodePath
+export(NodePath) var label_path : NodePath
+
 onready var category_row : PackedScene = load("res://scripts/nodes/BudgetWidget/CategoryRow.tscn")
-onready var transaction_row : PackedScene = load("res://scripts/nodes/BudgetWidget/TransactionRow.tscn")
+onready var incomes_box : VBoxContainer = get_node(income_box_path)
+onready var expenses_box : VBoxContainer = get_node(expenses_box_path)
+onready var label : LineEdit = get_node(label_path)
 
-onready var incomes_box : VBoxContainer = $Incomes
-onready var expenses_box : VBoxContainer = $Expenses
-onready var label : LineEdit = $HBoxContainer/LineEdit
-
-var budget_index : int
 var budget : BudgetData
 
-func setup(_budget_index : int):
-	budget_index = _budget_index
-	budget = UserSettings.user_budgets[budget_index]
+func setup(_budget : BudgetData):
+	budget = _budget
 	label.text = budget.name
 	
 	for income in budget.incomes:
-		incomes_box.add_child(setup_rows(income))
+		incomes_box.add_child(_create_category(income))
 	
 	for expense in budget.expenses:
-		expenses_box.add_child(setup_rows(expense))
+		expenses_box.add_child(_create_category(expense))
 
 
-func setup_rows(category : BudgetCategoryData):
+func _create_category(category : BudgetCategoryData):
 	var new_category = category_row.instance()
-	for type in category.types:
-		var new_transaction = transaction_row.instance()
-		new_category.get_node("HBoxContainer2/VBoxContainer/ChildBox").add_child(new_transaction)
-		new_transaction.get_node("LineEdit").text = type
-	new_category.get_node("HBoxContainer2/VBoxContainer/HBoxContainer/LineEdit").text = category.name
+	new_category.setup(budget, category)
 	return new_category
 
 
 func _on_LineEdit_text_entered(new_text : String):
-	UserSettings.rename_budget(budget_index, new_text)
+	budget.name = new_text
+	UserSettings.save_user_data()
 
 
 func _on_DeleteButton_pressed():
-	UserSettings.delete_budget(budget_index)
+	UserSettings.user_budgets.erase(budget)
+	UserSettings.save_user_data()
+	get_parent().remove_child(self)
+	self.queue_free()
 
 
 func _on_AddIncomeCategory_pressed():
-	var new_budget = UserSettings.add_budget_category(budget_index, true)
-	if new_budget:
-		incomes_box.add_child(setup_rows(new_budget))
+	var new_category := BudgetCategoryData.new("Category " + String(budget.incomes.size()))
+	budget.incomes.append(new_category)
+	incomes_box.add_child(_create_category(new_category))
+	UserSettings.save_user_data()
 
 
 func _on_AddExpenseCategory_pressed():
-	var new_budget = UserSettings.add_budget_category(budget_index, false)
-	if new_budget:
-		expenses_box.add_child(setup_rows(new_budget))
+	var new_category := BudgetCategoryData.new("Category " + String(budget.expenses.size()))
+	budget.expenses.append(new_category)
+	expenses_box.add_child(_create_category(new_category))
+	UserSettings.save_user_data()
