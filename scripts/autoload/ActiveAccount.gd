@@ -19,9 +19,7 @@ func save_account(file_path : String, password : String) -> void:
 func load_account(file_path : String, password : String) -> bool:
 	var file = ConfigFile.new()
 	if file.load_encrypted_pass(file_path, password) == OK:
-		current_account = AccountData.new()
-		current_account.name = file.get_value("", NAME_FIELD, String())
-		current_account.currency = file.get_value("", CURRENCY_FIELD, String())
+		current_account = AccountData.new(file.get_value("", NAME_FIELD, String()), file.get_value("", CURRENCY_FIELD, String()))
 		current_account.transactions = file.get_value("", TRANSACTIONS_FIELD, Dictionary())
 		current_filepath = file_path
 		return true
@@ -33,4 +31,4 @@ func create_account(folder_path : String, account_data : AccountData, password :
 	var file_path = folder_path.plus_file(account_data.name + ".ccf")
 	save_account(file_path, password)
 	if load_account(file_path, password):
-		UserSettings.import_account(file_path)
+		assert(UserSettings.import_account(file_path))

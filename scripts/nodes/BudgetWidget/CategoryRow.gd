@@ -2,8 +2,8 @@ extends VBoxContainer
 
 onready var transaction_row : PackedScene = load("res://scripts/nodes/BudgetWidget/TransactionRow.tscn")
 onready var transactions_box := $"%ChildBox"
-onready var line_edit := $"%LineEdit"
-onready var color_picker = $"%ColorPickerButton"
+onready var line_edit : LineEdit = $"%LineEdit"
+onready var color_picker : ColorPickerButton = $"%ColorPickerButton"
 onready var allocation_slider = $"%AllocationInput"
 
 var budget : BudgetData
@@ -27,7 +27,8 @@ func _create_transaction(index : int):
 	var new_transaction = transaction_row.instance()
 	var new_transaction_line_edit : LineEdit = new_transaction.get_node("LineEdit")
 	new_transaction_line_edit.text = category.types[index]
-	new_transaction_line_edit.connect("text_entered", self, "_on_transaction_LineEdit_text_entered", [index])
+	var error = new_transaction_line_edit.connect("text_entered", self, "_on_transaction_LineEdit_text_entered", [index])
+	assert(error == OK)
 	new_transaction.get_node("DeleteButton").connect("pressed", self, "_on_transaction_DeleteButton_pressed", [new_transaction])
 	return new_transaction
 

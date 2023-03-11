@@ -16,8 +16,9 @@ onready var budget_links : Dictionary = file.get_value(APP_SECTION_NAME, BUDGET_
 
 
 func _ready():
-	_cull_invalid_paths()
-	_cull_invalid_budgets()
+	if file_error == OK:
+		_cull_invalid_paths()
+		_cull_invalid_budgets()
 
 
 func _cull_invalid_paths() -> void:
@@ -58,7 +59,7 @@ func get_config_path() -> String:
 func save_user_data() -> void:
 	file.set_value(APP_SECTION_NAME, ACCOUNTS_KEY_NAME, account_paths)
 	file.set_value(APP_SECTION_NAME, BUDGETS_KEY_NAME, user_budgets)
-	file.save(get_config_path())
+	assert(file.save(get_config_path()) == OK)
 
 
 func import_account(var file_path : String) -> bool:
@@ -70,8 +71,7 @@ func import_account(var file_path : String) -> bool:
 
 
 func create_budget() -> BudgetData:
-	var new_budget = BudgetData.new()
-	new_budget.name = "Budget " + String(user_budgets.size())
+	var new_budget = BudgetData.new("Budget " + String(user_budgets.size()))
 	new_budget.incomes.append(BudgetCategoryData.new("Income", 1, Color.forestgreen, ["Income"]))
 	new_budget.expenses.append(BudgetCategoryData.new("Expense", 1, Color.crimson, ["Expense"]))
 	user_budgets.append(new_budget)
@@ -95,8 +95,7 @@ func get_linked_budget(account_path : String) -> BudgetData:
 
 
 static func default_budget() -> BudgetData:
-	var new_default_budget = BudgetData.new()
-	new_default_budget.name = "Default"
+	var new_default_budget = BudgetData.new("Default")
 	new_default_budget.incomes.append(BudgetCategoryData.new("Income", 1, Color.forestgreen,
 	[
 		"Salary", "Business", "Grant", "Other"

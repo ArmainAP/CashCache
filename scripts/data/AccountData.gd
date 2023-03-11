@@ -12,6 +12,11 @@ var currency : String
 var transactions : Dictionary
 
 
+func _init(_name : String = "", _currency : String = ""):
+	name = _name
+	currency = _currency
+
+
 func add_transaction(date : Date, type : String, value : float) -> void:
 	var transaction_dic := {
 		TRANSACTION_TYPE_FIELD: type,

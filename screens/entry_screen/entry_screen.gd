@@ -1,7 +1,7 @@
 extends Control
 
 onready var account_list : ItemList = $VBoxContainer/Body/ItemList
-onready var file_dialog : FullRectDialog = $FullRectDialog
+onready var file_dialog : FileDialog = $FullRectDialog
 onready var password_dialog : PasswordDialog = $PasswordDialog
 var import_file_path : String
 

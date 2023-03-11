@@ -5,6 +5,11 @@ var name : String = ""
 var incomes : Array = []
 var expenses : Array = []
 
+
+func _init(_name : String = ""):
+	name = _name
+
+
 func delete_category(in_category : BudgetCategoryData):
 	var index = incomes.find(in_category)
 	if index > -1:

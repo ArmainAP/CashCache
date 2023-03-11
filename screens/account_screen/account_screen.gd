@@ -1,6 +1,6 @@
 extends Control
 
-onready var stats_scene = load("res://scripts/nodes/BudgetTarget/BudgetTarget.tscn")
+onready var stats_scene = preload("res://scripts/nodes/BudgetTarget/BudgetTarget.tscn")
 
 onready var header_label = $"%HeaderLabel"
 onready var stats_box = $"%StatsContainer"

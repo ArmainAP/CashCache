@@ -16,16 +16,14 @@ func _ready():
 	account_name_line_edit.text = "Account" + String(UserSettings.account_paths.size() + 1)
 
 
-func _on_password_text_changed(new_text):
+func _on_password_text_changed(_new_text):
 	confirm_button.disabled = password_line_edit.text != confirm_password_line_edit.text
 
 
 func _on_ConfirmButton_pressed():
-	var account_data := AccountData.new()
-	account_data.name = account_name_line_edit.text
-	account_data.currency = account_currency_line_edit.text
+	var account_data := AccountData.new(account_name_line_edit.text, account_currency_line_edit.text)
 	ActiveAccount.create_account(save_location_button.text, account_data, password_line_edit.text)
-	UserSettings.link_account_budget(save_location_button.text, budget_option_button.selected)
+	assert(UserSettings.link_account_budget(save_location_button.text, budget_option_button.selected))
 	ScreenStack.remove_scene(1)
 
 

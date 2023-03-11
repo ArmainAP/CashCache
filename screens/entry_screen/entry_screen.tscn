@@ -12,18 +12,22 @@
 
 [sub_resource type="DynamicFont" id=1]
 resource_local_to_scene = true
+size = 24
 font_data = ExtResource( 2 )
 
 [node name="Control" instance=ExtResource( 1 )]
 script = ExtResource( 4 )
 
 [node name="Header" parent="VBoxContainer" index="0"]
+margin_right = 540.0
 margin_bottom = 68.0
 
 [node name="Panel" parent="VBoxContainer/Header" index="0"]
+margin_right = 533.0
 margin_bottom = 61.0
 
 [node name="HBoxContainer" parent="VBoxContainer/Header" index="1"]
+margin_right = 533.0
 margin_bottom = 61.0
 
 [node name="SettingsButton" type="Button" parent="VBoxContainer/Header/HBoxContainer" index="0"]
@@ -33,24 +37,22 @@ icon = ExtResource( 9 )
 script = ExtResource( 3 )
 screen_path = "res://screens/settings_screen/settings_screen.tscn"
 
-[node name="ResizeableLabel" parent="VBoxContainer/Header/HBoxContainer" index="1"]
-margin_left = 76.0
-margin_right = 160.0
+[node name="HeaderLabel" parent="VBoxContainer/Header/HBoxContainer" index="1"]
+margin_left = 64.0
+margin_right = 192.0
 margin_bottom = 54.0
-size_flags_horizontal = 6
 custom_fonts/font = SubResource( 1 )
-font_size = 16
 
 [node name="ImportAccount" type="Button" parent="VBoxContainer/Header/HBoxContainer" index="2"]
-margin_left = 177.0
-margin_right = 285.0
+margin_left = 321.0
+margin_right = 429.0
 margin_bottom = 54.0
 text = "Import"
 icon = ExtResource( 7 )
 
 [node name="NewAccount" type="Button" parent="VBoxContainer/Header/HBoxContainer" index="3"]
-margin_left = 289.0
-margin_right = 382.0
+margin_left = 433.0
+margin_right = 526.0
 margin_bottom = 54.0
 text = "New"
 icon = ExtResource( 6 )
@@ -59,15 +61,18 @@ screen_path = "res://screens/account_wizard_screen/account_wizard_screen.tscn"
 
 [node name="Body" parent="VBoxContainer" index="1"]
 margin_top = 68.0
+margin_right = 540.0
+margin_bottom = 960.0
 
 [node name="Panel" parent="VBoxContainer/Body" index="0"]
-margin_bottom = 629.0
+margin_right = 533.0
+margin_bottom = 885.0
 
 [node name="ItemList" type="ItemList" parent="VBoxContainer/Body" index="1"]
 margin_left = 7.0
 margin_top = 7.0
-margin_right = 389.0
-margin_bottom = 629.0
+margin_right = 533.0
+margin_bottom = 885.0
 allow_reselect = true
 
 [node name="FullRectDialog" type="FileDialog" parent="." index="1"]

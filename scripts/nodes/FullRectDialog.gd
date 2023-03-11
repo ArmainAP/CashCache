@@ -2,7 +2,8 @@ extends Popup
 class_name FullRectDialog
 
 func _ready():
-	get_viewport().connect("size_changed", self, "_on_Viewport_size_changed")
+	var error = get_viewport().connect("size_changed", self, "_on_Viewport_size_changed")
+	assert(error == OK)
 	_on_Viewport_size_changed()
 
 
