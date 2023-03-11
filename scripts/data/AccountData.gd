@@ -23,14 +23,15 @@ func add_transaction(date : Date, type : String, value : float) -> void:
 		TRANSACTION_VALUE_FIELD: value
 	}
 	
-	if not transactions.has(date.year()):
-		transactions[date.year()] = {}
-	
-	if not transactions[date.year()].has(date.month()):
-		transactions[date.year()][date.month()] = {}
-	
-	if not transactions[date.year()][date.month()].has(date.day()):
-		transactions[date.year()][date.month()][date.day()] = []
-	
+	if not transactions.has(date.year()): transactions[date.year()] = {}
+	if not transactions[date.year()].has(date.month()): transactions[date.year()][date.month()] = {}
+	if not transactions[date.year()][date.month()].has(date.day()): transactions[date.year()][date.month()][date.day()] = []
 	transactions[date.year()][date.month()][date.day()].append(transaction_dic)
-	UserSettings.save_user_data()
+
+
+func has_date_data(date : Date) -> bool:
+	if transactions.has(date.year()):
+		if transactions[date.year()].has(date.month()):
+			if transactions[date.year()][date.month()].has(date.day()):
+				return true
+	return false

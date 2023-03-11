@@ -37,6 +37,6 @@ func _on_TransactionOptionButton_item_selected(index):
 
 
 func _on_ConfirmButton_pressed():
-	ActiveAccount.current_account.add_transaction(calendar_button.selected_date, transaction_option.get_item_text(transaction_option.selected), numeric_line_edit.text.to_float())
+	ActiveAccount.add_transaction(calendar_button.selected_date, transaction_option.get_item_text(transaction_option.selected), numeric_line_edit.text.to_float())
 	ScreenStack.remove_scene(1)
 	ScreenStack.remove_scene(1)

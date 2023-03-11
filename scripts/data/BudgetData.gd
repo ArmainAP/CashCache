@@ -20,3 +20,17 @@ func delete_category(in_category : BudgetCategoryData):
 		expenses.remove(index)
 		return true
 	return false
+
+
+func find_income(type : String) -> bool:
+	for income in incomes:
+		if income.types.find(type) > -1:
+			return true
+	return false
+
+
+func find_expense(type : String) -> bool:
+	for expense in expenses:
+		if expense.types.find(type) > -1:
+			return true
+	return false
