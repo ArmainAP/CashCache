@@ -33,3 +33,4 @@ func add_transaction(date : Date, type : String, value : float) -> void:
 		transactions[date.year()][date.month()][date.day()] = []
 	
 	transactions[date.year()][date.month()][date.day()].append(transaction_dic)
+	UserSettings.save_user_data()

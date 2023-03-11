@@ -19,15 +19,15 @@ font_data = ExtResource( 2 )
 script = ExtResource( 4 )
 
 [node name="Header" parent="VBoxContainer" index="0"]
-margin_right = 540.0
+margin_right = 446.0
 margin_bottom = 68.0
 
 [node name="Panel" parent="VBoxContainer/Header" index="0"]
-margin_right = 533.0
+margin_right = 439.0
 margin_bottom = 61.0
 
 [node name="HBoxContainer" parent="VBoxContainer/Header" index="1"]
-margin_right = 533.0
+margin_right = 439.0
 margin_bottom = 61.0
 
 [node name="SettingsButton" type="Button" parent="VBoxContainer/Header/HBoxContainer" index="0"]
@@ -44,15 +44,15 @@ margin_bottom = 54.0
 custom_fonts/font = SubResource( 1 )
 
 [node name="ImportAccount" type="Button" parent="VBoxContainer/Header/HBoxContainer" index="2"]
-margin_left = 321.0
-margin_right = 429.0
+margin_left = 227.0
+margin_right = 335.0
 margin_bottom = 54.0
 text = "Import"
 icon = ExtResource( 7 )
 
 [node name="NewAccount" type="Button" parent="VBoxContainer/Header/HBoxContainer" index="3"]
-margin_left = 433.0
-margin_right = 526.0
+margin_left = 339.0
+margin_right = 432.0
 margin_bottom = 54.0
 text = "New"
 icon = ExtResource( 6 )
@@ -61,18 +61,18 @@ screen_path = "res://screens/account_wizard_screen/account_wizard_screen.tscn"
 
 [node name="Body" parent="VBoxContainer" index="1"]
 margin_top = 68.0
-margin_right = 540.0
-margin_bottom = 960.0
+margin_right = 446.0
+margin_bottom = 792.0
 
 [node name="Panel" parent="VBoxContainer/Body" index="0"]
-margin_right = 533.0
-margin_bottom = 885.0
+margin_right = 439.0
+margin_bottom = 717.0
 
 [node name="ItemList" type="ItemList" parent="VBoxContainer/Body" index="1"]
 margin_left = 7.0
 margin_top = 7.0
-margin_right = 533.0
-margin_bottom = 885.0
+margin_right = 439.0
+margin_bottom = 717.0
 allow_reselect = true
 
 [node name="FullRectDialog" type="FileDialog" parent="." index="1"]

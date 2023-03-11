@@ -23,7 +23,7 @@ func _on_password_text_changed(_new_text):
 func _on_ConfirmButton_pressed():
 	var account_data := AccountData.new(account_name_line_edit.text, account_currency_line_edit.text)
 	ActiveAccount.create_account(save_location_button.text, account_data, password_line_edit.text)
-	assert(UserSettings.link_account_budget(save_location_button.text, budget_option_button.selected))
+	assert(UserSettings.link_account_budget(ActiveAccount.current_filepath, budget_option_button.selected))
 	ScreenStack.remove_scene(1)
 
 

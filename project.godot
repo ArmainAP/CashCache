@@ -29,6 +29,11 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://addons/calendar_button/class/Calendar.gd"
 }, {
+"base": "TextureButton",
+"class": "CalendarButton",
+"language": "GDScript",
+"path": "res://addons/calendar_button/scripts/calendar_script.gd"
+}, {
 "base": "Reference",
 "class": "CalendarButtons",
 "language": "GDScript",
@@ -79,6 +84,7 @@ _global_script_class_icons={
 "BudgetCategoryData": "",
 "BudgetData": "",
 "Calendar": "",
+"CalendarButton": "",
 "CalendarButtons": "",
 "Date": "",
 "FullRectDialog": "",
@@ -114,8 +120,8 @@ gdscript/warnings/unsafe_call_argument=true
 
 [display]
 
-window/size/width=540
-window/size/height=960
+window/size/width=446
+window/size/height=792
 window/size/test_width=540
 window/size/test_height=960
 window/handheld/orientation="sensor"
@@ -124,7 +130,7 @@ window/stretch/aspect="expand"
 
 [editor_plugins]
 
-enabled=PoolStringArray(  )
+enabled=PoolStringArray( "res://addons/calendar_button/plugin.cfg" )
 
 [gui]
 

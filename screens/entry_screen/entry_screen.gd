@@ -22,7 +22,7 @@ func _on_FullRectFileDialog_confirmed():
 
 func _on_PasswordDialog_confirmed():
 	var selected_item = account_list.get_selected_items()[0]
-	if ActiveAccount.load_account(account_list.items[selected_item], password_dialog.get_password()):
+	if ActiveAccount.load_account(account_list.get_item_text(selected_item), password_dialog.get_password()):
 		ScreenStack.push_scene(ScreenStack.ACCOUNT_SCREEN)
 
 

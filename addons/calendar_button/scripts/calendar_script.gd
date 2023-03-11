@@ -1,5 +1,6 @@
 tool
 extends TextureButton
+class_name CalendarButton
 
 signal date_selected(date_obj)
 

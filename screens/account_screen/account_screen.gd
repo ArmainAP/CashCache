@@ -12,6 +12,10 @@ func _ready():
 		var new_stat = stats_scene.instance()
 		stats_box.add_child(new_stat)
 		new_stat.setup(income)
+	for expense in budget.expenses:
+		var new_stat = stats_scene.instance()
+		stats_box.add_child(new_stat)
+		new_stat.setup(expense)
 
 
 func _on_CalendarButton_date_selected(date_obj : Date):

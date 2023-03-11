@@ -10,4 +10,4 @@ func _ready():
 func setup(budget : BudgetCategoryData):
 	texture_progress.tint_progress = budget.color
 	texture_progress.tint_under = budget.color
-	texture_progress.tint_under.a = 128
+	texture_progress.tint_under.a = 127
