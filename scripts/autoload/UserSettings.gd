@@ -5,12 +5,15 @@ const CONFIG_FILE_NAME = "app.cfg"
 const APP_SECTION_NAME = "app"
 const ACCOUNTS_KEY_NAME = "accounts"
 const BUDGETS_KEY_NAME = "budgets"
+const BUDGET_LINKS_KEY_NAME = "budget_links"
 
 onready var filesystem = Directory.new()
 onready var file := ConfigFile.new()
 onready var file_error := file.load(get_config_path())
 onready var account_paths : PoolStringArray = file.get_value(APP_SECTION_NAME, ACCOUNTS_KEY_NAME, PoolStringArray())
 onready var user_budgets : Array = file.get_value(APP_SECTION_NAME, BUDGETS_KEY_NAME, [default_budget()])
+onready var budget_links : Dictionary = file.get_value(APP_SECTION_NAME, BUDGET_LINKS_KEY_NAME, {})
+
 
 func _ready():
 	_cull_invalid_paths()
@@ -76,27 +79,19 @@ func create_budget() -> BudgetData:
 	return new_budget
 
 
-func rename_budget(new_name : String, budget_index : int) -> bool:
-	if user_budgets[budget_index] == null:
+func link_account_budget(account_path : String, budget_index : int) -> bool:
+	if budget_index < 0:
 		return false
-	user_budgets[budget_index].name = new_name
-	save_user_data()
+	budget_links[account_path] = budget_index
 	return true
 
 
-func rename_budget_category(new_name : String, budget_index : int, category_index : int, is_income := true) -> bool:
-	if user_budgets[budget_index] == null:
-		return false
-	if is_income:
-		if user_budgets[budget_index].incomes[category_index] == null:
-			return false
-		user_budgets[budget_index].incomes[category_index].name = new_name
-	else:
-		if user_budgets[budget_index].expenses[category_index] == null:
-			return false
-		user_budgets[budget_index].expenses[category_index].name = new_name
-	save_user_data()
-	return true
+func get_linked_budget(account_path : String) -> BudgetData:
+	if budget_links.has(account_path):
+		var budget_index = budget_links[account_path]
+		if budget_index < user_budgets.size():
+			return user_budgets[budget_index]
+	return default_budget()
 
 
 static func default_budget() -> BudgetData:

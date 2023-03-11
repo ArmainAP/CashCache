@@ -12,11 +12,19 @@ var currency : String
 var transactions : Dictionary
 
 
-func add_transaction(var in_date : String, type : String, value : float) -> void:
+func add_transaction(date : Date, type : String, value : float) -> void:
 	var transaction_dic := {
 		TRANSACTION_TYPE_FIELD: type,
 		TRANSACTION_VALUE_FIELD: value
 	}
-	if not transactions.has(in_date):
-		transactions[in_date] = []
-	transactions[in_date].append(transaction_dic)
+	
+	if not transactions.has(date.year()):
+		transactions[date.year()] = {}
+	
+	if not transactions[date.year()].has(date.month()):
+		transactions[date.year()][date.month()] = {}
+	
+	if not transactions[date.year()][date.month()].has(date.day()):
+		transactions[date.year()][date.month()][date.day()] = []
+	
+	transactions[date.year()][date.month()][date.day()].append(transaction_dic)

@@ -37,7 +37,8 @@ margin_right = 389.0
 margin_bottom = 36.0
 size_flags_horizontal = 3
 
-[node name="ResizeableLabel" type="Label" parent="VBoxContainer/Header/HBoxContainer"]
+[node name="HeaderLabel" type="Label" parent="VBoxContainer/Header/HBoxContainer"]
+unique_name_in_owner = true
 margin_right = 128.0
 margin_bottom = 29.0
 size_flags_horizontal = 2

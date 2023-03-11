@@ -29,7 +29,7 @@ icon = ExtResource( 3 )
 icon_align = 1
 script = ExtResource( 4 )
 
-[node name="ResizeableLabel" parent="VBoxContainer/Header/HBoxContainer" index="1"]
+[node name="HeaderLabel" parent="VBoxContainer/Header/HBoxContainer" index="1"]
 margin_left = 64.0
 margin_right = 192.0
 margin_bottom = 54.0
