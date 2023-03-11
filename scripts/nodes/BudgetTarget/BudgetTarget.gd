@@ -30,7 +30,7 @@ func setup(category : BudgetCategoryData, date : Date, is_income : bool):
 
 func _setup_income(category : BudgetCategoryData, date : Date) -> void:
 	var budget : float = ActiveAccount.get_total_category(date, category)
-	var total : float = ActiveAccount.get_total_income(date)	
+	var total : float = ActiveAccount.get_total_income(date)
 	var percentage : int = int(budget / total * 100) if budget != 0 else 0
 	progress_texture.value = percentage
 	percentage_label.text = String(percentage) + "%"

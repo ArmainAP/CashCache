@@ -98,7 +98,7 @@ static func default_budget() -> BudgetData:
 	var new_default_budget = BudgetData.new("Default")
 	new_default_budget.incomes.append(BudgetCategoryData.new("Income", 1, Color.forestgreen,
 	[
-		"Salary", "Business", "Grant", "Other"
+		"Salary", "Business", "Grant"
 	]))
 	new_default_budget.incomes.append(BudgetCategoryData.new("Investment", 1, Color.olivedrab,
 	[
@@ -107,7 +107,7 @@ static func default_budget() -> BudgetData:
 	
 	new_default_budget.expenses.append(BudgetCategoryData.new("Expense", 0.6, Color.crimson,
 	[
-		"Food", "Clothes", "Home", "Credit", "Health", "Transport", "Communications", "Personal care", "Taxes", "Other"
+		"Food", "Clothes", "Home", "Credit", "Health", "Transport", "Communications", "Personal care", "Taxes"
 	]))
 	new_default_budget.expenses.append(BudgetCategoryData.new("Investment", 0.2, Color.olivedrab,
 	[

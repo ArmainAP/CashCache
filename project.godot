@@ -107,7 +107,7 @@ _global_script_class_icons={
 config/name="CashCache"
 run/main_scene="res://screens/entry_screen/entry_screen.tscn"
 run/low_processor_mode=true
-config/icon="res://icon.png"
+config/icon="res://icons/currency_exchange_white_48dp.svg"
 
 [autoload]
 
