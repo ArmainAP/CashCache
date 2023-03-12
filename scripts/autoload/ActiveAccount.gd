@@ -41,7 +41,7 @@ func add_transaction(date : Date, type : String, value : float) -> void:
 
 
 func get_total_income(date : Date) -> float:
-	if not current_account.has_date_data(date):
+	if not current_account.has_date_data(date, 1):
 		return 0.0
 	var value : float = 0.0
 	var monthly_data : Dictionary = current_account.transactions[date.year()][date.month()]
@@ -54,7 +54,7 @@ func get_total_income(date : Date) -> float:
 
 
 func get_total_expenses(date : Date) -> float:
-	if not current_account.has_date_data(date):
+	if not current_account.has_date_data(date, 1):
 		return 0.0
 	var value : float = 0.0
 	var monthly_data : Dictionary = current_account.transactions[date.year()][date.month()]
@@ -66,7 +66,7 @@ func get_total_expenses(date : Date) -> float:
 	return value
 
 func get_total_category(date : Date, category : BudgetCategoryData) -> float:
-	if not current_account.has_date_data(date):
+	if not current_account.has_date_data(date, 1):
 		return 0.0
 	var value : float = 0.0
 	var monthly_data : Dictionary = current_account.transactions[date.year()][date.month()]
