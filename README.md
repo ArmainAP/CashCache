@@ -14,3 +14,11 @@ We welcome contributions from the community! If you find a bug or have an idea f
 
 ## License
 Cash Cache is licensed under the [AGPL-3.0 license](https://github.com/ArmainAP/CashCache/blob/main/LICENSE).
+
+## Screenshots
+
+![EntryScreen](https://user-images.githubusercontent.com/26823759/224545032-388729bb-08c7-4214-a0d2-3cbf7edc41e5.png)
+![NewAccount](https://user-images.githubusercontent.com/26823759/224545049-be47d826-5889-4931-88c1-8d7de2dd28a3.png)
+![AccountScreen](https://user-images.githubusercontent.com/26823759/224545052-6f2aab6f-df42-43a1-8d3b-7784017f2f04.png)
+![NewTransaction](https://user-images.githubusercontent.com/26823759/224545056-972cce6a-b806-4d20-82c8-9cc0c0280a81.png)
+![BudgetEditor](https://user-images.githubusercontent.com/26823759/224545061-4e5c0def-83e3-4a31-9baa-6cdb1779b00f.png)
