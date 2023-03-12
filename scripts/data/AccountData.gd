@@ -29,9 +29,26 @@ func add_transaction(date : Date, type : String, value : float) -> void:
 	transactions[date.year()][date.month()][date.day()].append(transaction_dic)
 
 
-func has_date_data(date : Date) -> bool:
-	if transactions.has(date.year()):
-		if transactions[date.year()].has(date.month()):
-			if transactions[date.year()][date.month()].has(date.day()):
-				return true
+func has_year_data(year : int) -> bool:
+	return transactions.has(year)
+
+
+func has_month_data(year : int, month : int) -> bool:
+	if has_year_data(year):
+		return transactions[year].has(month)
+	return false
+
+
+func has_day_data(year : int, month : int, day : int) -> bool:
+	if has_year_data(year):
+		if has_month_data(year, month):
+			return transactions[year][month].has(day)
+	return false
+
+
+func has_date_data(date : Date, level : int) -> bool:
+	match(level):
+		0: return has_year_data(date.year())
+		1: return has_month_data(date.year(), date.month())
+		2: return has_day_data(date.year(), date.month(), date.day())
 	return false
