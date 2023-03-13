@@ -44,7 +44,7 @@ func get_total_income(date : Date) -> float:
 	if not current_account.has_date_data(date, 1):
 		return 0.0
 	var value : float = 0.0
-	var monthly_data : Dictionary = current_account.transactions[date.year()][date.month()]
+	var monthly_data : Dictionary = current_account.transactions[date.year][date.month]
 	var budget : BudgetData = UserSettings.get_linked_budget(current_filepath)
 	for key in monthly_data.keys():
 		for transaction in monthly_data[key]:
@@ -57,7 +57,7 @@ func get_total_expenses(date : Date) -> float:
 	if not current_account.has_date_data(date, 1):
 		return 0.0
 	var value : float = 0.0
-	var monthly_data : Dictionary = current_account.transactions[date.year()][date.month()]
+	var monthly_data : Dictionary = current_account.transactions[date.year][date.month]
 	var budget : BudgetData = UserSettings.get_linked_budget(current_filepath)
 	for key in monthly_data.keys():
 		for transaction in monthly_data[key]:
@@ -69,7 +69,7 @@ func get_total_category(date : Date, category : BudgetCategoryData) -> float:
 	if not current_account.has_date_data(date, 1):
 		return 0.0
 	var value : float = 0.0
-	var monthly_data : Dictionary = current_account.transactions[date.year()][date.month()]
+	var monthly_data : Dictionary = current_account.transactions[date.year][date.month]
 	for key in monthly_data.keys():
 		for transaction in monthly_data[key]:
 			if category.types.find(transaction[AccountData.TRANSACTION_TYPE_FIELD]) > -1:

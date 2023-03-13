@@ -29,25 +29,15 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://scripts/nodes/BudgetTarget/BudgetTarget.gd"
 }, {
-"base": "Reference",
-"class": "Calendar",
-"language": "GDScript",
-"path": "res://addons/calendar_button/class/Calendar.gd"
-}, {
-"base": "TextureButton",
+"base": "Button",
 "class": "CalendarButton",
 "language": "GDScript",
-"path": "res://addons/calendar_button/scripts/calendar_script.gd"
-}, {
-"base": "Reference",
-"class": "CalendarButtons",
-"language": "GDScript",
-"path": "res://addons/calendar_button/scripts/calendar_buttons.gd"
+"path": "res://scripts/nodes/CalendarPopup/CalendarPopup.gd"
 }, {
 "base": "Reference",
 "class": "Date",
 "language": "GDScript",
-"path": "res://addons/calendar_button/class/Date.gd"
+"path": "res://scripts/data/Date.gd"
 }, {
 "base": "Popup",
 "class": "FullRectDialog",
@@ -64,6 +54,11 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://scripts/nodes/PasswordDialog/PasswordDialog.gd"
 }, {
+"base": "Button",
+"class": "PopupButton",
+"language": "GDScript",
+"path": "res://scripts/nodes/PopupButton.gd"
+}, {
 "base": "Label",
 "class": "ResizableLabel",
 "language": "GDScript",
@@ -78,28 +73,21 @@ _global_script_classes=[ {
 "class": "ScenePopButtons",
 "language": "GDScript",
 "path": "res://scripts/nodes/ScenePopButton.gd"
-}, {
-"base": "Reference",
-"class": "WindowRestrictor",
-"language": "GDScript",
-"path": "res://addons/calendar_button/scripts/window_restrictor.gd"
 } ]
 _global_script_class_icons={
 "AccountData": "",
 "BudgetCategoryData": "",
 "BudgetData": "",
 "BudgetTarget": "",
-"Calendar": "",
 "CalendarButton": "",
-"CalendarButtons": "",
 "Date": "",
 "FullRectDialog": "",
 "NumericLineEdit": "",
 "PasswordDialog": "",
+"PopupButton": "",
 "ResizableLabel": "",
 "SceneLoadButton": "",
-"ScenePopButtons": "",
-"WindowRestrictor": ""
+"ScenePopButtons": ""
 }
 
 [application]
@@ -136,7 +124,7 @@ window/stretch/aspect="expand"
 
 [editor_plugins]
 
-enabled=PoolStringArray( "res://addons/calendar_button/plugin.cfg" )
+enabled=PoolStringArray(  )
 
 [gui]
 

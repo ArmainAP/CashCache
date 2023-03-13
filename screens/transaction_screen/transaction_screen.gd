@@ -20,8 +20,8 @@ func _ready():
 	for income in income_types:
 		transaction_option.add_item(income)
 
-func _on_CalendarButton_date_selected(date_obj):
-	date_label.text = date_obj.date("YYYY-MM-DD")
+func _on_CalendarButton_date_selected(date : Date):
+	date_label.text = date.date()
 
 
 func _on_TransactionOptionButton_item_selected(index):

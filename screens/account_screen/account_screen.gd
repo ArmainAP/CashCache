@@ -40,4 +40,4 @@ func _setup_budget_stats() -> void:
 
 
 func _on_CalendarButton_date_selected(date_obj : Date):
-	header_label.text = date_obj.date("YYYY-MM-DD")
+	header_label.text = date_obj.date()
