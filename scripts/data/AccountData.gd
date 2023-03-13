@@ -23,10 +23,10 @@ func add_transaction(date : Date, type : String, value : float) -> void:
 		TRANSACTION_VALUE_FIELD: value
 	}
 	
-	if not transactions.has(date.year()): transactions[date.year()] = {}
-	if not transactions[date.year()].has(date.month()): transactions[date.year()][date.month()] = {}
-	if not transactions[date.year()][date.month()].has(date.day()): transactions[date.year()][date.month()][date.day()] = []
-	transactions[date.year()][date.month()][date.day()].append(transaction_dic)
+	if not transactions.has(date.year): transactions[date.year] = {}
+	if not transactions[date.year].has(date.month): transactions[date.year][date.month] = {}
+	if not transactions[date.year][date.month].has(date.day): transactions[date.year][date.month][date.day] = []
+	transactions[date.year][date.month][date.day].append(transaction_dic)
 
 
 func has_year_data(year : int) -> bool:
@@ -48,7 +48,7 @@ func has_day_data(year : int, month : int, day : int) -> bool:
 
 func has_date_data(date : Date, level : int) -> bool:
 	match(level):
-		0: return has_year_data(date.year())
-		1: return has_month_data(date.year(), date.month())
-		2: return has_day_data(date.year(), date.month(), date.day())
+		0: return has_year_data(date.year)
+		1: return has_month_data(date.year, date.month)
+		2: return has_day_data(date.year, date.month, date.day)
 	return false

@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/btn_64x64_01.png-77c492d309170773dcb06bfbc25fef61.stex"
+path="res://.import/calendar_month_white_48dp.svg-5ccca0ca390da5f5ab7806c553f3ea28.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://addons/calendar_button/btn_img/btn_64x64_01.png"
-dest_files=[ "res://.import/btn_64x64_01.png-77c492d309170773dcb06bfbc25fef61.stex" ]
+source_file="res://icons/calendar_month_white_48dp.svg"
+dest_files=[ "res://.import/calendar_month_white_48dp.svg-5ccca0ca390da5f5ab7806c553f3ea28.stex" ]
 
 [params]
 
