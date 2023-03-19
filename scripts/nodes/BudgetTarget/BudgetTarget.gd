@@ -15,14 +15,14 @@ func _ready():
 	for label in currency_labels:
 		label.text = ActiveAccount.current_account.currency
 
-func setup(category : BudgetCategoryData, date : Date, is_income : bool):
+func setup(category : BudgetCategoryData, date : Date):
 	category_label.text = category.name
 	texture_progress.tint_progress = category.color
 	texture_progress.tint_under = category.color / 2
 	texture_progress.tint_under.a = 127
-	rlabel.text = "Representing" if is_income else "Remaining"
-	total_label.text = "Income" if is_income else "Expenses"
-	if is_income:
+	rlabel.text = "Representing" if category.is_income else "Remaining"
+	total_label.text = "Income" if category.is_income else "Expenses"
+	if category.is_income:
 		_setup_income(category, date)
 	else: 
 		_setup_expense(category, date)

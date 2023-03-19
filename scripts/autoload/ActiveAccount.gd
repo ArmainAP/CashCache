@@ -48,7 +48,7 @@ func get_total_income(date : Date) -> float:
 	var budget : BudgetData = UserSettings.get_linked_budget(current_filepath)
 	for key in monthly_data.keys():
 		for transaction in monthly_data[key]:
-			if budget.find_income(transaction[AccountData.TRANSACTION_TYPE_FIELD]):
+			if budget.is_income(transaction[AccountData.TRANSACTION_TYPE_FIELD]):
 				value += transaction[AccountData.TRANSACTION_VALUE_FIELD]
 	return value
 
@@ -61,7 +61,7 @@ func get_total_expenses(date : Date) -> float:
 	var budget : BudgetData = UserSettings.get_linked_budget(current_filepath)
 	for key in monthly_data.keys():
 		for transaction in monthly_data[key]:
-			if budget.find_expense(transaction[AccountData.TRANSACTION_TYPE_FIELD]):
+			if budget.is_expense(transaction[AccountData.TRANSACTION_TYPE_FIELD]):
 				value += transaction[AccountData.TRANSACTION_VALUE_FIELD]
 	return value
 

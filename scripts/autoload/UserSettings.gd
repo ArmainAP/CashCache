@@ -72,8 +72,8 @@ func import_account(var file_path : String) -> bool:
 
 func create_budget() -> BudgetData:
 	var new_budget = BudgetData.new("Budget " + String(user_budgets.size()))
-	new_budget.incomes.append(BudgetCategoryData.new("Income", 1, Color.forestgreen, ["Income"]))
-	new_budget.expenses.append(BudgetCategoryData.new("Expense", 1, Color.crimson, ["Expense"]))
+	new_budget.categories.append(BudgetCategoryData.new("Income", true, 1, Color.forestgreen, ["Income"]))
+	new_budget.categories.append(BudgetCategoryData.new("Expense", false, 1, Color.crimson, ["Expense"]))
 	user_budgets.append(new_budget)
 	save_user_data()
 	return new_budget
@@ -96,28 +96,28 @@ func get_linked_budget(account_path : String) -> BudgetData:
 
 static func default_budget() -> BudgetData:
 	var new_default_budget = BudgetData.new("Default")
-	new_default_budget.incomes.append(BudgetCategoryData.new("Income", 1, Color.forestgreen,
+	new_default_budget.categories.append(BudgetCategoryData.new("Income", true, 1, Color.forestgreen,
 	[
 		"Salary", "Business", "Grant"
 	]))
-	new_default_budget.incomes.append(BudgetCategoryData.new("Investment", 1, Color.olivedrab,
+	new_default_budget.categories.append(BudgetCategoryData.new("Investment", true, 1, Color.olivedrab,
 	[
 		"Capital gains and dividends", "Real estate", "Royalties"
 	]))
 	
-	new_default_budget.expenses.append(BudgetCategoryData.new("Expense", 0.6, Color.crimson,
+	new_default_budget.categories.append(BudgetCategoryData.new("Expense", false, 0.6, Color.crimson,
 	[
 		"Food", "Clothes", "Home", "Credit", "Health", "Transport", "Communications", "Personal care", "Taxes"
 	]))
-	new_default_budget.expenses.append(BudgetCategoryData.new("Investment", 0.2, Color.olivedrab,
+	new_default_budget.categories.append(BudgetCategoryData.new("Investment", false, 0.2, Color.olivedrab,
 	[
 		"Education", "Savings", "Investements"
 	]))
-	new_default_budget.expenses.append(BudgetCategoryData.new("Donation", 0.1, Color.orchid,
+	new_default_budget.categories.append(BudgetCategoryData.new("Donation", false, 0.1, Color.orchid,
 	[
 		"Gifts", "Charity"
 	]))
-	new_default_budget.expenses.append(BudgetCategoryData.new("Fun", 0.1, Color.peru, 
+	new_default_budget.categories.append(BudgetCategoryData.new("Fun", false, 0.1, Color.peru, 
 	[
 		"Joyful"
 	]))
