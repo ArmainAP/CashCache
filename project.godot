@@ -102,6 +102,7 @@ config/icon="res://icons/currency_exchange_white_48dp.svg"
 ScreenStack="*res://scripts/autoload/ScreenStack.gd"
 UserSettings="*res://scripts/autoload/UserSettings.gd"
 ActiveAccount="*res://scripts/autoload/ActiveAccount.gd"
+WebFileExchange="*res://scripts/autoload/WebFileExchange.gd"
 
 [debug]
 

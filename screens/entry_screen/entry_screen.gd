@@ -1,7 +1,7 @@
 extends Control
 
 onready var account_list : ItemList = $VBoxContainer/Body/ItemList
-onready var file_dialog : FileDialog = $FullRectDialog
+onready var file_dialog : FileDialog = $FileDialog
 onready var password_dialog : PasswordDialog = $PasswordDialog
 var import_file_path : String
 
@@ -27,4 +27,11 @@ func _on_PasswordDialog_confirmed():
 
 
 func _on_ItemList_item_selected(_index):
-	password_dialog._on_popup_button_pressed()
+	password_dialog.show()
+
+
+func _on_ImportAccount_pressed():
+	if OS.get_name() == "HTML5":
+		file_dialog.show()
+	else:
+		file_dialog.show()
