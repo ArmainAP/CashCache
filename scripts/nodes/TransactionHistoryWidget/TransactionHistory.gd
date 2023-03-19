@@ -11,9 +11,9 @@ func _ready():
 			for day in transactions[year][month]:
 				add_label(String(year) + "-" + String(month) + "-" + String(day))
 				for transaction in transactions[year][month][day]:
-					if budget.find_income(transaction.type):
+					if budget.is_income(transaction.type):
 						add_label("Collected " + String(transaction[AccountData.TRANSACTION_VALUE_FIELD]) + " from " + transaction[AccountData.TRANSACTION_TYPE_FIELD])
-					elif budget.find_expense(transaction.type):
+					elif budget.is_expense(transaction.type):
 						add_label("Spent " + String(transaction[AccountData.TRANSACTION_VALUE_FIELD]) + " on " + transaction[AccountData.TRANSACTION_TYPE_FIELD])
 					else:
 						add_label("Transacted " + String(transaction[AccountData.TRANSACTION_VALUE_FIELD]) + " for " + transaction[AccountData.TRANSACTION_TYPE_FIELD])

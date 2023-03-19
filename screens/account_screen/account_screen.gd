@@ -29,14 +29,10 @@ func _setup_monthly_stats() -> void:
 
 func _setup_budget_stats() -> void:
 	var budget : BudgetData = UserSettings.get_linked_budget(ActiveAccount.current_filepath)
-	for income in budget.incomes:
+	for category in budget.categories:
 		var new_stat : BudgetTarget = stats_scene.instance()
 		stats_box.add_child(new_stat)
-		new_stat.setup(income, calendar_button.selected_date, true)
-	for expense in budget.expenses:
-		var new_stat : BudgetTarget = stats_scene.instance()
-		stats_box.add_child(new_stat)
-		new_stat.setup(expense, calendar_button.selected_date, false)
+		new_stat.setup(category, calendar_button.selected_date)
 
 
 func _on_CalendarButton_date_selected(date_obj : Date):

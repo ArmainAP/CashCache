@@ -5,6 +5,7 @@ onready var transactions_box := $"%ChildBox"
 onready var line_edit : LineEdit = $"%LineEdit"
 onready var color_picker : ColorPickerButton = $"%ColorPickerButton"
 onready var allocation_slider = $"%AllocationInput"
+onready var is_income_checkbox = $"%IsIncomeCheckBox"
 
 var budget : BudgetData
 var category : BudgetCategoryData
@@ -19,6 +20,7 @@ func _ready():
 		var new_transaction = _create_transaction(index)
 		transactions_box.add_child(new_transaction)
 	line_edit.text = category.name
+	is_income_checkbox.pressed = category.is_income
 	color_picker.color = category.color
 	allocation_slider.value = category.allocation
 
@@ -77,4 +79,9 @@ func _on_AllocationInput_drag_ended(value_changed):
 	if !value_changed:
 		return
 	category.allocation = allocation_slider.value
+	UserSettings.save_user_data()
+
+
+func _on_IsIncomeCheckBox_toggled(button_pressed):
+	category.is_income = button_pressed
 	UserSettings.save_user_data()
