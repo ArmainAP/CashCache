@@ -11,10 +11,11 @@ var expense_types : PoolStringArray
 func _ready():
 	date_label.text = Time.get_date_string_from_system()
 	var budget = UserSettings.get_linked_budget(ActiveAccount.current_filepath)
-	for income in budget.incomes:
-		income_types.append_array(income.types)
-	for expense in budget.expenses:
-		expense_types.append_array(expense.types)
+	for category in budget.categories:
+		if category.is_income:
+			income_types.append_array(category.types)
+		else:
+			expense_types.append_array(category.types)
 	for expense in expense_types:
 		transaction_option.add_item(expense)
 	for income in income_types:

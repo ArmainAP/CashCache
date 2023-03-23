@@ -7,7 +7,7 @@ func _ready():
 	_on_Viewport_size_changed()
 
 
-func _on_popup_button_pressed():
+func show():
 	popup()
 	_on_Viewport_size_changed()
 

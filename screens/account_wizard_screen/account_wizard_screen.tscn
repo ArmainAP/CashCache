@@ -196,7 +196,7 @@ access = 2
 script = ExtResource( 9 )
 
 [connection signal="pressed" from="VBoxContainer/Header/HBoxContainer/ConfirmButton" to="." method="_on_ConfirmButton_pressed"]
-[connection signal="pressed" from="VBoxContainer/Body/VBoxContainer/SaveLocationButton" to="FullRectFileDialog" method="_on_popup_button_pressed"]
+[connection signal="pressed" from="VBoxContainer/Body/VBoxContainer/SaveLocationButton" to="FullRectFileDialog" method="show"]
 [connection signal="text_changed" from="VBoxContainer/Body/VBoxContainer/VBoxContainer/VBoxContainer2/Password" to="." method="_on_password_text_changed"]
 [connection signal="text_changed" from="VBoxContainer/Body/VBoxContainer/VBoxContainer/VBoxContainer2/ConfirmPassword" to="." method="_on_password_text_changed"]
 [connection signal="confirmed" from="FullRectFileDialog" to="." method="_on_FullRectFileDialog_confirmed"]
