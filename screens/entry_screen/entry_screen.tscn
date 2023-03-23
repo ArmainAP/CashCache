@@ -103,6 +103,6 @@ popup_exclusive = true
 
 [connection signal="pressed" from="VBoxContainer/Header/HBoxContainer/ImportAccount" to="." method="_on_ImportAccount_pressed"]
 [connection signal="item_selected" from="VBoxContainer/Body/ItemList" to="." method="_on_ItemList_item_selected"]
-[connection signal="confirmed" from="FileDialog" to="." method="_on_FullRectFileDialog_confirmed"]
+[connection signal="confirmed" from="FileDialog" to="." method="_import_account"]
 [connection signal="file_selected" from="FileDialog" to="." method="_on_FullRectFileDialog_file_selected"]
 [connection signal="confirmed" from="PasswordDialog" to="." method="_on_PasswordDialog_confirmed"]

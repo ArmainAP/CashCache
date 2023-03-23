@@ -11,13 +11,13 @@ func _ready():
 		account_list.add_item(account_path)
 
 
-func _on_FullRectFileDialog_file_selected(path):
-	import_file_path = path
-
-
-func _on_FullRectFileDialog_confirmed():
+func _import_account() -> void:
 	if UserSettings.import_account(import_file_path):
 		account_list.add_item(import_file_path)
+
+
+func _on_FullRectFileDialog_file_selected(path):
+	import_file_path = path
 
 
 func _on_PasswordDialog_confirmed():
@@ -32,6 +32,7 @@ func _on_ItemList_item_selected(_index):
 
 func _on_ImportAccount_pressed():
 	if OS.get_name() == "HTML5":
-		file_dialog.show()
+		import_file_path = yield(WebFileExchange.upload_file(), "completed")
+		_import_account()
 	else:
 		file_dialog.show()
