@@ -9,7 +9,7 @@
 [ext_resource path="res://scripts/nodes/ScenePopButton.gd" type="Script" id=7]
 [ext_resource path="res://icons/payments_white_48dp.svg" type="Texture" id=8]
 [ext_resource path="res://scripts/nodes/SceneLoadButton.gd" type="Script" id=9]
-[ext_resource path="res://scripts/nodes/TransactionHistoryWidget/TransactionHistory.tscn" type="PackedScene" id=10]
+[ext_resource path="res://scripts/nodes/TransactionHistoryTree.gd" type="Script" id=10]
 
 [sub_resource type="DynamicFont" id=5]
 resource_local_to_scene = true
@@ -185,7 +185,24 @@ margin_bottom = 590.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
-[node name="History" parent="VBoxContainer/Body/Panel/MarginContainer/VBoxContainer/TabContainer" index="1" instance=ExtResource( 10 )]
+[node name="History" type="ScrollContainer" parent="VBoxContainer/Body/Panel/MarginContainer/VBoxContainer/TabContainer" index="1"]
 visible = false
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 4.0
+margin_top = 37.0
+margin_right = -4.0
+margin_bottom = -4.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+follow_focus = true
+scroll_horizontal_enabled = false
+
+[node name="Tree" type="Tree" parent="VBoxContainer/Body/Panel/MarginContainer/VBoxContainer/TabContainer/History" index="0"]
+margin_right = 414.0
+margin_bottom = 590.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+script = ExtResource( 10 )
 
 [connection signal="date_selected" from="VBoxContainer/Header/HBoxContainer/CalendarButton" to="." method="_on_CalendarButton_date_selected"]

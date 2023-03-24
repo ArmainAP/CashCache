@@ -81,21 +81,7 @@ func _on_NextYear_pressed():
 
 
 func refresh_data():
-	var month_name :String = ""
-	match(selected_date.month):
-		Time.MONTH_JANUARY: month_name = "January"
-		Time.MONTH_FEBRUARY: month_name = "February"
-		Time.MONTH_MARCH: month_name = "March"
-		Time.MONTH_APRIL: month_name = "April"
-		Time.MONTH_MAY: month_name = "May"
-		Time.MONTH_JUNE: month_name = "June"
-		Time.MONTH_JULY: month_name = "July"
-		Time.MONTH_AUGUST: month_name = "August"
-		Time.MONTH_SEPTEMBER: month_name = "September"
-		Time.MONTH_OCTOBER: month_name = "October"
-		Time.MONTH_NOVEMBER: month_name = "November"
-		Time.MONTH_DECEMBER: month_name = "December"
-	
+	var month_name : String = Date.get_month_name(selected_date.month)
 	title.text = str(month_name, " ", selected_date.year)
 	update_calendar_buttons()
 
