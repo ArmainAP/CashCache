@@ -1,7 +1,6 @@
-[gd_scene load_steps=11 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://screens/generic_screen.tscn" type="PackedScene" id=1]
-[ext_resource path="res://fonts/import/Roboto/Roboto-Regular.ttf" type="DynamicFontData" id=2]
 [ext_resource path="res://scripts/nodes/SceneLoadButton.gd" type="Script" id=3]
 [ext_resource path="res://screens/entry_screen/entry_screen.gd" type="Script" id=4]
 [ext_resource path="res://scripts/nodes/PasswordDialog/PasswordDialog.tscn" type="PackedScene" id=5]
@@ -10,50 +9,43 @@
 [ext_resource path="res://scripts/nodes/FullRectDialog.gd" type="Script" id=8]
 [ext_resource path="res://icons/settings_white_48dp.svg" type="Texture" id=9]
 
-[sub_resource type="DynamicFont" id=1]
-resource_local_to_scene = true
-size = 24
-font_data = ExtResource( 2 )
-
 [node name="Control" instance=ExtResource( 1 )]
 script = ExtResource( 4 )
 
 [node name="Header" parent="VBoxContainer" index="0"]
-margin_right = 446.0
+margin_right = 360.0
 margin_bottom = 68.0
 
 [node name="Panel" parent="VBoxContainer/Header" index="0"]
-margin_right = 439.0
+margin_right = 353.0
 margin_bottom = 61.0
 
 [node name="HBoxContainer" parent="VBoxContainer/Header" index="1"]
-margin_right = 439.0
+margin_right = 353.0
 margin_bottom = 61.0
 
 [node name="SettingsButton" type="Button" parent="VBoxContainer/Header/HBoxContainer" index="0"]
-margin_right = 60.0
+margin_right = 113.0
 margin_bottom = 54.0
+size_flags_horizontal = 3
+text = "Settings"
 icon = ExtResource( 9 )
 script = ExtResource( 3 )
 screen_path = "res://screens/settings_screen/settings_screen.tscn"
 
-[node name="HeaderLabel" parent="VBoxContainer/Header/HBoxContainer" index="1"]
-margin_left = 64.0
-margin_right = 192.0
+[node name="ImportAccount" type="Button" parent="VBoxContainer/Header/HBoxContainer" index="1"]
+margin_left = 117.0
+margin_right = 229.0
 margin_bottom = 54.0
-custom_fonts/font = SubResource( 1 )
-
-[node name="ImportAccount" type="Button" parent="VBoxContainer/Header/HBoxContainer" index="2"]
-margin_left = 227.0
-margin_right = 335.0
-margin_bottom = 54.0
+size_flags_horizontal = 3
 text = "Import"
 icon = ExtResource( 7 )
 
-[node name="NewAccount" type="Button" parent="VBoxContainer/Header/HBoxContainer" index="3"]
-margin_left = 339.0
-margin_right = 432.0
+[node name="NewAccount" type="Button" parent="VBoxContainer/Header/HBoxContainer" index="2"]
+margin_left = 233.0
+margin_right = 346.0
 margin_bottom = 54.0
+size_flags_horizontal = 3
 text = "New"
 icon = ExtResource( 6 )
 script = ExtResource( 3 )
@@ -61,18 +53,18 @@ screen_path = "res://screens/account_wizard_screen/account_wizard_screen.tscn"
 
 [node name="Body" parent="VBoxContainer" index="1"]
 margin_top = 68.0
-margin_right = 446.0
-margin_bottom = 792.0
+margin_right = 360.0
+margin_bottom = 640.0
 
 [node name="Panel" parent="VBoxContainer/Body" index="0"]
-margin_right = 439.0
-margin_bottom = 717.0
+margin_right = 353.0
+margin_bottom = 565.0
 
 [node name="ItemList" type="ItemList" parent="VBoxContainer/Body" index="1"]
 margin_left = 7.0
 margin_top = 7.0
-margin_right = 439.0
-margin_bottom = 717.0
+margin_right = 353.0
+margin_bottom = 565.0
 allow_reselect = true
 
 [node name="FileDialog" type="FileDialog" parent="." index="1"]

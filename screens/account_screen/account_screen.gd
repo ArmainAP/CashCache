@@ -2,7 +2,6 @@ extends Control
 
 onready var stats_scene = preload("res://scripts/nodes/BudgetTarget/BudgetTarget.tscn")
 
-onready var header_label : Label = $"%HeaderLabel"
 onready var stats_box : VBoxContainer = $"%StatsContainer"
 onready var currency_labels : Array = [$"%IncomeCurrencyLabel", $"%ExpensesCurrencyLabel"]
 onready var calendar_button : CalendarButton = $"%CalendarButton"
@@ -11,7 +10,6 @@ onready var total_expenses_label : Label = $"%TotalExpensesLabel"
 onready var progress_bar : ProgressBar = $"%ProgressBar"
 
 func _ready():
-	header_label.text = Time.get_date_string_from_system()
 	for currency_label in currency_labels:
 		currency_label.text = ActiveAccount.current_account.currency
 	_setup_monthly_stats()
@@ -33,7 +31,3 @@ func _setup_budget_stats() -> void:
 		var new_stat : BudgetTarget = stats_scene.instance()
 		stats_box.add_child(new_stat)
 		new_stat.setup(category, calendar_button.selected_date)
-
-
-func _on_CalendarButton_date_selected(date_obj : Date):
-	header_label.text = date_obj.date()

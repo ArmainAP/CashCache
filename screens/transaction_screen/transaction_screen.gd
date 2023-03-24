@@ -1,6 +1,5 @@
 extends Control
 
-onready var date_label : Label = $"%DateLabel"
 onready var transaction_option : OptionButton = $"%TransactionOptionButton"
 onready var numeric_line_edit : NumericLineEdit = $"%NumericLineEdit"
 onready var calendar_button : CalendarButton = $"%CalendarButton"
@@ -9,7 +8,6 @@ var income_types : PoolStringArray
 var expense_types : PoolStringArray
 
 func _ready():
-	date_label.text = Time.get_date_string_from_system()
 	var budget = UserSettings.get_linked_budget(ActiveAccount.current_filepath)
 	for category in budget.categories:
 		if category.is_income:
@@ -20,9 +18,6 @@ func _ready():
 		transaction_option.add_item(expense)
 	for income in income_types:
 		transaction_option.add_item(income)
-
-func _on_CalendarButton_date_selected(date : Date):
-	date_label.text = date.date()
 
 
 func _on_TransactionOptionButton_item_selected(index):
