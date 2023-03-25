@@ -30,10 +30,14 @@ func add_transaction(date : Date, type : String, value : float) -> void:
 
 
 func remove_transaction(date : Date, transaction) -> bool:
-	if not transactions.has(date.year): return false
-	if not transactions[date.year].has(date.month): return false
-	if not transactions[date.year][date.month].has(date.day): return false
+	if not has_date_data(date, 2): return false
 	transactions[date.year][date.month][date.day].erase(transaction)
+	if transactions[date.year][date.month][date.day].size() == 0:
+		transactions[date.year][date.month].erase(date.day)
+	if transactions[date.year][date.month].size() == 0:
+		transactions[date.year].erase(date.month)
+	if transactions[date.year].size() == 0:
+		assert(transactions.erase(date.year))
 	return true
 
 

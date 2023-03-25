@@ -50,5 +50,17 @@ func _on_button_pressed(_item: TreeItem, _column: int, _id: int):
 			date.month = _item.get_meta("month")
 			date.day = _item.get_meta("day")
 			ActiveAccount.remove_transaction(date, _item.get_meta("transaction"))
-			_item.get_parent().remove_child(_item)
-			_item.free()
+			var item_day = _remove_child_from_parent(_item)
+			if not ActiveAccount.current_account.has_date_data(date, 2):
+				var item_month = _remove_child_from_parent(item_day)
+				if not ActiveAccount.current_account.has_date_data(date, 1):
+					var item_year = _remove_child_from_parent(item_month)
+					if not ActiveAccount.current_account.has_date_data(date, 0):
+						item_year.free()
+
+
+func _remove_child_from_parent(item : TreeItem) -> TreeItem:
+	var parent = item.get_parent()
+	parent.remove_child(item)
+	item.free()
+	return parent
