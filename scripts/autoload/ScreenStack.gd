@@ -7,6 +7,8 @@ var scene_stack : PoolStringArray
 
 func _ready():
 	scene_stack.append(ProjectSettings.get("application/run/main_scene"))
+	print(OS.request_permissions())
+	print(OS.get_granted_permissions())
 
 func push_scene(new_scene_path : String) -> void:
 	var error := get_tree().change_scene(new_scene_path)

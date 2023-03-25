@@ -12,6 +12,8 @@ func _ready():
 
 
 func _import_account() -> void:
+	if import_file_path.empty():
+		import_file_path = file_dialog.current_path
 	if UserSettings.import_account(import_file_path):
 		account_list.add_item(import_file_path)
 
