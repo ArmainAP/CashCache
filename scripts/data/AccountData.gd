@@ -29,6 +29,14 @@ func add_transaction(date : Date, type : String, value : float) -> void:
 	transactions[date.year][date.month][date.day].append(transaction_dic)
 
 
+func remove_transaction(date : Date, transaction) -> bool:
+	if not transactions.has(date.year): return false
+	if not transactions[date.year].has(date.month): return false
+	if not transactions[date.year][date.month].has(date.day): return false
+	transactions[date.year][date.month][date.day].erase(transaction)
+	return true
+
+
 func has_year_data(year : int) -> bool:
 	return transactions.has(year)
 

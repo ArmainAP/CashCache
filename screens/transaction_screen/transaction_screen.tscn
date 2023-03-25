@@ -33,10 +33,12 @@ icon = ExtResource( 3 )
 script = ExtResource( 4 )
 
 [node name="ConfirmButton" type="Button" parent="VBoxContainer/Header/HBoxContainer" index="1"]
+unique_name_in_owner = true
 margin_left = 355.0
 margin_right = 706.0
 margin_bottom = 54.0
 size_flags_horizontal = 3
+disabled = true
 text = "Create"
 icon = ExtResource( 5 )
 script = ExtResource( 6 )
@@ -140,3 +142,4 @@ script = ExtResource( 9 )
 
 [connection signal="pressed" from="VBoxContainer/Header/HBoxContainer/ConfirmButton" to="." method="_on_ConfirmButton_pressed"]
 [connection signal="item_selected" from="VBoxContainer/Body/MarginContainer/VBoxContainer/HBoxContainer2/TransactionOptionButton" to="." method="_on_TransactionOptionButton_item_selected"]
+[connection signal="text_changed" from="VBoxContainer/Body/MarginContainer/VBoxContainer/HBoxContainer3/NumericLineEdit" to="." method="_on_NumericLineEdit_text_changed"]

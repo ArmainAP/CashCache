@@ -3,6 +3,7 @@ extends Control
 onready var transaction_option : OptionButton = $"%TransactionOptionButton"
 onready var numeric_line_edit : NumericLineEdit = $"%NumericLineEdit"
 onready var calendar_button : CalendarButton = $"%CalendarButton"
+onready var confirm_button : Button = $"%ConfirmButton"
 
 var income_types : PoolStringArray
 var expense_types : PoolStringArray
@@ -36,3 +37,7 @@ func _on_ConfirmButton_pressed():
 	ActiveAccount.add_transaction(calendar_button.selected_date, transaction_option.get_item_text(transaction_option.selected), numeric_line_edit.text.to_float())
 	ScreenStack.remove_scene(1)
 	ScreenStack.remove_scene(1)
+
+
+func _on_NumericLineEdit_text_changed(new_text):
+	confirm_button.disabled = new_text.to_int() == 0

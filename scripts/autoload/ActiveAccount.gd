@@ -39,6 +39,11 @@ func add_transaction(date : Date, type : String, value : float) -> void:
 	current_account.add_transaction(date, type, value)
 	save_account(current_account, current_filepath, current_password)
 
+func remove_transaction(date : Date, transaction) -> void:
+	var removed = current_account.remove_transaction(date, transaction)
+	assert(removed)
+	save_account(current_account, current_filepath, current_password)
+
 
 func get_total_income(date : Date) -> float:
 	if not current_account.has_date_data(date, 1):
