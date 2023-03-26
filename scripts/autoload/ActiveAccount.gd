@@ -8,6 +8,7 @@ var current_account : AccountData
 var current_filepath : String
 var current_password : String
 
+signal transactions_changed
 
 static func save_account(account : AccountData, file_path : String, password : String) -> bool:
 	var file = ConfigFile.new()
@@ -40,10 +41,13 @@ func create_account(folder_path : String, account_data : AccountData, password :
 func add_transaction(date : Date, type : String, value : float) -> void:
 	current_account.add_transaction(date, type, value)
 	assert(save_account(current_account, current_filepath, current_password))
+	emit_signal("transactions_changed")
+
 
 func remove_transaction(date : Date, transaction) -> void:
 	assert(current_account.remove_transaction(date, transaction))
 	assert(save_account(current_account, current_filepath, current_password))
+	emit_signal("transactions_changed")
 
 
 func get_total_income(date : Date) -> float:

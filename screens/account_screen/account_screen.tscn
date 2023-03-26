@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://screens/generic_screen.tscn" type="PackedScene" id=2]
 [ext_resource path="res://screens/account_screen/account_screen.gd" type="Script" id=3]
@@ -6,7 +6,6 @@
 [ext_resource path="res://icons/cancel_white_48dp.svg" type="Texture" id=6]
 [ext_resource path="res://scripts/nodes/ScenePopButton.gd" type="Script" id=7]
 [ext_resource path="res://icons/payments_white_48dp.svg" type="Texture" id=8]
-[ext_resource path="res://scripts/nodes/SceneLoadButton.gd" type="Script" id=9]
 [ext_resource path="res://scripts/nodes/TransactionHistoryTree.gd" type="Script" id=10]
 
 [node name="Control" instance=ExtResource( 2 )]
@@ -41,15 +40,13 @@ margin_bottom = 54.0
 size_flags_horizontal = 3
 text = "1999-08-21"
 
-[node name="ConfirmButton" type="Button" parent="VBoxContainer/Header/HBoxContainer" index="2"]
+[node name="NewTransactionButton" type="Button" parent="VBoxContainer/Header/HBoxContainer" index="2"]
 margin_left = 473.0
 margin_right = 706.0
 margin_bottom = 54.0
 size_flags_horizontal = 11
 text = "Transact"
 icon = ExtResource( 8 )
-script = ExtResource( 9 )
-screen_path = "res://screens/transaction_screen/transaction_screen.tscn"
 
 [node name="Body" parent="VBoxContainer" index="1"]
 margin_top = 68.0
@@ -176,9 +173,12 @@ size_flags_vertical = 3
 follow_focus = true
 scroll_horizontal_enabled = false
 
-[node name="Tree" type="Tree" parent="VBoxContainer/Body/Panel/MarginContainer/VBoxContainer/TabContainer/History" index="0"]
+[node name="TransactionHistoryTree" type="Tree" parent="VBoxContainer/Body/Panel/MarginContainer/VBoxContainer/TabContainer/History" index="0"]
+unique_name_in_owner = true
 margin_right = 688.0
 margin_bottom = 1066.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 script = ExtResource( 10 )
+
+[connection signal="pressed" from="VBoxContainer/Header/HBoxContainer/NewTransactionButton" to="." method="_on_NewTransactionButton_pressed"]

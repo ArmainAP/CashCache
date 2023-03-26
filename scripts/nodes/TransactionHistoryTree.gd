@@ -1,12 +1,19 @@
 extends Tree
+class_name TransactionHistoryTree
 
 var edit_button_texture : Texture = preload("res://icons/outline_edit_white_48dp.png")
 var delete_button_texture : Texture = preload("res://icons/delete_white_48dp.svg")
+var transaction_popup : PackedScene = preload("res://scripts/nodes/TransactionPopup/TransactionPopup.tscn")
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	var error := self.connect("button_pressed", self, "_on_button_pressed")
 	assert(error == OK)
+	create_tree()
+
+
+func create_tree():
+	self.clear()
 	var transactions : Dictionary = ActiveAccount.current_account.transactions
 	var budget = UserSettings.get_linked_budget(ActiveAccount.current_filepath)
 	for year in transactions:
@@ -30,10 +37,12 @@ func _ready():
 					transaction_item.set_text(0, transaction_text)
 					transaction_item.add_button(0, edit_button_texture)
 					transaction_item.add_button(0, delete_button_texture)
-					transaction_item.set_meta("year", year)
-					transaction_item.set_meta("month", month)
-					transaction_item.set_meta("day", day)
 					transaction_item.set_meta("transaction", transaction)
+					var date = Date.new()
+					date.year = year
+					date.month = month
+					date.day = day
+					transaction_item.set_meta("date", date)
 
 
 func create_item(parent : Object = null, idx : int = -1) -> TreeItem:
@@ -44,23 +53,21 @@ func create_item(parent : Object = null, idx : int = -1) -> TreeItem:
 
 func _on_button_pressed(_item: TreeItem, _column: int, _id: int):
 	match(_id):
+		0:
+			var transaction : Dictionary = _item.get_meta("transaction")
+			var date = _item.get_meta("date")
+			var transaction_dialog : TransactionDialog = transaction_popup.instance()
+			add_child(transaction_dialog)
+			var error = transaction_dialog.connect("confirmed", self, "_on_edit_transaction_confirmed", [transaction_dialog, _item])
+			assert(error == OK)
+			transaction_dialog.set_transaction(date, transaction[AccountData.TRANSACTION_TYPE_FIELD], transaction[AccountData.TRANSACTION_VALUE_FIELD])
+			transaction_dialog.show()
 		1: 
-			var date = Date.new()
-			date.year = _item.get_meta("year")
-			date.month = _item.get_meta("month")
-			date.day = _item.get_meta("day")
-			ActiveAccount.remove_transaction(date, _item.get_meta("transaction"))
-			var item_day = _remove_child_from_parent(_item)
-			if not ActiveAccount.current_account.has_date_data(date, 2):
-				var item_month = _remove_child_from_parent(item_day)
-				if not ActiveAccount.current_account.has_date_data(date, 1):
-					var item_year = _remove_child_from_parent(item_month)
-					if not ActiveAccount.current_account.has_date_data(date, 0):
-						item_year.free()
+			ActiveAccount.remove_transaction(_item.get_meta("date"), _item.get_meta("transaction"))
+			create_tree()
 
 
-func _remove_child_from_parent(item : TreeItem) -> TreeItem:
-	var parent = item.get_parent()
-	parent.remove_child(item)
-	item.free()
-	return parent
+func _on_edit_transaction_confirmed(transaction_dialog : TransactionDialog, _item):
+	ActiveAccount.remove_transaction(_item.get_meta("date"), _item.get_meta("transaction"))
+	ActiveAccount.add_transaction(transaction_dialog.transaction_date, transaction_dialog.transaction_type, transaction_dialog.transaction_value)
+	create_tree()
