@@ -14,6 +14,7 @@ onready var account_paths : PoolStringArray = file.get_value(APP_SECTION_NAME, A
 onready var user_budgets : Array = file.get_value(APP_SECTION_NAME, BUDGETS_KEY_NAME, [default_budget()])
 onready var budget_links : Dictionary = file.get_value(APP_SECTION_NAME, BUDGET_LINKS_KEY_NAME, {})
 
+var _saved_passwords = {}
 
 func _ready():
 	if file_error == OK:
@@ -123,3 +124,19 @@ static func default_budget() -> BudgetData:
 		"Joyful"
 	]))
 	return new_default_budget
+
+
+func save_password(account_path : String, account_password : String) -> void:
+	_saved_passwords[account_path] = account_password
+
+
+func has_password(account_path : String) -> bool:
+	return _saved_passwords.has(account_path)
+
+
+func erase_password(account_path : String) -> bool:
+	return _saved_passwords.erase(account_path)
+
+
+func get_password(account_path : String) -> String:
+	return _saved_passwords[account_path]
