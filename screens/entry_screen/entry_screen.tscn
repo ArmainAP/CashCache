@@ -48,8 +48,6 @@ margin_bottom = 54.0
 size_flags_horizontal = 3
 text = "New"
 icon = ExtResource( 6 )
-script = ExtResource( 3 )
-screen_path = "res://screens/account_wizard_screen/account_wizard_screen.tscn"
 
 [node name="Body" parent="VBoxContainer" index="1"]
 margin_top = 68.0
@@ -85,6 +83,7 @@ size_flags_vertical = 3
 popup_exclusive = true
 
 [connection signal="pressed" from="VBoxContainer/Header/HBoxContainer/ImportAccount" to="." method="_on_ImportAccount_pressed"]
+[connection signal="pressed" from="VBoxContainer/Header/HBoxContainer/NewAccount" to="." method="_on_NewAccount_pressed"]
 [connection signal="item_selected" from="VBoxContainer/Body/ItemList" to="." method="_on_ItemList_item_selected"]
 [connection signal="confirmed" from="FileDialog" to="." method="_import_account"]
 [connection signal="file_selected" from="FileDialog" to="." method="_on_FullRectFileDialog_file_selected"]

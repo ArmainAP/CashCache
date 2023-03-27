@@ -1,5 +1,7 @@
 extends Control
 
+var account_popup : PackedScene = preload("res://scripts/nodes/AccountDialog/AccountDialog.tscn")
+
 onready var account_list : ItemList = $VBoxContainer/Body/ItemList
 onready var file_dialog : FileDialog = $FileDialog
 onready var password_dialog : PasswordDialog = $PasswordDialog
@@ -51,3 +53,9 @@ func load_account(account_path : String, password : String) -> bool:
 		ScreenStack.push_scene(ScreenStack.ACCOUNT_SCREEN)
 		return true
 	return false
+
+
+func _on_NewAccount_pressed():
+	var account_dialog : AccountDialog = account_popup.instance()
+	add_child(account_dialog)
+	account_dialog.show()

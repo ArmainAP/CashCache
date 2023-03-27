@@ -14,6 +14,11 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://scripts/data/AccountData.gd"
 }, {
+"base": "ConfirmationDialog",
+"class": "AccountDialog",
+"language": "GDScript",
+"path": "res://scripts/nodes/AccountDialog/AccountDialog.gd"
+}, {
 "base": "Reference",
 "class": "BudgetCategoryData",
 "language": "GDScript",
@@ -81,6 +86,7 @@ _global_script_classes=[ {
 } ]
 _global_script_class_icons={
 "AccountData": "",
+"AccountDialog": "",
 "BudgetCategoryData": "",
 "BudgetData": "",
 "BudgetTarget": "",
