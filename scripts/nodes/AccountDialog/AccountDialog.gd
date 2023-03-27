@@ -7,7 +7,7 @@ onready var account_currency_line_edit : LineEdit = $"%Currency"
 onready var password_line_edit : LineEdit = $"%Password"
 onready var confirm_password_line_edit : LineEdit = $"%ConfirmPassword"
 onready var file_dialog : FileDialog = $FullRectFileDialog
-onready var budget_option_button = $"%BudgetOptionButton"
+onready var budget_option_button : OptionButton = $"%BudgetOptionButton"
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -29,3 +29,16 @@ func _on_AccountDialog_confirmed():
 	assert(ActiveAccount.create_account(save_location_button.text, account_data, password_line_edit.text))
 	assert(UserSettings.link_account_budget(ActiveAccount.current_filepath, budget_option_button.selected))
 	ScreenStack.push_scene("res://screens/account_screen/account_screen.tscn")
+
+
+func edit_current_account():
+	file_dialog.current_dir = ActiveAccount.current_filepath
+	save_location_button.text = ActiveAccount.current_filepath
+	account_name_line_edit.text = ActiveAccount.current_account.name
+	account_currency_line_edit.text = ActiveAccount.current_account.currency
+	password_line_edit.text = ActiveAccount.current_password
+	confirm_password_line_edit.text = ActiveAccount.current_password
+	var budget : BudgetData = UserSettings.get_linked_budget(ActiveAccount.current_filepath)
+	var budget_index : int = UserSettings.user_budgets.find(budget)
+	budget_index = 0 if budget_index < 0 else budget_index
+	budget_option_button.select(budget_index)

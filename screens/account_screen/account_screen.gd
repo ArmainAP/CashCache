@@ -1,5 +1,6 @@
 extends Control
 
+var account_popup : PackedScene = preload("res://scripts/nodes/AccountDialog/AccountDialog.tscn")
 var transaction_popup : PackedScene = preload("res://scripts/nodes/TransactionPopup/TransactionPopup.tscn")
 var stats_scene : PackedScene = preload("res://scripts/nodes/BudgetTarget/BudgetTarget.tscn")
 
@@ -58,3 +59,10 @@ func _on_new_transaction_confirmed(transaction_dialog : TransactionDialog):
 	_setup_monthly_stats()
 	_setup_budget_stats()
 	transaction_tree.create_tree()
+
+
+func _on_EditAccount_pressed():
+	var account_dialog : AccountDialog = account_popup.instance()
+	add_child(account_dialog)
+	account_dialog.edit_current_account()
+	account_dialog.show()
