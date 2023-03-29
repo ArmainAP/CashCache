@@ -1,11 +1,10 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://icons/outline_edit_white_48dp.png" type="Texture" id=1]
 [ext_resource path="res://screens/generic_screen.tscn" type="PackedScene" id=2]
 [ext_resource path="res://screens/account_screen/account_screen.gd" type="Script" id=3]
 [ext_resource path="res://scripts/nodes/CalendarPopup/CalendarPopup.tscn" type="PackedScene" id=5]
 [ext_resource path="res://icons/cancel_white_48dp.svg" type="Texture" id=6]
-[ext_resource path="res://scripts/nodes/ScenePopButton.gd" type="Script" id=7]
 [ext_resource path="res://icons/payments_white_48dp.svg" type="Texture" id=8]
 [ext_resource path="res://scripts/nodes/TransactionHistoryTree.gd" type="Script" id=10]
 
@@ -30,7 +29,6 @@ margin_right = 106.0
 margin_bottom = 54.0
 text = "Exit"
 icon = ExtResource( 6 )
-script = ExtResource( 7 )
 
 [node name="EditAccount" type="Button" parent="VBoxContainer/Header/HBoxContainer" index="1"]
 margin_left = 110.0
@@ -189,5 +187,6 @@ size_flags_horizontal = 3
 size_flags_vertical = 3
 script = ExtResource( 10 )
 
+[connection signal="pressed" from="VBoxContainer/Header/HBoxContainer/ScenePopButtons" to="." method="_on_ScenePopButtons_pressed"]
 [connection signal="pressed" from="VBoxContainer/Header/HBoxContainer/EditAccount" to="." method="_on_EditAccount_pressed"]
 [connection signal="pressed" from="VBoxContainer/Header/HBoxContainer/NewTransactionButton" to="." method="_on_NewTransactionButton_pressed"]

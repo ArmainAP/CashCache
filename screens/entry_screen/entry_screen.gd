@@ -50,7 +50,7 @@ func _on_ImportAccount_pressed():
 
 func load_account(account_path : String, password : String) -> bool:
 	if ActiveAccount.load_account(account_path, password):
-		ScreenStack.push_scene(ScreenStack.ACCOUNT_SCREEN)
+		_change_scene("account")
 		return true
 	return false
 
@@ -59,3 +59,12 @@ func _on_NewAccount_pressed():
 	var account_dialog : AccountDialog = account_popup.instance()
 	add_child(account_dialog)
 	account_dialog.show()
+
+
+func _on_SettingsButton_pressed():
+	_change_scene("settings")
+	
+
+func _change_scene(scene : String) -> void:
+	var options = SceneManager.create_options(0)
+	SceneManager.change_scene(scene, options, options, SceneManager.create_general_options())

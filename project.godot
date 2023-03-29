@@ -64,16 +64,6 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://scripts/nodes/PopupButton.gd"
 }, {
-"base": "Button",
-"class": "SceneLoadButton",
-"language": "GDScript",
-"path": "res://scripts/nodes/SceneLoadButton.gd"
-}, {
-"base": "Button",
-"class": "ScenePopButtons",
-"language": "GDScript",
-"path": "res://scripts/nodes/ScenePopButton.gd"
-}, {
 "base": "ConfirmationDialog",
 "class": "TransactionDialog",
 "language": "GDScript",
@@ -96,8 +86,6 @@ _global_script_class_icons={
 "NumericLineEdit": "",
 "PasswordDialog": "",
 "PopupButton": "",
-"SceneLoadButton": "",
-"ScenePopButtons": "",
 "TransactionDialog": "",
 "TransactionHistoryTree": ""
 }
@@ -111,10 +99,11 @@ config/icon="res://icons/currency_exchange_white_48dp.svg"
 
 [autoload]
 
-ScreenStack="*res://scripts/autoload/ScreenStack.gd"
 UserSettings="*res://scripts/autoload/UserSettings.gd"
 ActiveAccount="*res://scripts/autoload/ActiveAccount.gd"
 WebFileExchange="*res://scripts/autoload/WebFileExchange.gd"
+SceneManager="*res://addons/scene_manager/scene_manager.tscn"
+Scenes="*res://addons/scene_manager/scenes.gd"
 
 [debug]
 
@@ -138,7 +127,7 @@ window/stretch/aspect="expand"
 
 [editor_plugins]
 
-enabled=PoolStringArray(  )
+enabled=PoolStringArray( "res://addons/scene_manager/plugin.cfg" )
 
 [gui]
 
