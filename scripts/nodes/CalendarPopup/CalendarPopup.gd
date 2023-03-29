@@ -21,7 +21,8 @@ func _toggled(is_pressed):
 	if(is_pressed): 
 		popup.show()
 		restrict_popup_inside_screen()
-	else: popup.hide()
+	else: 
+		popup.hide()
 
 
 func restrict_popup_inside_screen():
@@ -57,6 +58,7 @@ func grid_button_pressed(button : Button):
 	popup.hide()
 	set_pressed(false)
 	selected_date.day = int(button.get_text())
+	refresh_data()
 	emit_signal("date_selected", selected_date)
 
 
@@ -81,22 +83,9 @@ func _on_NextYear_pressed():
 
 
 func refresh_data():
-	var month_name :String = ""
-	match(selected_date.month):
-		Time.MONTH_JANUARY: month_name = "January"
-		Time.MONTH_FEBRUARY: month_name = "February"
-		Time.MONTH_MARCH: month_name = "March"
-		Time.MONTH_APRIL: month_name = "April"
-		Time.MONTH_MAY: month_name = "May"
-		Time.MONTH_JUNE: month_name = "June"
-		Time.MONTH_JULY: month_name = "July"
-		Time.MONTH_AUGUST: month_name = "August"
-		Time.MONTH_SEPTEMBER: month_name = "September"
-		Time.MONTH_OCTOBER: month_name = "October"
-		Time.MONTH_NOVEMBER: month_name = "November"
-		Time.MONTH_DECEMBER: month_name = "December"
-	
-	title.text = str(month_name, " ", selected_date.year)
+	var month_name : String = Date.get_month_name(selected_date.month)
+	self.text = selected_date.date("YYYY-MM-DD")
+	title.text = str(month_name, " ", selected_date.year) 
 	update_calendar_buttons()
 
 

@@ -7,11 +7,15 @@ var scene_stack : PoolStringArray
 
 func _ready():
 	scene_stack.append(ProjectSettings.get("application/run/main_scene"))
+	if OS.get_name() == "Android":
+		assert(OS.request_permissions())
+
 
 func push_scene(new_scene_path : String) -> void:
 	var error := get_tree().change_scene(new_scene_path)
 	if error == OK:
 		scene_stack.append(new_scene_path)
+
 
 func pop_scene() -> void:
 	var stack_size = scene_stack.size()

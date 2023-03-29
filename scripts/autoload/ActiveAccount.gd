@@ -8,13 +8,14 @@ var current_account : AccountData
 var current_filepath : String
 var current_password : String
 
+signal transactions_changed
 
-static func save_account(account : AccountData, file_path : String, password : String) -> void:
+static func save_account(account : AccountData, file_path : String, password : String) -> bool:
 	var file = ConfigFile.new()
 	file.set_value("", NAME_FIELD, account.name)
 	file.set_value("", CURRENCY_FIELD, account.currency)
 	file.set_value("", TRANSACTIONS_FIELD, account.transactions)
-	file.save_encrypted_pass(file_path, password)
+	return file.save_encrypted_pass(file_path, password) == OK
 
 
 func load_account(file_path : String, password : String) -> bool:
@@ -28,16 +29,25 @@ func load_account(file_path : String, password : String) -> bool:
 	return false
 
 
-func create_account(folder_path : String, account_data : AccountData, password : String) -> void:
+func create_account(folder_path : String, account_data : AccountData, password : String) -> bool:
 	var file_path = folder_path.plus_file(account_data.name + ".ccf")
-	save_account(account_data, file_path, password)
+	if not save_account(account_data, file_path, password):
+		return false
 	if load_account(file_path, password):
-		assert(UserSettings.import_account(file_path))
+		return UserSettings.import_account(file_path)
+	return false
 
 
 func add_transaction(date : Date, type : String, value : float) -> void:
 	current_account.add_transaction(date, type, value)
-	save_account(current_account, current_filepath, current_password)
+	assert(save_account(current_account, current_filepath, current_password))
+	emit_signal("transactions_changed")
+
+
+func remove_transaction(date : Date, transaction) -> void:
+	assert(current_account.remove_transaction(date, transaction))
+	assert(save_account(current_account, current_filepath, current_password))
+	emit_signal("transactions_changed")
 
 
 func get_total_income(date : Date) -> float:

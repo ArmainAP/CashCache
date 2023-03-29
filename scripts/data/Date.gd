@@ -43,3 +43,20 @@ func date(date_format = "YYYY-MM-DD") -> String:
 	elif("YY".is_subsequence_of(date_format)):
 		date_format = date_format.replace("YY", str(year).substr(2,3))
 	return date_format
+
+
+static func get_month_name(in_month : int) -> String:
+	match(in_month):
+		Time.MONTH_JANUARY: return "January"
+		Time.MONTH_FEBRUARY: return "February"
+		Time.MONTH_MARCH: return "March"
+		Time.MONTH_APRIL: return "April"
+		Time.MONTH_MAY: return "May"
+		Time.MONTH_JUNE: return "June"
+		Time.MONTH_JULY: return "July"
+		Time.MONTH_AUGUST: return "August"
+		Time.MONTH_SEPTEMBER: return "September"
+		Time.MONTH_OCTOBER: return "October"
+		Time.MONTH_NOVEMBER: return "November"
+		Time.MONTH_DECEMBER: return "December"
+	return String(in_month)

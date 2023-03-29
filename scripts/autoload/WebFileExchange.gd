@@ -62,8 +62,6 @@ func upload_file() -> String:
 	file.store_buffer(file_data)
 	file.close()
 	
-	print(file_path)
-	
 	return file_path
 
 
@@ -71,10 +69,8 @@ func is_web() -> bool:
 	return OS.get_name() == "HTML5" and OS.has_feature('JavaScript')
 
 
-#func save_image(image:Image, fileName:String = "export.png")->void:
-#	if !is_web():
-#		return
-	
-#	image.clear_mipmaps()
-#	var buffer = image.save_png_to_buffer()
-#	JavaScript.download_buffer(buffer, fileName)
+func download(file_path : String) -> void:
+	if !is_web(): return
+	var file = File.new()
+	file.open(file_path, File.READ)
+	JavaScript.download_buffer(file.get_buffer(file.get_len()), file_path.get_file())

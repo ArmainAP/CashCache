@@ -14,6 +14,11 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://scripts/data/AccountData.gd"
 }, {
+"base": "ConfirmationDialog",
+"class": "AccountDialog",
+"language": "GDScript",
+"path": "res://scripts/nodes/AccountDialog/AccountDialog.gd"
+}, {
 "base": "Reference",
 "class": "BudgetCategoryData",
 "language": "GDScript",
@@ -59,11 +64,6 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://scripts/nodes/PopupButton.gd"
 }, {
-"base": "Label",
-"class": "ResizableLabel",
-"language": "GDScript",
-"path": "res://scripts/nodes/ResizableLabel.gd"
-}, {
 "base": "Button",
 "class": "SceneLoadButton",
 "language": "GDScript",
@@ -73,9 +73,20 @@ _global_script_classes=[ {
 "class": "ScenePopButtons",
 "language": "GDScript",
 "path": "res://scripts/nodes/ScenePopButton.gd"
+}, {
+"base": "ConfirmationDialog",
+"class": "TransactionDialog",
+"language": "GDScript",
+"path": "res://scripts/nodes/TransactionPopup/TransactionDialog.gd"
+}, {
+"base": "Tree",
+"class": "TransactionHistoryTree",
+"language": "GDScript",
+"path": "res://scripts/nodes/TransactionHistoryTree.gd"
 } ]
 _global_script_class_icons={
 "AccountData": "",
+"AccountDialog": "",
 "BudgetCategoryData": "",
 "BudgetData": "",
 "BudgetTarget": "",
@@ -85,9 +96,10 @@ _global_script_class_icons={
 "NumericLineEdit": "",
 "PasswordDialog": "",
 "PopupButton": "",
-"ResizableLabel": "",
 "SceneLoadButton": "",
-"ScenePopButtons": ""
+"ScenePopButtons": "",
+"TransactionDialog": "",
+"TransactionHistoryTree": ""
 }
 
 [application]
@@ -115,10 +127,11 @@ gdscript/warnings/unsafe_call_argument=true
 
 [display]
 
-window/size/width=446
-window/size/height=792
-window/size/test_width=540
-window/size/test_height=960
+window/size/width=720
+window/size/height=1280
+window/size/test_width=720
+window/size/test_height=1280
+window/dpi/allow_hidpi=true
 window/handheld/orientation="sensor"
 window/stretch/mode="2d"
 window/stretch/aspect="expand"
@@ -130,7 +143,7 @@ enabled=PoolStringArray(  )
 [gui]
 
 common/drop_mouse_on_gui_input_disabled=true
-theme/custom_font="res://fonts/dynamic/Roboto-Regular.tres"
+theme/custom_font="res://SourceCodePro/SourceCodePro-Regurlar.tres"
 
 [physics]
 
