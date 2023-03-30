@@ -1,6 +1,6 @@
 extends VBoxContainer
 
-onready var category_row : PackedScene = load("res://scripts/nodes/BudgetWidget/CategoryRow.tscn")
+export(PackedScene) var category_row : PackedScene
 onready var categories_box : VBoxContainer = $"%Categories"
 onready var label : LineEdit = $"%LineEdit"
 

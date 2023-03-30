@@ -1,6 +1,6 @@
 extends VBoxContainer
 
-onready var transaction_row : PackedScene = load("res://scripts/nodes/BudgetWidget/TransactionRow.tscn")
+export(PackedScene) var transaction_row : PackedScene
 onready var transactions_box := $"%ChildBox"
 onready var line_edit : LineEdit = $"%LineEdit"
 onready var color_picker : ColorPickerButton = $"%ColorPickerButton"

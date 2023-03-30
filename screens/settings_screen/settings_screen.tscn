@@ -1,12 +1,14 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://icons/add_white_48dp.svg" type="Texture" id=1]
 [ext_resource path="res://screens/generic_screen.tscn" type="PackedScene" id=2]
 [ext_resource path="res://screens/settings_screen/settings_screen.gd" type="Script" id=3]
 [ext_resource path="res://icons/cancel_white_48dp.svg" type="Texture" id=4]
+[ext_resource path="res://scripts/widgets/BudgetWidget/BudgetRow.tscn" type="PackedScene" id=5]
 
 [node name="Control" instance=ExtResource( 2 )]
 script = ExtResource( 3 )
+budget_row = ExtResource( 5 )
 
 [node name="Header" parent="VBoxContainer" index="0"]
 margin_right = 720.0
@@ -72,12 +74,6 @@ margin_right = 700.0
 margin_bottom = 635.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
-
-[node name="BudgetList" type="ItemList" parent="VBoxContainer/Body/Panel" index="1"]
-unique_name_in_owner = true
-anchor_right = 1.0
-anchor_bottom = 1.0
-allow_reselect = true
 
 [connection signal="pressed" from="VBoxContainer/Header/HBoxContainer/ScenePopButtons" to="." method="_on_ScenePopButtons_pressed"]
 [connection signal="pressed" from="VBoxContainer/Header/HBoxContainer/AddBudgetButton" to="." method="_on_AddBudgetButton_pressed"]
