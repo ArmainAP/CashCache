@@ -1,9 +1,9 @@
 extends Tree
 class_name TransactionHistoryTree
 
-var edit_button_texture : Texture = preload("res://icons/outline_edit_white_48dp.png")
-var delete_button_texture : Texture = preload("res://icons/delete_white_48dp.svg")
-var transaction_popup : PackedScene = preload("res://scripts/nodes/TransactionPopup/TransactionPopup.tscn")
+export(Texture) var edit_button_texture : Texture
+export(Texture) var delete_button_texture : Texture
+export(PackedScene) var transaction_popup : PackedScene
 
 # Called when the node enters the scene tree for the first time.
 func _ready():

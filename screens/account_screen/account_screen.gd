@@ -1,8 +1,8 @@
 extends Control
 
-var account_popup : PackedScene = preload("res://scripts/nodes/AccountDialog/AccountDialog.tscn")
-var transaction_popup : PackedScene = preload("res://scripts/nodes/TransactionPopup/TransactionPopup.tscn")
-var stats_scene : PackedScene = preload("res://scripts/nodes/BudgetTarget/BudgetTarget.tscn")
+export(PackedScene) var account_popup : PackedScene
+export(PackedScene) var transaction_popup : PackedScene
+export(PackedScene) var stats_scene : PackedScene
 
 onready var stats_box : VBoxContainer = $"%StatsContainer"
 onready var currency_labels : Array = [$"%IncomeCurrencyLabel", $"%ExpensesCurrencyLabel"]

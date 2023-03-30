@@ -1,6 +1,6 @@
 extends Control
 
-var account_popup : PackedScene = preload("res://scripts/nodes/AccountDialog/AccountDialog.tscn")
+export(PackedScene) var account_popup : PackedScene
 
 onready var account_list : ItemList = $VBoxContainer/Body/ItemList
 onready var file_dialog : FileDialog = $FileDialog

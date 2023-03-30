@@ -1,8 +1,9 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://screens/generic_screen.tscn" type="PackedScene" id=1]
+[ext_resource path="res://scripts/widgets/AccountDialog/AccountDialog.tscn" type="PackedScene" id=2]
 [ext_resource path="res://screens/entry_screen/entry_screen.gd" type="Script" id=4]
-[ext_resource path="res://scripts/nodes/PasswordDialog/PasswordDialog.tscn" type="PackedScene" id=5]
+[ext_resource path="res://scripts/widgets/PasswordDialog/PasswordDialog.tscn" type="PackedScene" id=5]
 [ext_resource path="res://icons/note_add_white_48dp.svg" type="Texture" id=6]
 [ext_resource path="res://icons/upload_file_white_48dp.svg" type="Texture" id=7]
 [ext_resource path="res://scripts/nodes/FullRectDialog.gd" type="Script" id=8]
@@ -10,6 +11,7 @@
 
 [node name="Control" instance=ExtResource( 1 )]
 script = ExtResource( 4 )
+account_popup = ExtResource( 2 )
 
 [node name="Header" parent="VBoxContainer" index="0"]
 margin_right = 720.0

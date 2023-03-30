@@ -1,15 +1,22 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=12 format=2]
 
 [ext_resource path="res://icons/outline_edit_white_48dp.png" type="Texture" id=1]
 [ext_resource path="res://screens/generic_screen.tscn" type="PackedScene" id=2]
 [ext_resource path="res://screens/account_screen/account_screen.gd" type="Script" id=3]
-[ext_resource path="res://scripts/nodes/CalendarPopup/CalendarPopup.tscn" type="PackedScene" id=5]
+[ext_resource path="res://icons/delete_white_48dp.svg" type="Texture" id=4]
+[ext_resource path="res://scripts/widgets/CalendarPopup/CalendarPopup.tscn" type="PackedScene" id=5]
 [ext_resource path="res://icons/cancel_white_48dp.svg" type="Texture" id=6]
+[ext_resource path="res://scripts/widgets/TransactionPopup/TransactionPopup.tscn" type="PackedScene" id=7]
 [ext_resource path="res://icons/payments_white_48dp.svg" type="Texture" id=8]
+[ext_resource path="res://scripts/widgets/AccountDialog/AccountDialog.tscn" type="PackedScene" id=9]
 [ext_resource path="res://scripts/nodes/TransactionHistoryTree.gd" type="Script" id=10]
+[ext_resource path="res://scripts/widgets/BudgetTarget/BudgetTarget.tscn" type="PackedScene" id=11]
 
 [node name="Control" instance=ExtResource( 2 )]
 script = ExtResource( 3 )
+account_popup = ExtResource( 9 )
+transaction_popup = ExtResource( 7 )
+stats_scene = ExtResource( 11 )
 
 [node name="Header" parent="VBoxContainer" index="0"]
 margin_right = 720.0
@@ -186,6 +193,9 @@ margin_bottom = 506.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 script = ExtResource( 10 )
+edit_button_texture = ExtResource( 1 )
+delete_button_texture = ExtResource( 4 )
+transaction_popup = ExtResource( 7 )
 
 [connection signal="pressed" from="VBoxContainer/Header/HBoxContainer/ScenePopButtons" to="." method="_on_ScenePopButtons_pressed"]
 [connection signal="pressed" from="VBoxContainer/Header/HBoxContainer/EditAccount" to="." method="_on_EditAccount_pressed"]

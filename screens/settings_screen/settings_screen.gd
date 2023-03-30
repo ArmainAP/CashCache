@@ -3,11 +3,14 @@ extends Control
 onready var budget_row : PackedScene = load("res://scripts/nodes/BudgetWidget/BudgetRow.tscn")
 onready var budgets_box : VBoxContainer = $VBoxContainer/Body/Panel/MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer
 
+onready var budget_list : ItemList = $"%BudgetList"
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	for budget in UserSettings.user_budgets:
 		if budget:
-			create_row(budget)
+			budget_list.add_item(budget.name)
+			#create_row(budget)
 
 
 func create_row(budget : BudgetData):
@@ -18,7 +21,8 @@ func create_row(budget : BudgetData):
 
 func _on_AddBudgetButton_pressed():
 	var newbudget = UserSettings.create_budget()
-	create_row(newbudget)
+	#create_row(newbudget)
+	budget_list.add_item(newbudget.name)
 
 
 func _on_ScenePopButtons_pressed():

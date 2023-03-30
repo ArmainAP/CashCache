@@ -1,15 +1,15 @@
 [gd_scene load_steps=5 format=2]
 
-[ext_resource path="res://icons/folder_white_48dp.svg" type="Texture" id=1]
-[ext_resource path="res://scripts/nodes/FullRectDialog.gd" type="Script" id=2]
+[ext_resource path="res://scripts/nodes/FullRectDialog.gd" type="Script" id=1]
+[ext_resource path="res://scripts/widgets/AccountDialog/AccountDialog.gd" type="Script" id=2]
 [ext_resource path="res://scripts/nodes/BudgetDropdownButton.gd" type="Script" id=3]
-[ext_resource path="res://scripts/nodes/AccountDialog/AccountDialog.gd" type="Script" id=4]
+[ext_resource path="res://icons/folder_white_48dp.svg" type="Texture" id=4]
 
 [node name="AccountDialog" type="ConfirmationDialog"]
 visible = true
 anchor_right = 1.0
 anchor_bottom = 1.0
-script = ExtResource( 4 )
+script = ExtResource( 2 )
 
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
 margin_left = 8.0
@@ -21,7 +21,7 @@ margin_bottom = 1235.0
 unique_name_in_owner = true
 margin_right = 704.0
 margin_bottom = 54.0
-icon = ExtResource( 1 )
+icon = ExtResource( 4 )
 
 [node name="BudgetOptionButton" type="OptionButton" parent="VBoxContainer"]
 unique_name_in_owner = true
@@ -124,7 +124,7 @@ popup_exclusive = true
 window_title = "Open a Directory"
 mode = 2
 access = 2
-script = ExtResource( 2 )
+script = ExtResource( 1 )
 
 [connection signal="confirmed" from="." to="." method="_on_AccountDialog_confirmed"]
 [connection signal="pressed" from="VBoxContainer/SaveLocationButton" to="." method="_on_SaveLocationButton_pressed"]
