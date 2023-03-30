@@ -44,7 +44,7 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://scripts/data/Date.gd"
 }, {
-"base": "Popup",
+"base": "Node",
 "class": "FullRectDialog",
 "language": "GDScript",
 "path": "res://scripts/nodes/FullRectDialog.gd"
@@ -54,15 +54,10 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://scripts/nodes/NumericLineEdit.gd"
 }, {
-"base": "FullRectDialog",
+"base": "AcceptDialog",
 "class": "PasswordDialog",
 "language": "GDScript",
 "path": "res://scripts/nodes/PasswordDialog/PasswordDialog.gd"
-}, {
-"base": "Button",
-"class": "PopupButton",
-"language": "GDScript",
-"path": "res://scripts/nodes/PopupButton.gd"
 }, {
 "base": "ConfirmationDialog",
 "class": "TransactionDialog",
@@ -85,7 +80,6 @@ _global_script_class_icons={
 "FullRectDialog": "",
 "NumericLineEdit": "",
 "PasswordDialog": "",
-"PopupButton": "",
 "TransactionDialog": "",
 "TransactionHistoryTree": ""
 }
@@ -117,7 +111,7 @@ gdscript/warnings/unsafe_call_argument=true
 [display]
 
 window/size/width=720
-window/size/height=1280
+window/size/height=720
 window/size/test_width=720
 window/size/test_height=1280
 window/dpi/allow_hidpi=true

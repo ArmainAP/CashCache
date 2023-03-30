@@ -1,4 +1,4 @@
-extends FullRectDialog
+extends AcceptDialog
 class_name PasswordDialog
 
 onready var line_edit : LineEdit = $"%LineEdit"

@@ -1,5 +1,6 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=5 format=2]
 
+[ext_resource path="res://scripts/nodes/FullRectDialog.gd" type="Script" id=1]
 [ext_resource path="res://scripts/nodes/TransactionPopup/TransactionDialog.gd" type="Script" id=2]
 [ext_resource path="res://scripts/nodes/CalendarPopup/CalendarPopup.tscn" type="PackedScene" id=3]
 [ext_resource path="res://scripts/nodes/NumericLineEdit.gd" type="Script" id=4]
@@ -13,7 +14,7 @@ script = ExtResource( 2 )
 margin_left = 8.0
 margin_top = 8.0
 margin_right = 712.0
-margin_bottom = 1235.0
+margin_bottom = 675.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
@@ -85,6 +86,9 @@ size_flags_horizontal = 3
 text = "0"
 align = 1
 script = ExtResource( 4 )
+
+[node name="FullRectDialog" type="Node" parent="."]
+script = ExtResource( 1 )
 
 [connection signal="date_selected" from="TransactionDataWidget/HBoxContainer4/HBoxContainer/CalendarButton" to="." method="_on_CalendarButton_date_selected"]
 [connection signal="item_selected" from="TransactionDataWidget/HBoxContainer2/TransactionOptionButton" to="." method="_on_TransactionOptionButton_item_selected"]

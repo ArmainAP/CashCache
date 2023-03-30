@@ -18,7 +18,7 @@ var _saved_passwords = {}
 
 func _ready():
 	if OS.get_name() == "Android":
-		assert(OS.request_permissions())
+		print(OS.request_permissions())
 	if file_error == OK:
 		_cull_invalid_paths()
 		_cull_invalid_budgets()
