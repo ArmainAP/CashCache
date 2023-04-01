@@ -1,0 +1,132 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://scripts/nodes/FullRectDialog.gd" type="Script" id=1]
+[ext_resource path="res://scripts/widgets/AccountDialog/AccountDialog.gd" type="Script" id=2]
+[ext_resource path="res://scripts/nodes/BudgetDropdownButton.gd" type="Script" id=3]
+[ext_resource path="res://icons/folder_white_48dp.svg" type="Texture" id=4]
+
+[node name="AccountDialog" type="ConfirmationDialog"]
+visible = true
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource( 2 )
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+margin_left = 8.0
+margin_top = 8.0
+margin_right = 712.0
+margin_bottom = 1235.0
+
+[node name="SaveLocationButton" type="Button" parent="VBoxContainer"]
+unique_name_in_owner = true
+margin_right = 704.0
+margin_bottom = 54.0
+icon = ExtResource( 4 )
+
+[node name="BudgetOptionButton" type="OptionButton" parent="VBoxContainer"]
+unique_name_in_owner = true
+margin_top = 58.0
+margin_right = 704.0
+margin_bottom = 87.0
+align = 1
+script = ExtResource( 3 )
+
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer"]
+margin_top = 91.0
+margin_right = 704.0
+margin_bottom = 1227.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="VBoxContainer/VBoxContainer"]
+margin_right = 704.0
+margin_bottom = 33.0
+
+[node name="ResizableLabel" type="Label" parent="VBoxContainer/VBoxContainer/HBoxContainer2"]
+margin_right = 55.0
+margin_bottom = 33.0
+size_flags_horizontal = 2
+size_flags_vertical = 3
+text = "Name:"
+valign = 1
+
+[node name="Name" type="LineEdit" parent="VBoxContainer/VBoxContainer/HBoxContainer2"]
+unique_name_in_owner = true
+margin_left = 354.0
+margin_right = 704.0
+margin_bottom = 33.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+text = "Account"
+align = 1
+
+[node name="HBoxContainer3" type="HBoxContainer" parent="VBoxContainer/VBoxContainer"]
+margin_top = 37.0
+margin_right = 704.0
+margin_bottom = 70.0
+
+[node name="ResizableLabel" type="Label" parent="VBoxContainer/VBoxContainer/HBoxContainer3"]
+margin_right = 99.0
+margin_bottom = 33.0
+size_flags_horizontal = 2
+size_flags_vertical = 3
+text = "Currency:"
+valign = 1
+
+[node name="Currency" type="LineEdit" parent="VBoxContainer/VBoxContainer/HBoxContainer3"]
+unique_name_in_owner = true
+margin_left = 354.0
+margin_right = 704.0
+margin_bottom = 33.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+text = "RON"
+align = 1
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="VBoxContainer/VBoxContainer"]
+margin_top = 74.0
+margin_right = 704.0
+margin_bottom = 171.0
+
+[node name="ResizableLabel" type="Label" parent="VBoxContainer/VBoxContainer/VBoxContainer2"]
+margin_right = 99.0
+margin_bottom = 23.0
+size_flags_horizontal = 2
+size_flags_vertical = 3
+text = "Password:"
+valign = 1
+
+[node name="Password" type="LineEdit" parent="VBoxContainer/VBoxContainer/VBoxContainer2"]
+unique_name_in_owner = true
+margin_top = 27.0
+margin_right = 704.0
+margin_bottom = 60.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+align = 1
+secret = true
+
+[node name="ConfirmPassword" type="LineEdit" parent="VBoxContainer/VBoxContainer/VBoxContainer2"]
+unique_name_in_owner = true
+margin_top = 64.0
+margin_right = 704.0
+margin_bottom = 97.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+align = 1
+secret = true
+
+[node name="FullRectFileDialog" type="FileDialog" parent="."]
+unique_name_in_owner = true
+anchor_right = 1.0
+anchor_bottom = 1.0
+popup_exclusive = true
+window_title = "Open a Directory"
+mode = 2
+access = 2
+script = ExtResource( 1 )
+
+[connection signal="confirmed" from="." to="." method="_on_AccountDialog_confirmed"]
+[connection signal="pressed" from="VBoxContainer/SaveLocationButton" to="." method="_on_SaveLocationButton_pressed"]
+[connection signal="text_changed" from="VBoxContainer/VBoxContainer/VBoxContainer2/Password" to="." method="_on_password_text_changed"]
+[connection signal="text_changed" from="VBoxContainer/VBoxContainer/VBoxContainer2/ConfirmPassword" to="." method="_on_password_text_changed"]

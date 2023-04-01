@@ -17,6 +17,8 @@ onready var budget_links : Dictionary = file.get_value(APP_SECTION_NAME, BUDGET_
 var _saved_passwords = {}
 
 func _ready():
+	if OS.get_name() == "Android":
+		print(OS.request_permissions())
 	if file_error == OK:
 		_cull_invalid_paths()
 		_cull_invalid_budgets()
@@ -74,8 +76,8 @@ func import_account(var file_path : String) -> bool:
 
 func create_budget() -> BudgetData:
 	var new_budget = BudgetData.new("Budget " + String(user_budgets.size()))
-	new_budget.categories.append(BudgetCategoryData.new("Income", true, 1, Color.forestgreen, ["Income"]))
-	new_budget.categories.append(BudgetCategoryData.new("Expense", false, 1, Color.crimson, ["Expense"]))
+	new_budget.categories.append(BudgetCategoryData.new("Income", true, 100, Color.forestgreen, ["Income"]))
+	new_budget.categories.append(BudgetCategoryData.new("Expense", false, 100, Color.crimson, ["Expense"]))
 	user_budgets.append(new_budget)
 	save_user_data()
 	return new_budget
@@ -98,28 +100,28 @@ func get_linked_budget(account_path : String) -> BudgetData:
 
 static func default_budget() -> BudgetData:
 	var new_default_budget = BudgetData.new("Default")
-	new_default_budget.categories.append(BudgetCategoryData.new("Income", true, 1, Color.forestgreen,
+	new_default_budget.categories.append(BudgetCategoryData.new("Income", true, 100, Color.forestgreen,
 	[
 		"Salary", "Business", "Grant"
 	]))
-	new_default_budget.categories.append(BudgetCategoryData.new("Investment", true, 1, Color.olivedrab,
+	new_default_budget.categories.append(BudgetCategoryData.new("Investment", true, 100, Color.olivedrab,
 	[
 		"Capital gains and dividends", "Real estate", "Royalties"
 	]))
 	
-	new_default_budget.categories.append(BudgetCategoryData.new("Expense", false, 0.6, Color.crimson,
+	new_default_budget.categories.append(BudgetCategoryData.new("Expense", false, 60, Color.crimson,
 	[
 		"Food", "Clothes", "Home", "Credit", "Health", "Transport", "Communications", "Personal care", "Taxes"
 	]))
-	new_default_budget.categories.append(BudgetCategoryData.new("Investment", false, 0.2, Color.olivedrab,
+	new_default_budget.categories.append(BudgetCategoryData.new("Investment", false, 20, Color.olivedrab,
 	[
 		"Education", "Savings", "Investements"
 	]))
-	new_default_budget.categories.append(BudgetCategoryData.new("Donation", false, 0.1, Color.orchid,
+	new_default_budget.categories.append(BudgetCategoryData.new("Donation", false, 10, Color.orchid,
 	[
 		"Gifts", "Charity"
 	]))
-	new_default_budget.categories.append(BudgetCategoryData.new("Fun", false, 0.1, Color.peru, 
+	new_default_budget.categories.append(BudgetCategoryData.new("Fun", false, 10, Color.peru, 
 	[
 		"Joyful"
 	]))

@@ -19,6 +19,7 @@ Cash Cache is licensed under the [AGPL-3.0 license](https://github.com/ArmainAP/
 - [Godot](https://github.com/godotengine/godot) as this project would not exist as it is without it!
 - [Calendar Button Plugin](https://github.com/ivanskodje-godotengine/godot-plugin-calendar-button) as CalendarPopup is a modified version of Calendar Button.
 - [HTML5 File Exchange for Godot](https://github.com/Pukkah/HTML5-File-Exchange-for-Godot) as WebFileExchange uses a modified version of HTML5FileExchange.gd
+- [Scene Manager](https://github.com/maktoobgar/scene_manager) for providing an awesome tool for managing scenes.
 
 ## Screenshots
 

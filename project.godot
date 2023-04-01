@@ -17,7 +17,7 @@ _global_script_classes=[ {
 "base": "ConfirmationDialog",
 "class": "AccountDialog",
 "language": "GDScript",
-"path": "res://scripts/nodes/AccountDialog/AccountDialog.gd"
+"path": "res://scripts/widgets/AccountDialog/AccountDialog.gd"
 }, {
 "base": "Reference",
 "class": "BudgetCategoryData",
@@ -32,19 +32,24 @@ _global_script_classes=[ {
 "base": "VBoxContainer",
 "class": "BudgetTarget",
 "language": "GDScript",
-"path": "res://scripts/nodes/BudgetTarget/BudgetTarget.gd"
+"path": "res://scripts/widgets/BudgetTarget/BudgetTarget.gd"
 }, {
 "base": "Button",
 "class": "CalendarButton",
 "language": "GDScript",
-"path": "res://scripts/nodes/CalendarPopup/CalendarPopup.gd"
+"path": "res://scripts/widgets/CalendarPopup/CalendarPopup.gd"
+}, {
+"base": "AcceptDialog",
+"class": "ColorPickerDialog",
+"language": "GDScript",
+"path": "res://scripts/widgets/ColorPickerPopup/ColorPickerPopup.gd"
 }, {
 "base": "Reference",
 "class": "Date",
 "language": "GDScript",
 "path": "res://scripts/data/Date.gd"
 }, {
-"base": "Popup",
+"base": "Node",
 "class": "FullRectDialog",
 "language": "GDScript",
 "path": "res://scripts/nodes/FullRectDialog.gd"
@@ -54,30 +59,15 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://scripts/nodes/NumericLineEdit.gd"
 }, {
-"base": "FullRectDialog",
+"base": "AcceptDialog",
 "class": "PasswordDialog",
 "language": "GDScript",
-"path": "res://scripts/nodes/PasswordDialog/PasswordDialog.gd"
-}, {
-"base": "Button",
-"class": "PopupButton",
-"language": "GDScript",
-"path": "res://scripts/nodes/PopupButton.gd"
-}, {
-"base": "Button",
-"class": "SceneLoadButton",
-"language": "GDScript",
-"path": "res://scripts/nodes/SceneLoadButton.gd"
-}, {
-"base": "Button",
-"class": "ScenePopButtons",
-"language": "GDScript",
-"path": "res://scripts/nodes/ScenePopButton.gd"
+"path": "res://scripts/widgets/PasswordDialog/PasswordDialog.gd"
 }, {
 "base": "ConfirmationDialog",
 "class": "TransactionDialog",
 "language": "GDScript",
-"path": "res://scripts/nodes/TransactionPopup/TransactionDialog.gd"
+"path": "res://scripts/widgets/TransactionPopup/TransactionDialog.gd"
 }, {
 "base": "Tree",
 "class": "TransactionHistoryTree",
@@ -91,13 +81,11 @@ _global_script_class_icons={
 "BudgetData": "",
 "BudgetTarget": "",
 "CalendarButton": "",
+"ColorPickerDialog": "",
 "Date": "",
 "FullRectDialog": "",
 "NumericLineEdit": "",
 "PasswordDialog": "",
-"PopupButton": "",
-"SceneLoadButton": "",
-"ScenePopButtons": "",
 "TransactionDialog": "",
 "TransactionHistoryTree": ""
 }
@@ -111,10 +99,11 @@ config/icon="res://icons/currency_exchange_white_48dp.svg"
 
 [autoload]
 
-ScreenStack="*res://scripts/autoload/ScreenStack.gd"
 UserSettings="*res://scripts/autoload/UserSettings.gd"
 ActiveAccount="*res://scripts/autoload/ActiveAccount.gd"
 WebFileExchange="*res://scripts/autoload/WebFileExchange.gd"
+SceneManager="*res://addons/scene_manager/scene_manager.tscn"
+Scenes="*res://addons/scene_manager/scenes.gd"
 
 [debug]
 
@@ -128,7 +117,7 @@ gdscript/warnings/unsafe_call_argument=true
 [display]
 
 window/size/width=720
-window/size/height=1280
+window/size/height=720
 window/size/test_width=720
 window/size/test_height=1280
 window/dpi/allow_hidpi=true
@@ -138,7 +127,7 @@ window/stretch/aspect="expand"
 
 [editor_plugins]
 
-enabled=PoolStringArray(  )
+enabled=PoolStringArray( "res://addons/scene_manager/plugin.cfg" )
 
 [gui]
 

@@ -1,9 +1,9 @@
 [gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://screens/generic_screen.tscn" type="PackedScene" id=1]
-[ext_resource path="res://scripts/nodes/SceneLoadButton.gd" type="Script" id=3]
+[ext_resource path="res://scripts/widgets/AccountDialog/AccountDialog.tscn" type="PackedScene" id=2]
 [ext_resource path="res://screens/entry_screen/entry_screen.gd" type="Script" id=4]
-[ext_resource path="res://scripts/nodes/PasswordDialog/PasswordDialog.tscn" type="PackedScene" id=5]
+[ext_resource path="res://scripts/widgets/PasswordDialog/PasswordDialog.tscn" type="PackedScene" id=5]
 [ext_resource path="res://icons/note_add_white_48dp.svg" type="Texture" id=6]
 [ext_resource path="res://icons/upload_file_white_48dp.svg" type="Texture" id=7]
 [ext_resource path="res://scripts/nodes/FullRectDialog.gd" type="Script" id=8]
@@ -11,6 +11,7 @@
 
 [node name="Control" instance=ExtResource( 1 )]
 script = ExtResource( 4 )
+account_popup = ExtResource( 2 )
 
 [node name="Header" parent="VBoxContainer" index="0"]
 margin_right = 720.0
@@ -30,8 +31,6 @@ margin_bottom = 54.0
 size_flags_horizontal = 3
 text = "Settings"
 icon = ExtResource( 9 )
-script = ExtResource( 3 )
-screen_path = "res://screens/settings_screen/settings_screen.tscn"
 
 [node name="ImportAccount" type="Button" parent="VBoxContainer/Header/HBoxContainer" index="1"]
 margin_left = 236.0
@@ -52,17 +51,17 @@ icon = ExtResource( 6 )
 [node name="Body" parent="VBoxContainer" index="1"]
 margin_top = 68.0
 margin_right = 720.0
-margin_bottom = 1280.0
+margin_bottom = 720.0
 
 [node name="Panel" parent="VBoxContainer/Body" index="0"]
 margin_right = 713.0
-margin_bottom = 1205.0
+margin_bottom = 645.0
 
 [node name="ItemList" type="ItemList" parent="VBoxContainer/Body" index="1"]
 margin_left = 7.0
 margin_top = 7.0
 margin_right = 713.0
-margin_bottom = 1205.0
+margin_bottom = 645.0
 allow_reselect = true
 
 [node name="FileDialog" type="FileDialog" parent="." index="1"]
@@ -75,6 +74,8 @@ window_title = "Open a File"
 mode = 0
 access = 2
 filters = PoolStringArray( "*.ccf" )
+
+[node name="FullRectDialog" type="Node" parent="FileDialog" index="8"]
 script = ExtResource( 8 )
 
 [node name="PasswordDialog" parent="." index="2" instance=ExtResource( 5 )]
@@ -82,6 +83,10 @@ size_flags_horizontal = 3
 size_flags_vertical = 3
 popup_exclusive = true
 
+[node name="FullRectDialog2" type="Node" parent="PasswordDialog" index="5"]
+script = ExtResource( 8 )
+
+[connection signal="pressed" from="VBoxContainer/Header/HBoxContainer/SettingsButton" to="." method="_on_SettingsButton_pressed"]
 [connection signal="pressed" from="VBoxContainer/Header/HBoxContainer/ImportAccount" to="." method="_on_ImportAccount_pressed"]
 [connection signal="pressed" from="VBoxContainer/Header/HBoxContainer/NewAccount" to="." method="_on_NewAccount_pressed"]
 [connection signal="item_selected" from="VBoxContainer/Body/ItemList" to="." method="_on_ItemList_item_selected"]
