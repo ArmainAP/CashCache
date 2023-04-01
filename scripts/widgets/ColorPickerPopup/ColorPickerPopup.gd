@@ -1,0 +1,2 @@
+extends AcceptDialog
+class_name ColorPickerDialog

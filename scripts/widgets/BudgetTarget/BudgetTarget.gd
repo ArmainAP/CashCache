@@ -39,7 +39,7 @@ func _setup_income(category : BudgetCategoryData, date : Date) -> void:
 
 
 func _setup_expense(category : BudgetCategoryData, date : Date) -> void:
-	var budget : float = ActiveAccount.get_total_income(date) * category.allocation
+	var budget : float = ActiveAccount.get_total_income(date) * category.allocation / 100
 	var total : float = ActiveAccount.get_total_category(date, category)
 	var remaining : float = budget - total
 	var percentage : int = int(total / budget * 100) if budget != 0 else 0

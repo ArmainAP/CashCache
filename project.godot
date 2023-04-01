@@ -39,6 +39,11 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://scripts/widgets/CalendarPopup/CalendarPopup.gd"
 }, {
+"base": "AcceptDialog",
+"class": "ColorPickerDialog",
+"language": "GDScript",
+"path": "res://scripts/widgets/ColorPickerPopup/ColorPickerPopup.gd"
+}, {
 "base": "Reference",
 "class": "Date",
 "language": "GDScript",
@@ -76,6 +81,7 @@ _global_script_class_icons={
 "BudgetData": "",
 "BudgetTarget": "",
 "CalendarButton": "",
+"ColorPickerDialog": "",
 "Date": "",
 "FullRectDialog": "",
 "NumericLineEdit": "",
