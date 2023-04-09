@@ -4,8 +4,10 @@ class_name FullRectDialog
 onready var parent : Control = get_parent()
 
 func _ready():
-	assert(get_viewport().connect("size_changed", self, "_on_Viewport_size_changed") == OK)
-	assert(parent.connect("visibility_changed", self, "_on_Viewport_size_changed") == OK)
+	var viewport_error = get_viewport().connect("size_changed", self, "_on_Viewport_size_changed")
+	assert(viewport_error == OK)
+	var parent_error = parent.connect("visibility_changed", self, "_on_Viewport_size_changed")
+	assert(parent_error == OK)
 	_on_Viewport_size_changed()
 
 func _on_Viewport_size_changed():

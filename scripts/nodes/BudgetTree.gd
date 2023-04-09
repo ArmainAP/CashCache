@@ -28,8 +28,10 @@ onready var tree_root = create_item()
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	assert(connect("button_pressed", self, "_on_button_pressed") == OK)
-	assert(connect("item_edited", self, "_on_item_edited") == OK)
+	var pressed_error := connect("button_pressed", self, "_on_button_pressed")
+	assert(pressed_error == OK)
+	var edited_error = connect("item_edited", self, "_on_item_edited")
+	assert(edited_error == OK)
 	columns = 4
 	tree_root.set_text(0, "Budgets")
 	tree_root.add_button(columns-1, add_icon)

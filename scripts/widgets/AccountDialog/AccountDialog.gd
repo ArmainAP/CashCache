@@ -26,8 +26,10 @@ func _on_FullRectFileDialog_dir_selected(dir):
 
 func _on_AccountDialog_confirmed():
 	var account_data := AccountData.new(account_name_line_edit.text, account_currency_line_edit.text)
-	assert(ActiveAccount.create_account(save_location_button.text, account_data, password_line_edit.text))
-	assert(UserSettings.link_account_budget(ActiveAccount.current_filepath, budget_option_button.selected))
+	var create_success := ActiveAccount.create_account(save_location_button.text, account_data, password_line_edit.text)
+	assert(create_success)
+	var link_success := UserSettings.link_account_budget(ActiveAccount.current_filepath, budget_option_button.selected)
+	assert(link_success)
 	var options = SceneManager.create_options(0)
 	SceneManager.change_scene("account", options, options, SceneManager.create_general_options())
 

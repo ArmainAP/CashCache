@@ -40,13 +40,16 @@ func create_account(folder_path : String, account_data : AccountData, password :
 
 func add_transaction(date : Date, type : String, value : float) -> void:
 	current_account.add_transaction(date, type, value)
-	assert(save_account(current_account, current_filepath, current_password))
+	var success = save_account(current_account, current_filepath, current_password)
+	assert(success)
 	emit_signal("transactions_changed")
 
 
 func remove_transaction(date : Date, transaction) -> void:
-	assert(current_account.remove_transaction(date, transaction))
-	assert(save_account(current_account, current_filepath, current_password))
+	var remove_success = current_account.remove_transaction(date, transaction)
+	assert(remove_success)
+	var save_success = save_account(current_account, current_filepath, current_password)
+	assert(save_success)
 	emit_signal("transactions_changed")
 
 

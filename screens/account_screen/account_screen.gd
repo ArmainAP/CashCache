@@ -14,7 +14,8 @@ onready var transaction_tree : TransactionHistoryTree = $"%TransactionHistoryTre
 
 
 func _ready():
-	assert(ActiveAccount.connect("transactions_changed", self, "refresh_data") == OK)
+	var error = ActiveAccount.connect("transactions_changed", self, "refresh_data")
+	assert(error == OK)
 	for currency_label in currency_labels:
 		currency_label.text = ActiveAccount.current_account.currency
 	refresh_data()

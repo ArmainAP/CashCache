@@ -29,14 +29,16 @@ func _on_PasswordDialog_confirmed():
 	var account_path : String = account_list.get_item_text(selected_item)
 	if password_dialog.should_remember_password():
 		UserSettings.save_password(account_path, password_dialog.get_password())
-	assert(load_account(account_path, password_dialog.get_password()))
+	var success = load_account(account_path, password_dialog.get_password())
+	assert(success)
 
 
 func _on_ItemList_item_selected(_index):
 	var account_path : String = account_list.get_item_text(_index)
 	if UserSettings.has_password(account_path):
 		if not load_account(account_path, UserSettings.get_password(account_path)):
-			assert(UserSettings.erase_password(account_path))
+			var success = UserSettings.erase_password(account_path)
+			assert(success)
 	password_dialog.show()
 
 
