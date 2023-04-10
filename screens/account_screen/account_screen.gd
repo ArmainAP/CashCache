@@ -66,7 +66,7 @@ func _on_EditAccount_pressed():
 	var account_dialog : AccountDialog = account_popup.instance()
 	add_child(account_dialog)
 	account_dialog.edit_current_account()
-	account_dialog.show()
+	account_dialog.popup_centered()
 
 
 func _on_ScenePopButtons_pressed():
