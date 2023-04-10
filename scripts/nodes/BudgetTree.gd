@@ -39,7 +39,6 @@ func _ready():
 	tree_root.set_selectable(0, false)
 	tree_root.set_selectable(1, false)
 	tree_root.set_selectable(2, false)
-	tree_root.set_selectable(3, false)
 	for budget in UserSettings.user_budgets:
 		if not budget: continue
 		add_budget(budget)
@@ -52,7 +51,6 @@ func add_budget(budget : BudgetData) -> void:
 	budget_item.set_metadata(metadata.DATA, budget)
 	budget_item.set_selectable(1, false)
 	budget_item.set_selectable(2, false)
-	budget_item.set_selectable(3, false)
 	
 	# text
 	budget_item.set_editable(0, true)
@@ -123,6 +121,15 @@ func add_type(parent : TreeItem, type : String) -> void:
 	type_item.add_button(columns-1, delete_icon, buttons.DELETE)
 
 
+func show_delete_dialog(text : String, confirm_method : String, item : TreeItem) -> void:
+	var popup : ConfirmationDialog = ConfirmationDialog.new()
+	get_tree().root.add_child(popup)
+	var confirmed_error := popup.connect("confirmed", self, confirm_method, [item])
+	assert(confirmed_error == OK)
+	popup.dialog_text = text
+	popup.popup_centered()
+
+
 func _on_button_pressed(_item: TreeItem, _column: int, _id: int):
 	match _item.get_metadata(metadata.DEPTH):
 		depth.ROOT: add_budget(UserSettings.create_budget())
@@ -134,11 +141,8 @@ func _on_button_pressed(_item: TreeItem, _column: int, _id: int):
 				UserSettings.save_user_data()
 				add_category(_item, new_category)
 				_item.collapsed = false
-			buttons.DELETE: 
-				var budget : BudgetData = _item.get_metadata(metadata.DATA)
-				UserSettings.user_budgets.erase(budget)
-				UserSettings.save_user_data()
-				_item.free()
+			buttons.DELETE:
+				show_delete_dialog("Do you want to remove budget?", "_on_budget_delete_confirmed", _item)
 		depth.CATEGORY: match _id:
 			buttons.ADD:
 				var category : BudgetCategoryData = _item.get_metadata(metadata.DATA)
@@ -149,18 +153,9 @@ func _on_button_pressed(_item: TreeItem, _column: int, _id: int):
 				add_type(_item, new_transaction)
 				_item.collapsed = false
 			buttons.DELETE:
-				var budget : BudgetData = _item.get_parent().get_metadata(metadata.DATA)
-				var category : BudgetCategoryData = _item.get_metadata(metadata.DATA)
-				if budget.delete_category(category):
-					_item.free()
+				show_delete_dialog("Do you want to remove budget category?", "_on_category_delete_confirmed", _item)
 		depth.TRANSACTION:
-			var category : BudgetCategoryData = _item.get_parent().get_metadata(metadata.DATA)
-			var type : String = _item.get_text(0)
-			var index : int = category.types.find(type)
-			if index > -1:
-				category.types.remove(index)
-				UserSettings.save_user_data()
-				_item.free()
+			show_delete_dialog("Do you want to remove transaction type?", "_on_type_delete_confirmed", _item)
 
 
 func _on_item_edited() -> void:
@@ -199,5 +194,30 @@ func _on_item_selected() -> void:
 	var item : TreeItem = get_selected()
 	match get_selected_column():
 		3:
+			if item.get_metadata(metadata.DEPTH) != depth.CATEGORY:
+				item.deselect(3)
 			var popup : ColorPickerDialog = item.get_metadata(metadata.COLOR)
 			if popup: popup.popup_centered()
+
+func _on_budget_delete_confirmed(_item) -> void:
+	var budget : BudgetData = _item.get_metadata(metadata.DATA)
+	UserSettings.user_budgets.erase(budget)
+	UserSettings.save_user_data()
+	_item.free()
+
+
+func _on_category_delete_confirmed(_item) -> void:
+	var budget : BudgetData = _item.get_parent().get_metadata(metadata.DATA)
+	var category : BudgetCategoryData = _item.get_metadata(metadata.DATA)
+	if budget.delete_category(category):
+		_item.free()
+
+
+func _on_type_delete_confirmed(_item) -> void:
+	var category : BudgetCategoryData = _item.get_parent().get_metadata(metadata.DATA)
+	var type : String = _item.get_text(0)
+	var index : int = category.types.find(type)
+	if index > -1:
+		category.types.remove(index)
+		UserSettings.save_user_data()
+		_item.free()
