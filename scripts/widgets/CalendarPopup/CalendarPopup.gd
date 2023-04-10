@@ -129,3 +129,4 @@ func _get_days_in_month(month : int, year : int) -> int:
 
 func _is_leap_year(year : int) -> bool:
 	return (year % 4 == 0 && year % 100 != 0) || (year % 400 == 0)
+

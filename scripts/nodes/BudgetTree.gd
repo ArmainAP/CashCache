@@ -14,12 +14,10 @@ enum depth {
 }
 
 enum buttons {
-	COLOR = 0
-	ADD = 1
-	DELETE = 2
+	ADD = 0
+	DELETE = 1
 }
 
-export(Texture) var edit_icon : Texture = preload("res://icons/outline_edit_white_48dp.png")
 export(Texture) var add_icon : Texture = preload("res://icons/add_white_48dp.svg")
 export(Texture) var delete_icon : Texture = preload("res://icons/delete_white_48dp.svg")
 export(PackedScene) var ColorPickerPopup : PackedScene = preload("res://scripts/widgets/ColorPickerPopup/ColorPickerPopup.tscn")
@@ -32,6 +30,8 @@ func _ready():
 	assert(pressed_error == OK)
 	var edited_error = connect("item_edited", self, "_on_item_edited")
 	assert(edited_error == OK)
+	var color_error = connect("item_selected", self, "_on_item_selected")
+	assert(color_error == OK)
 	columns = 4
 	tree_root.set_text(0, "Budgets")
 	tree_root.add_button(columns-1, add_icon)
@@ -39,6 +39,7 @@ func _ready():
 	tree_root.set_selectable(0, false)
 	tree_root.set_selectable(1, false)
 	tree_root.set_selectable(2, false)
+	tree_root.set_selectable(3, false)
 	for budget in UserSettings.user_budgets:
 		if not budget: continue
 		add_budget(budget)
@@ -51,6 +52,7 @@ func add_budget(budget : BudgetData) -> void:
 	budget_item.set_metadata(metadata.DATA, budget)
 	budget_item.set_selectable(1, false)
 	budget_item.set_selectable(2, false)
+	budget_item.set_selectable(3, false)
 	
 	# text
 	budget_item.set_editable(0, true)
@@ -98,7 +100,6 @@ func add_category(parent : TreeItem, category : BudgetCategoryData) -> void:
 	category_item.set_custom_draw(3, self, "_draw_category_color")
 	
 	# buttons 
-	category_item.add_button(3, edit_icon, buttons.COLOR)
 	category_item.add_button(columns-1, add_icon, buttons.ADD)
 	category_item.add_button(columns-1, delete_icon, buttons.DELETE)
 	
@@ -112,6 +113,7 @@ func add_type(parent : TreeItem, type : String) -> void:
 	type_item.set_metadata(metadata.DATA, type)
 	type_item.set_selectable(1, false)
 	type_item.set_selectable(2, false)
+	type_item.set_selectable(3, false)
 	
 	# text
 	type_item.set_editable(0, true)
@@ -138,9 +140,6 @@ func _on_button_pressed(_item: TreeItem, _column: int, _id: int):
 				UserSettings.save_user_data()
 				_item.free()
 		depth.CATEGORY: match _id:
-			buttons.COLOR:
-				var popup : ColorPickerDialog = _item.get_metadata(metadata.COLOR)
-				popup.popup_centered()
 			buttons.ADD:
 				var category : BudgetCategoryData = _item.get_metadata(metadata.DATA)
 				var index : int = category.types.size()
@@ -194,3 +193,11 @@ func _on_popup_confirmed(category_item : TreeItem) -> void:
 	var category : BudgetCategoryData = category_item.get_metadata(metadata.DATA)
 	category.color = color_picker.color
 	UserSettings.save_user_data()
+
+
+func _on_item_selected() -> void:
+	var item : TreeItem = get_selected()
+	match get_selected_column():
+		3:
+			var popup : ColorPickerDialog = item.get_metadata(metadata.COLOR)
+			if popup: popup.popup_centered()
