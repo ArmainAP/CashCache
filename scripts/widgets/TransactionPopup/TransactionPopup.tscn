@@ -1,12 +1,10 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=4 format=2]
 
-[ext_resource path="res://scripts/nodes/FullRectDialog.gd" type="Script" id=1]
 [ext_resource path="res://scripts/widgets/TransactionPopup/TransactionDialog.gd" type="Script" id=2]
 [ext_resource path="res://scripts/nodes/NumericLineEdit.gd" type="Script" id=3]
 [ext_resource path="res://scripts/widgets/CalendarPopup/CalendarPopup.tscn" type="PackedScene" id=4]
 
 [node name="TransactionPopup" type="ConfirmationDialog"]
-visible = true
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
@@ -89,8 +87,6 @@ text = "0"
 align = 1
 script = ExtResource( 3 )
 
-[node name="FullRectDialog" type="Node" parent="."]
-script = ExtResource( 1 )
-
+[connection signal="visibility_changed" from="." to="." method="_on_TransactionPopup_visibility_changed"]
 [connection signal="item_selected" from="TransactionDataWidget/HBoxContainer2/TransactionOptionButton" to="." method="_on_TransactionOptionButton_item_selected"]
 [connection signal="text_changed" from="TransactionDataWidget/HBoxContainer3/NumericLineEdit" to="." method="_on_NumericLineEdit_text_changed"]

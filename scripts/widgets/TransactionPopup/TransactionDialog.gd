@@ -48,3 +48,7 @@ func set_transaction(date : Date, type : String, value : float):
 	transaction_option.selected = transaction_option.items.find(transaction_type)
 	numeric_line_edit.text = String(transaction_value)
 	self.get_ok().disabled = transaction_value == 0
+
+
+func _on_TransactionPopup_visibility_changed():
+	calendar_button.popup.hide()

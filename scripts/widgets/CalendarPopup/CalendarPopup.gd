@@ -20,8 +20,7 @@ func _ready():
 
 
 func _process(_delta):
-	pass
-	#restrict_popup_inside_screen()
+	restrict_popup_inside_screen()
 
 
 func _toggled(is_pressed):
@@ -30,6 +29,7 @@ func _toggled(is_pressed):
 		restrict_popup_inside_screen()
 	else: 
 		popup.hide()
+	set_process(is_pressed)
 
 
 func restrict_popup_inside_screen():
