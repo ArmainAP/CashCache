@@ -154,7 +154,15 @@ margin_bottom = 628.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
-[node name="Budget Stats" type="ScrollContainer" parent="VBoxContainer/Body/Panel/MarginContainer/VBoxContainer/TabContainer" index="0"]
+[node name="Budget Stats" type="TabContainer" parent="VBoxContainer/Body/Panel/MarginContainer/VBoxContainer/TabContainer" index="0"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 4.0
+margin_top = 41.0
+margin_right = -4.0
+margin_bottom = -4.0
+
+[node name="Expense Targets" type="ScrollContainer" parent="VBoxContainer/Body/Panel/MarginContainer/VBoxContainer/TabContainer/Budget Stats" index="0"]
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_left = 4.0
@@ -166,10 +174,30 @@ size_flags_vertical = 3
 follow_focus = true
 scroll_horizontal_enabled = false
 
-[node name="StatsContainer" type="VBoxContainer" parent="VBoxContainer/Body/Panel/MarginContainer/VBoxContainer/TabContainer/Budget Stats" index="0"]
+[node name="ExpenseStatsContainer" type="VBoxContainer" parent="VBoxContainer/Body/Panel/MarginContainer/VBoxContainer/TabContainer/Budget Stats/Expense Targets" index="0"]
 unique_name_in_owner = true
-margin_right = 688.0
-margin_bottom = 502.0
+margin_right = 680.0
+margin_bottom = 457.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="Income Sources" type="ScrollContainer" parent="VBoxContainer/Body/Panel/MarginContainer/VBoxContainer/TabContainer/Budget Stats" index="1"]
+visible = false
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 4.0
+margin_top = 41.0
+margin_right = -4.0
+margin_bottom = -4.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+follow_focus = true
+scroll_horizontal_enabled = false
+
+[node name="IncomeStatsContainer" type="VBoxContainer" parent="VBoxContainer/Body/Panel/MarginContainer/VBoxContainer/TabContainer/Budget Stats/Income Sources" index="0"]
+unique_name_in_owner = true
+margin_right = 680.0
+margin_bottom = 457.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
