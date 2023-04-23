@@ -11,10 +11,16 @@ onready var days_grid : GridContainer = $"%GridContainer"
 onready var selected_date := Date.new()
 
 func _ready():
+	var error := connect("visibility_changed", self, "_on_visibility_changed")
+	assert(error == OK)
 	for child in days_grid.get_children():
 		if child is Button:
 			child.connect("pressed", self, "grid_button_pressed", [child])
 	refresh_data()
+
+
+func _process(_delta):
+	restrict_popup_inside_screen()
 
 
 func _toggled(is_pressed):
@@ -23,6 +29,7 @@ func _toggled(is_pressed):
 		restrict_popup_inside_screen()
 	else: 
 		popup.hide()
+	set_process(is_pressed)
 
 
 func restrict_popup_inside_screen():
@@ -129,3 +136,7 @@ func _get_days_in_month(month : int, year : int) -> int:
 
 func _is_leap_year(year : int) -> bool:
 	return (year % 4 == 0 && year % 100 != 0) || (year % 400 == 0)
+
+func _on_visibility_changed() -> void:
+	if not visible:
+		popup.hide()

@@ -37,7 +37,8 @@ func remove_transaction(date : Date, transaction) -> bool:
 	if transactions[date.year][date.month].size() == 0:
 		transactions[date.year].erase(date.month)
 	if transactions[date.year].size() == 0:
-		assert(transactions.erase(date.year))
+		var erase_success = transactions.erase(date.year)
+		assert(erase_success)
 	return true
 
 

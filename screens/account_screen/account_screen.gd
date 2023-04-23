@@ -4,7 +4,8 @@ export(PackedScene) var account_popup : PackedScene
 export(PackedScene) var transaction_popup : PackedScene
 export(PackedScene) var stats_scene : PackedScene
 
-onready var stats_box : VBoxContainer = $"%StatsContainer"
+onready var income_stats_box : VBoxContainer = $"%IncomeStatsContainer"
+onready var expense_stats_box : VBoxContainer = $"%ExpenseStatsContainer"
 onready var currency_labels : Array = [$"%IncomeCurrencyLabel", $"%ExpensesCurrencyLabel"]
 onready var calendar_button : CalendarButton = $"%CalendarButton"
 onready var total_income_label : Label = $"%TotalIncomeLabel"
@@ -14,7 +15,8 @@ onready var transaction_tree : TransactionHistoryTree = $"%TransactionHistoryTre
 
 
 func _ready():
-	assert(ActiveAccount.connect("transactions_changed", self, "refresh_data") == OK)
+	var error = ActiveAccount.connect("transactions_changed", self, "refresh_data")
+	assert(error == OK)
 	for currency_label in currency_labels:
 		currency_label.text = ActiveAccount.current_account.currency
 	refresh_data()
@@ -35,14 +37,21 @@ func _setup_monthly_stats() -> void:
 
 
 func _setup_budget_stats() -> void:
-	for stat in stats_box.get_children():
-		stats_box.remove_child(stat)
+	for stat in income_stats_box.get_children():
+		income_stats_box.remove_child(stat)
+		stat.queue_free()
+	
+	for stat in expense_stats_box.get_children():
+		expense_stats_box.remove_child(stat)
 		stat.queue_free()
 		
 	var budget : BudgetData = UserSettings.get_linked_budget(ActiveAccount.current_filepath)
 	for category in budget.categories:
 		var new_stat : BudgetTarget = stats_scene.instance()
-		stats_box.add_child(new_stat)
+		if category.is_income:
+			income_stats_box.add_child(new_stat)
+		else:
+			expense_stats_box.add_child(new_stat)
 		new_stat.setup(category, calendar_button.selected_date)
 
 
@@ -65,7 +74,7 @@ func _on_EditAccount_pressed():
 	var account_dialog : AccountDialog = account_popup.instance()
 	add_child(account_dialog)
 	account_dialog.edit_current_account()
-	account_dialog.show()
+	account_dialog.popup_centered()
 
 
 func _on_ScenePopButtons_pressed():

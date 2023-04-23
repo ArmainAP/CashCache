@@ -63,7 +63,8 @@ func get_config_path() -> String:
 func save_user_data() -> void:
 	file.set_value(APP_SECTION_NAME, ACCOUNTS_KEY_NAME, account_paths)
 	file.set_value(APP_SECTION_NAME, BUDGETS_KEY_NAME, user_budgets)
-	assert(file.save(get_config_path()) == OK)
+	var error = file.save(get_config_path()) 
+	assert(error == OK)
 
 
 func import_account(var file_path : String) -> bool:

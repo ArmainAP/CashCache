@@ -1,10 +1,10 @@
 extends Control
 
 export(PackedScene) var account_popup : PackedScene
+export(PackedScene) var password_popup : PackedScene
 
 onready var account_list : ItemList = $VBoxContainer/Body/ItemList
 onready var file_dialog : FileDialog = $FileDialog
-onready var password_dialog : PasswordDialog = $PasswordDialog
 var import_file_path : String
 
 func _ready():
@@ -24,20 +24,26 @@ func _on_FullRectFileDialog_file_selected(path):
 	import_file_path = path
 
 
-func _on_PasswordDialog_confirmed():
+func _on_PasswordDialog_confirmed(password_dialog):
 	var selected_item = account_list.get_selected_items()[0]
 	var account_path : String = account_list.get_item_text(selected_item)
 	if password_dialog.should_remember_password():
 		UserSettings.save_password(account_path, password_dialog.get_password())
-	assert(load_account(account_path, password_dialog.get_password()))
+	var success = load_account(account_path, password_dialog.get_password())
+	assert(success)
 
 
 func _on_ItemList_item_selected(_index):
 	var account_path : String = account_list.get_item_text(_index)
 	if UserSettings.has_password(account_path):
 		if not load_account(account_path, UserSettings.get_password(account_path)):
-			assert(UserSettings.erase_password(account_path))
-	password_dialog.show()
+			var success = UserSettings.erase_password(account_path)
+			assert(success)
+	var password_dialog : PasswordDialog = password_popup.instance()
+	add_child(password_dialog)
+	password_dialog.popup_centered()
+	var error := password_dialog.connect("confirmed", self, "_on_PasswordDialog_confirmed", [password_dialog])
+	assert(error == OK)
 
 
 func _on_ImportAccount_pressed():
@@ -58,7 +64,7 @@ func load_account(account_path : String, password : String) -> bool:
 func _on_NewAccount_pressed():
 	var account_dialog : AccountDialog = account_popup.instance()
 	add_child(account_dialog)
-	account_dialog.show()
+	account_dialog.popup_centered()
 
 
 func _on_SettingsButton_pressed():

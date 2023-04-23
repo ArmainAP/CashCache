@@ -12,6 +12,7 @@
 [node name="Control" instance=ExtResource( 1 )]
 script = ExtResource( 4 )
 account_popup = ExtResource( 2 )
+password_popup = ExtResource( 5 )
 
 [node name="Header" parent="VBoxContainer" index="0"]
 margin_right = 720.0
@@ -69,7 +70,6 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
-popup_exclusive = true
 window_title = "Open a File"
 mode = 0
 access = 2
@@ -78,18 +78,9 @@ filters = PoolStringArray( "*.ccf" )
 [node name="FullRectDialog" type="Node" parent="FileDialog" index="8"]
 script = ExtResource( 8 )
 
-[node name="PasswordDialog" parent="." index="2" instance=ExtResource( 5 )]
-size_flags_horizontal = 3
-size_flags_vertical = 3
-popup_exclusive = true
-
-[node name="FullRectDialog2" type="Node" parent="PasswordDialog" index="5"]
-script = ExtResource( 8 )
-
 [connection signal="pressed" from="VBoxContainer/Header/HBoxContainer/SettingsButton" to="." method="_on_SettingsButton_pressed"]
 [connection signal="pressed" from="VBoxContainer/Header/HBoxContainer/ImportAccount" to="." method="_on_ImportAccount_pressed"]
 [connection signal="pressed" from="VBoxContainer/Header/HBoxContainer/NewAccount" to="." method="_on_NewAccount_pressed"]
 [connection signal="item_selected" from="VBoxContainer/Body/ItemList" to="." method="_on_ItemList_item_selected"]
 [connection signal="confirmed" from="FileDialog" to="." method="_import_account"]
 [connection signal="file_selected" from="FileDialog" to="." method="_on_FullRectFileDialog_file_selected"]
-[connection signal="confirmed" from="PasswordDialog" to="." method="_on_PasswordDialog_confirmed"]

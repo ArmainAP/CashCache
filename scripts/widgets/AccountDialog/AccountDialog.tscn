@@ -6,40 +6,45 @@
 [ext_resource path="res://icons/folder_white_48dp.svg" type="Texture" id=4]
 
 [node name="AccountDialog" type="ConfirmationDialog"]
-visible = true
-anchor_right = 1.0
-anchor_bottom = 1.0
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -273.5
+margin_top = -157.5
+margin_right = 273.5
+margin_bottom = 157.5
 script = ExtResource( 2 )
 
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
 margin_left = 8.0
 margin_top = 8.0
-margin_right = 712.0
-margin_bottom = 1235.0
+margin_right = 539.0
+margin_bottom = 270.0
 
 [node name="SaveLocationButton" type="Button" parent="VBoxContainer"]
 unique_name_in_owner = true
-margin_right = 704.0
+margin_right = 531.0
 margin_bottom = 54.0
 icon = ExtResource( 4 )
 
 [node name="BudgetOptionButton" type="OptionButton" parent="VBoxContainer"]
 unique_name_in_owner = true
 margin_top = 58.0
-margin_right = 704.0
+margin_right = 531.0
 margin_bottom = 87.0
 align = 1
 script = ExtResource( 3 )
 
 [node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer"]
 margin_top = 91.0
-margin_right = 704.0
-margin_bottom = 1227.0
+margin_right = 531.0
+margin_bottom = 262.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
 [node name="HBoxContainer2" type="HBoxContainer" parent="VBoxContainer/VBoxContainer"]
-margin_right = 704.0
+margin_right = 531.0
 margin_bottom = 33.0
 
 [node name="ResizableLabel" type="Label" parent="VBoxContainer/VBoxContainer/HBoxContainer2"]
@@ -52,8 +57,8 @@ valign = 1
 
 [node name="Name" type="LineEdit" parent="VBoxContainer/VBoxContainer/HBoxContainer2"]
 unique_name_in_owner = true
-margin_left = 354.0
-margin_right = 704.0
+margin_left = 267.0
+margin_right = 531.0
 margin_bottom = 33.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
@@ -62,7 +67,7 @@ align = 1
 
 [node name="HBoxContainer3" type="HBoxContainer" parent="VBoxContainer/VBoxContainer"]
 margin_top = 37.0
-margin_right = 704.0
+margin_right = 531.0
 margin_bottom = 70.0
 
 [node name="ResizableLabel" type="Label" parent="VBoxContainer/VBoxContainer/HBoxContainer3"]
@@ -75,8 +80,8 @@ valign = 1
 
 [node name="Currency" type="LineEdit" parent="VBoxContainer/VBoxContainer/HBoxContainer3"]
 unique_name_in_owner = true
-margin_left = 354.0
-margin_right = 704.0
+margin_left = 267.0
+margin_right = 531.0
 margin_bottom = 33.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
@@ -85,7 +90,7 @@ align = 1
 
 [node name="VBoxContainer2" type="VBoxContainer" parent="VBoxContainer/VBoxContainer"]
 margin_top = 74.0
-margin_right = 704.0
+margin_right = 531.0
 margin_bottom = 171.0
 
 [node name="ResizableLabel" type="Label" parent="VBoxContainer/VBoxContainer/VBoxContainer2"]
@@ -99,7 +104,7 @@ valign = 1
 [node name="Password" type="LineEdit" parent="VBoxContainer/VBoxContainer/VBoxContainer2"]
 unique_name_in_owner = true
 margin_top = 27.0
-margin_right = 704.0
+margin_right = 531.0
 margin_bottom = 60.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
@@ -109,7 +114,7 @@ secret = true
 [node name="ConfirmPassword" type="LineEdit" parent="VBoxContainer/VBoxContainer/VBoxContainer2"]
 unique_name_in_owner = true
 margin_top = 64.0
-margin_right = 704.0
+margin_right = 531.0
 margin_bottom = 97.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
@@ -120,6 +125,10 @@ secret = true
 unique_name_in_owner = true
 anchor_right = 1.0
 anchor_bottom = 1.0
+margin_left = 8.0
+margin_top = 8.0
+margin_right = -8.0
+margin_bottom = -45.0
 popup_exclusive = true
 window_title = "Open a Directory"
 mode = 2

@@ -1,8 +1,8 @@
 extends Tree
 class_name TransactionHistoryTree
 
-export(Texture) var edit_button_texture : Texture
-export(Texture) var delete_button_texture : Texture
+export(Texture) var edit_button_texture : Texture = preload("res://icons/outline_edit_white_48dp.png")
+export(Texture) var delete_button_texture : Texture = preload("res://icons/delete_white_48dp.svg")
 export(PackedScene) var transaction_popup : PackedScene
 
 # Called when the node enters the scene tree for the first time.
@@ -62,12 +62,21 @@ func _on_button_pressed(_item: TreeItem, _column: int, _id: int):
 			assert(error == OK)
 			transaction_dialog.set_transaction(date, transaction[AccountData.TRANSACTION_TYPE_FIELD], transaction[AccountData.TRANSACTION_VALUE_FIELD])
 			transaction_dialog.show()
-		1: 
-			ActiveAccount.remove_transaction(_item.get_meta("date"), _item.get_meta("transaction"))
-			create_tree()
+		1:
+			var popup : ConfirmationDialog = ConfirmationDialog.new()
+			get_tree().root.add_child(popup)
+			var confirmed_error := popup.connect("confirmed", self, "_on_delete_confirmed", [_item])
+			assert(confirmed_error == OK)
+			popup.dialog_text = "Do you want to remove transaction?"
+			popup.popup_centered()
 
 
 func _on_edit_transaction_confirmed(transaction_dialog : TransactionDialog, _item):
 	ActiveAccount.remove_transaction(_item.get_meta("date"), _item.get_meta("transaction"))
 	ActiveAccount.add_transaction(transaction_dialog.transaction_date, transaction_dialog.transaction_type, transaction_dialog.transaction_value)
+	create_tree()
+
+
+func _on_delete_confirmed(_item) -> void:
+	ActiveAccount.remove_transaction(_item.get_meta("date"), _item.get_meta("transaction"))
 	create_tree()
