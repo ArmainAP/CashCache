@@ -1,460 +1,304 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=3 format=3 uid="uid://b43wkqdnd3cn1"]
 
-[ext_resource path="res://icons/calendar_month_white_48dp.svg" type="Texture2D" id=1]
-[ext_resource path="res://scripts/widgets/CalendarPopup/CalendarPopup.gd" type="Script" id=2]
+[ext_resource type="Texture2D" uid="uid://doiimmf6dnhro" path="res://icons/calendar_month_white_48dp.svg" id="1"]
+[ext_resource type="Script" path="res://scripts/widgets/CalendarPopup/CalendarPopup.gd" id="2"]
 
 [node name="CalendarButton" type="Button"]
 offset_right = 12.0
 offset_bottom = 25.0
 toggle_mode = true
-icon = ExtResource( 1 )
-script = ExtResource( 2 )
+icon = ExtResource("1")
+script = ExtResource("2")
 
 [node name="Popup" type="Popup" parent="."]
 unique_name_in_owner = true
-visible = true
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -20.0
-offset_top = -20.0
-offset_right = 20.0
-offset_bottom = 20.0
+size = Vector2i(227, 126)
 
 [node name="PanelContainer" type="PanelContainer" parent="Popup"]
 unique_name_in_owner = true
+anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 
 [node name="VBoxContainer" type="VBoxContainer" parent="Popup/PanelContainer"]
-offset_left = 7.0
-offset_top = 7.0
-offset_right = 262.0
-offset_bottom = 261.0
+layout_mode = 2
 
 [node name="HBoxContainer" type="HBoxContainer" parent="Popup/PanelContainer/VBoxContainer"]
-offset_right = 255.0
-offset_bottom = 29.0
+layout_mode = 2
 
 [node name="PreviousYear" type="Button" parent="Popup/PanelContainer/VBoxContainer/HBoxContainer"]
-offset_right = 34.0
-offset_bottom = 29.0
+layout_mode = 2
 size_flags_horizontal = 3
 text = "<<"
 
 [node name="PreviousMonth" type="Button" parent="Popup/PanelContainer/VBoxContainer/HBoxContainer"]
-offset_left = 38.0
-offset_right = 63.0
-offset_bottom = 29.0
+layout_mode = 2
 size_flags_horizontal = 3
 text = "<"
 
 [node name="Label" type="Label" parent="Popup/PanelContainer/VBoxContainer/HBoxContainer"]
 unique_name_in_owner = true
-offset_left = 67.0
-offset_top = 3.0
-offset_right = 188.0
-offset_bottom = 26.0
+layout_mode = 2
 size_flags_horizontal = 3
 text = "August 1999"
-align = 1
-valign = 1
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="NextMonth" type="Button" parent="Popup/PanelContainer/VBoxContainer/HBoxContainer"]
-offset_left = 192.0
-offset_right = 217.0
-offset_bottom = 29.0
+layout_mode = 2
 size_flags_horizontal = 3
 text = ">"
 
 [node name="NextYear" type="Button" parent="Popup/PanelContainer/VBoxContainer/HBoxContainer"]
-offset_left = 221.0
-offset_right = 255.0
-offset_bottom = 29.0
+layout_mode = 2
 size_flags_horizontal = 3
 text = ">>"
 
 [node name="GridContainer" type="GridContainer" parent="Popup/PanelContainer/VBoxContainer"]
 unique_name_in_owner = true
-offset_top = 33.0
-offset_right = 255.0
-offset_bottom = 254.0
+layout_mode = 2
 columns = 7
 
 [node name="Label" type="Label" parent="Popup/PanelContainer/VBoxContainer/GridContainer"]
-offset_right = 33.0
-offset_bottom = 23.0
+layout_mode = 2
 text = "Mon"
-align = 1
+horizontal_alignment = 1
 
 [node name="Label2" type="Label" parent="Popup/PanelContainer/VBoxContainer/GridContainer"]
-offset_left = 37.0
-offset_right = 70.0
-offset_bottom = 23.0
+layout_mode = 2
 text = "Tue"
-align = 1
+horizontal_alignment = 1
 
 [node name="Label3" type="Label" parent="Popup/PanelContainer/VBoxContainer/GridContainer"]
-offset_left = 74.0
-offset_right = 107.0
-offset_bottom = 23.0
+layout_mode = 2
 text = "Wed"
-align = 1
+horizontal_alignment = 1
 
 [node name="Label4" type="Label" parent="Popup/PanelContainer/VBoxContainer/GridContainer"]
-offset_left = 111.0
-offset_right = 144.0
-offset_bottom = 23.0
+layout_mode = 2
 text = "Thu"
-align = 1
+horizontal_alignment = 1
 
 [node name="Label5" type="Label" parent="Popup/PanelContainer/VBoxContainer/GridContainer"]
-offset_left = 148.0
-offset_right = 181.0
-offset_bottom = 23.0
+layout_mode = 2
 text = "Fri"
-align = 1
+horizontal_alignment = 1
 
 [node name="Label6" type="Label" parent="Popup/PanelContainer/VBoxContainer/GridContainer"]
-offset_left = 185.0
-offset_right = 218.0
-offset_bottom = 23.0
+layout_mode = 2
 text = "Sat"
-align = 1
+horizontal_alignment = 1
 
 [node name="Label7" type="Label" parent="Popup/PanelContainer/VBoxContainer/GridContainer"]
-offset_left = 222.0
-offset_right = 255.0
-offset_bottom = 23.0
+layout_mode = 2
 text = "Sun"
-align = 1
+horizontal_alignment = 1
 
 [node name="Button" type="Button" parent="Popup/PanelContainer/VBoxContainer/GridContainer"]
-offset_top = 27.0
-offset_right = 33.0
-offset_bottom = 56.0
+layout_mode = 2
 
 [node name="Button2" type="Button" parent="Popup/PanelContainer/VBoxContainer/GridContainer"]
-offset_left = 37.0
-offset_top = 27.0
-offset_right = 70.0
-offset_bottom = 56.0
+layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
 [node name="Button3" type="Button" parent="Popup/PanelContainer/VBoxContainer/GridContainer"]
-offset_left = 74.0
-offset_top = 27.0
-offset_right = 107.0
-offset_bottom = 56.0
+layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
 [node name="Button4" type="Button" parent="Popup/PanelContainer/VBoxContainer/GridContainer"]
-offset_left = 111.0
-offset_top = 27.0
-offset_right = 144.0
-offset_bottom = 56.0
+layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
 [node name="Button5" type="Button" parent="Popup/PanelContainer/VBoxContainer/GridContainer"]
-offset_left = 148.0
-offset_top = 27.0
-offset_right = 181.0
-offset_bottom = 56.0
+layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
 [node name="Button6" type="Button" parent="Popup/PanelContainer/VBoxContainer/GridContainer"]
-offset_left = 185.0
-offset_top = 27.0
-offset_right = 218.0
-offset_bottom = 56.0
+layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
 [node name="Button7" type="Button" parent="Popup/PanelContainer/VBoxContainer/GridContainer"]
-offset_left = 222.0
-offset_top = 27.0
-offset_right = 255.0
-offset_bottom = 56.0
+layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
 [node name="Button8" type="Button" parent="Popup/PanelContainer/VBoxContainer/GridContainer"]
-offset_top = 60.0
-offset_right = 33.0
-offset_bottom = 89.0
+layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
 [node name="Button9" type="Button" parent="Popup/PanelContainer/VBoxContainer/GridContainer"]
-offset_left = 37.0
-offset_top = 60.0
-offset_right = 70.0
-offset_bottom = 89.0
+layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
 [node name="Button10" type="Button" parent="Popup/PanelContainer/VBoxContainer/GridContainer"]
-offset_left = 74.0
-offset_top = 60.0
-offset_right = 107.0
-offset_bottom = 89.0
+layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
 [node name="Button11" type="Button" parent="Popup/PanelContainer/VBoxContainer/GridContainer"]
-offset_left = 111.0
-offset_top = 60.0
-offset_right = 144.0
-offset_bottom = 89.0
+layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
 [node name="Button12" type="Button" parent="Popup/PanelContainer/VBoxContainer/GridContainer"]
-offset_left = 148.0
-offset_top = 60.0
-offset_right = 181.0
-offset_bottom = 89.0
+layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
 [node name="Button13" type="Button" parent="Popup/PanelContainer/VBoxContainer/GridContainer"]
-offset_left = 185.0
-offset_top = 60.0
-offset_right = 218.0
-offset_bottom = 89.0
+layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
 [node name="Button14" type="Button" parent="Popup/PanelContainer/VBoxContainer/GridContainer"]
-offset_left = 222.0
-offset_top = 60.0
-offset_right = 255.0
-offset_bottom = 89.0
+layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
 [node name="Button15" type="Button" parent="Popup/PanelContainer/VBoxContainer/GridContainer"]
-offset_top = 93.0
-offset_right = 33.0
-offset_bottom = 122.0
+layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
 [node name="Button16" type="Button" parent="Popup/PanelContainer/VBoxContainer/GridContainer"]
-offset_left = 37.0
-offset_top = 93.0
-offset_right = 70.0
-offset_bottom = 122.0
+layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
 [node name="Button17" type="Button" parent="Popup/PanelContainer/VBoxContainer/GridContainer"]
-offset_left = 74.0
-offset_top = 93.0
-offset_right = 107.0
-offset_bottom = 122.0
+layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
 [node name="Button18" type="Button" parent="Popup/PanelContainer/VBoxContainer/GridContainer"]
-offset_left = 111.0
-offset_top = 93.0
-offset_right = 144.0
-offset_bottom = 122.0
+layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
 [node name="Button19" type="Button" parent="Popup/PanelContainer/VBoxContainer/GridContainer"]
-offset_left = 148.0
-offset_top = 93.0
-offset_right = 181.0
-offset_bottom = 122.0
+layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
 [node name="Button20" type="Button" parent="Popup/PanelContainer/VBoxContainer/GridContainer"]
-offset_left = 185.0
-offset_top = 93.0
-offset_right = 218.0
-offset_bottom = 122.0
+layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
 [node name="Button21" type="Button" parent="Popup/PanelContainer/VBoxContainer/GridContainer"]
-offset_left = 222.0
-offset_top = 93.0
-offset_right = 255.0
-offset_bottom = 122.0
+layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
 [node name="Button22" type="Button" parent="Popup/PanelContainer/VBoxContainer/GridContainer"]
-offset_top = 126.0
-offset_right = 33.0
-offset_bottom = 155.0
+layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
 [node name="Button23" type="Button" parent="Popup/PanelContainer/VBoxContainer/GridContainer"]
-offset_left = 37.0
-offset_top = 126.0
-offset_right = 70.0
-offset_bottom = 155.0
+layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
 [node name="Button24" type="Button" parent="Popup/PanelContainer/VBoxContainer/GridContainer"]
-offset_left = 74.0
-offset_top = 126.0
-offset_right = 107.0
-offset_bottom = 155.0
+layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
 [node name="Button25" type="Button" parent="Popup/PanelContainer/VBoxContainer/GridContainer"]
-offset_left = 111.0
-offset_top = 126.0
-offset_right = 144.0
-offset_bottom = 155.0
+layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
 [node name="Button26" type="Button" parent="Popup/PanelContainer/VBoxContainer/GridContainer"]
-offset_left = 148.0
-offset_top = 126.0
-offset_right = 181.0
-offset_bottom = 155.0
+layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
 [node name="Button27" type="Button" parent="Popup/PanelContainer/VBoxContainer/GridContainer"]
-offset_left = 185.0
-offset_top = 126.0
-offset_right = 218.0
-offset_bottom = 155.0
+layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
 [node name="Button28" type="Button" parent="Popup/PanelContainer/VBoxContainer/GridContainer"]
-offset_left = 222.0
-offset_top = 126.0
-offset_right = 255.0
-offset_bottom = 155.0
+layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
 [node name="Button29" type="Button" parent="Popup/PanelContainer/VBoxContainer/GridContainer"]
-offset_top = 159.0
-offset_right = 33.0
-offset_bottom = 188.0
+layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
 [node name="Button30" type="Button" parent="Popup/PanelContainer/VBoxContainer/GridContainer"]
-offset_left = 37.0
-offset_top = 159.0
-offset_right = 70.0
-offset_bottom = 188.0
+layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
 [node name="Button31" type="Button" parent="Popup/PanelContainer/VBoxContainer/GridContainer"]
-offset_left = 74.0
-offset_top = 159.0
-offset_right = 107.0
-offset_bottom = 188.0
+layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
 [node name="Button32" type="Button" parent="Popup/PanelContainer/VBoxContainer/GridContainer"]
-offset_left = 111.0
-offset_top = 159.0
-offset_right = 144.0
-offset_bottom = 188.0
+layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
 [node name="Button33" type="Button" parent="Popup/PanelContainer/VBoxContainer/GridContainer"]
-offset_left = 148.0
-offset_top = 159.0
-offset_right = 181.0
-offset_bottom = 188.0
+layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
 [node name="Button34" type="Button" parent="Popup/PanelContainer/VBoxContainer/GridContainer"]
-offset_left = 185.0
-offset_top = 159.0
-offset_right = 218.0
-offset_bottom = 188.0
+layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
 [node name="Button35" type="Button" parent="Popup/PanelContainer/VBoxContainer/GridContainer"]
-offset_left = 222.0
-offset_top = 159.0
-offset_right = 255.0
-offset_bottom = 188.0
+layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
 [node name="Button36" type="Button" parent="Popup/PanelContainer/VBoxContainer/GridContainer"]
-offset_top = 192.0
-offset_right = 33.0
-offset_bottom = 221.0
+layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
 [node name="Button37" type="Button" parent="Popup/PanelContainer/VBoxContainer/GridContainer"]
-offset_left = 37.0
-offset_top = 192.0
-offset_right = 70.0
-offset_bottom = 221.0
+layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
 [node name="Button38" type="Button" parent="Popup/PanelContainer/VBoxContainer/GridContainer"]
-offset_left = 74.0
-offset_top = 192.0
-offset_right = 107.0
-offset_bottom = 221.0
+layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
 [node name="Button39" type="Button" parent="Popup/PanelContainer/VBoxContainer/GridContainer"]
-offset_left = 111.0
-offset_top = 192.0
-offset_right = 144.0
-offset_bottom = 221.0
+layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
 [node name="Button40" type="Button" parent="Popup/PanelContainer/VBoxContainer/GridContainer"]
-offset_left = 148.0
-offset_top = 192.0
-offset_right = 181.0
-offset_bottom = 221.0
+layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
 [node name="Button41" type="Button" parent="Popup/PanelContainer/VBoxContainer/GridContainer"]
-offset_left = 185.0
-offset_top = 192.0
-offset_right = 218.0
-offset_bottom = 221.0
+layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
 [node name="Button42" type="Button" parent="Popup/PanelContainer/VBoxContainer/GridContainer"]
-offset_left = 222.0
-offset_top = 192.0
-offset_right = 255.0
-offset_bottom = 221.0
+layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 

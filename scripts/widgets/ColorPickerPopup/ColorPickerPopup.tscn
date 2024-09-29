@@ -4,7 +4,6 @@
 
 [node name="ColorPickerDialog" type="AcceptDialog"]
 size = Vector2i(314, 615)
-visible = true
 script = ExtResource("1")
 
 [node name="ColorPicker" type="ColorPicker" parent="."]
@@ -12,3 +11,4 @@ offset_left = 8.0
 offset_top = 8.0
 offset_right = 306.0
 offset_bottom = 568.0
+edit_alpha = false

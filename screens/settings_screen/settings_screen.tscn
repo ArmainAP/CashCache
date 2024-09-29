@@ -1,26 +1,14 @@
 [gd_scene load_steps=5 format=3 uid="uid://bcfhcjlg6x8ym"]
 
-[ext_resource type="PackedScene" path="res://screens/generic_screen.tscn" id="2"]
+[ext_resource type="PackedScene" uid="uid://cm0cya81eftvk" path="res://screens/generic_screen.tscn" id="2"]
 [ext_resource type="Script" path="res://screens/settings_screen/settings_screen.gd" id="3"]
 [ext_resource type="Texture2D" uid="uid://cb4vihetijocg" path="res://icons/cancel_white_48dp.svg" id="4"]
 [ext_resource type="Script" path="res://scripts/nodes/BudgetTree.gd" id="5"]
 
 [node name="Control" instance=ExtResource("2")]
-layout_mode = 3
-anchors_preset = 15
+grow_horizontal = 2
+grow_vertical = 2
 script = ExtResource("3")
-
-[node name="VBoxContainer" parent="." index="0"]
-layout_mode = 0
-
-[node name="Header" parent="VBoxContainer" index="0"]
-layout_mode = 2
-
-[node name="Panel" parent="VBoxContainer/Header" index="0"]
-layout_mode = 2
-
-[node name="HBoxContainer" parent="VBoxContainer/Header" index="1"]
-layout_mode = 2
 
 [node name="ScenePopButtons" type="Button" parent="VBoxContainer/Header/HBoxContainer" index="0"]
 layout_mode = 2
@@ -28,12 +16,6 @@ size_flags_horizontal = 3
 size_flags_vertical = 2
 text = "Exit"
 icon = ExtResource("4")
-
-[node name="Body" parent="VBoxContainer" index="1"]
-layout_mode = 2
-
-[node name="Panel" parent="VBoxContainer/Body" index="0"]
-layout_mode = 2
 
 [node name="MarginContainer" type="MarginContainer" parent="VBoxContainer/Body/Panel" index="0"]
 layout_mode = 0
