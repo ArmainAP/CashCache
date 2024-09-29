@@ -3,19 +3,19 @@ class_name CalendarButton
 
 signal date_selected(date)
 
-onready var popup : Popup = $"%Popup"
-onready var popup_panel : PanelContainer = $"%PanelContainer"
-onready var title : Label = $"%Label"
-onready var days_grid : GridContainer = $"%GridContainer"
+@onready var popup : Popup = $"%Popup"
+@onready var popup_panel : PanelContainer = $"%PanelContainer"
+@onready var title : Label = $"%Label"
+@onready var days_grid : GridContainer = $"%GridContainer"
 
-onready var selected_date := Date.new()
+@onready var selected_date := Date.new()
 
 func _ready():
-	var error := connect("visibility_changed", self, "_on_visibility_changed")
+	var error := connect("visibility_changed", Callable(self, "_on_visibility_changed"))
 	assert(error == OK)
 	for child in days_grid.get_children():
 		if child is Button:
-			child.connect("pressed", self, "grid_button_pressed", [child])
+			child.connect("pressed", Callable(self, "grid_button_pressed").bind(child))
 	refresh_data()
 
 
@@ -39,8 +39,8 @@ func restrict_popup_inside_screen():
 	var calendar_icon_y_pos = get_global_position().y
 	var calendar_icon_x_size = get_size().x
 	var calendar_icon_y_size = get_size().y
-	var window_size_x = OS.get_window_size().x
-	var window_size_y = OS.get_window_size().y
+	var window_size_x = get_window().get_size().x
+	var window_size_y = get_window().get_size().y
 	
 	var pos_x = 0
 	if(window_size_x > (popup_x_size + calendar_icon_x_size/2)):

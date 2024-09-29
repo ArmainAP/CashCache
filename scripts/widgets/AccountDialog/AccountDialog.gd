@@ -1,13 +1,13 @@
 extends ConfirmationDialog
 class_name AccountDialog
 
-onready var save_location_button : Button = $"%SaveLocationButton"
-onready var account_name_line_edit : LineEdit = $"%Name"
-onready var account_currency_line_edit : LineEdit = $"%Currency"
-onready var password_line_edit : LineEdit = $"%Password"
-onready var confirm_password_line_edit : LineEdit = $"%ConfirmPassword"
-onready var file_dialog : FileDialog = $"%FullRectFileDialog"
-onready var budget_option_button : OptionButton = $"%BudgetOptionButton"
+@onready var save_location_button : Button = $"%SaveLocationButton"
+@onready var account_name_line_edit : LineEdit = $"%Name"
+@onready var account_currency_line_edit : LineEdit = $"%Currency"
+@onready var password_line_edit : LineEdit = $"%Password"
+@onready var confirm_password_line_edit : LineEdit = $"%ConfirmPassword"
+@onready var file_dialog : FileDialog = $"%FullRectFileDialog"
+@onready var budget_option_button : OptionButton = $"%BudgetOptionButton"
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -17,7 +17,7 @@ func _ready():
 
 
 func _on_password_text_changed(_new_text):
-	self.get_ok().disabled = password_line_edit.text != confirm_password_line_edit.text
+	self.get_ok_button().disabled = password_line_edit.text != confirm_password_line_edit.text
 
 
 func _on_FullRectFileDialog_dir_selected(dir):
@@ -31,7 +31,7 @@ func _on_AccountDialog_confirmed():
 	var link_success := UserSettings.link_account_budget(ActiveAccount.current_filepath, budget_option_button.selected)
 	assert(link_success)
 	var options = SceneManager.create_options(0)
-	SceneManager.change_scene("account", options, options, SceneManager.create_general_options())
+	SceneManager.change_scene_to_file("account", options, options, SceneManager.create_general_options())
 
 
 func edit_current_account():

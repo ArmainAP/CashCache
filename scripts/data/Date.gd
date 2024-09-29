@@ -1,4 +1,4 @@
-extends Reference
+extends RefCounted
 class_name Date
 
 
@@ -59,4 +59,4 @@ static func get_month_name(in_month : int) -> String:
 		Time.MONTH_OCTOBER: return "October"
 		Time.MONTH_NOVEMBER: return "November"
 		Time.MONTH_DECEMBER: return "December"
-	return String(in_month)
+	return str(in_month)

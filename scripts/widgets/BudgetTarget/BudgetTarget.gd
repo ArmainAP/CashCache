@@ -1,15 +1,15 @@
 extends VBoxContainer
 class_name BudgetTarget
 
-onready var currency_labels : Array = [$"%RemainingCurrencyLabel", $"%TotalCurrencyLabel"]
-onready var texture_progress : TextureProgress = $"%TextureProgress"
-onready var r_value_label : Label = $"%RemainingValueLabel"
-onready var total_value_label : Label = $"%TotalValueLabel"
-onready var progress_texture : TextureProgress = $"%TextureProgress"
-onready var percentage_label : Label = $"%PercentageLabel"
-onready var category_label : Label = $"%CategoryLabel"
-onready var rlabel : Label = $"%RLabel"
-onready var total_label : Label = $"%TotalLabel"
+@onready var currency_labels : Array = [$"%RemainingCurrencyLabel", $"%TotalCurrencyLabel"]
+@onready var texture_progress : TextureProgressBar = $"%TextureProgressBar"
+@onready var r_value_label : Label = $"%RemainingValueLabel"
+@onready var total_value_label : Label = $"%TotalValueLabel"
+@onready var progress_texture : TextureProgressBar = $"%TextureProgressBar"
+@onready var percentage_label : Label = $"%PercentageLabel"
+@onready var category_label : Label = $"%CategoryLabel"
+@onready var rlabel : Label = $"%RLabel"
+@onready var total_label : Label = $"%TotalLabel"
 
 func _ready():
 	for label in currency_labels:

@@ -1,21 +1,21 @@
 extends Control
 
-export(PackedScene) var account_popup : PackedScene
-export(PackedScene) var transaction_popup : PackedScene
-export(PackedScene) var stats_scene : PackedScene
+@export var account_popup: PackedScene
+@export var transaction_popup: PackedScene
+@export var stats_scene: PackedScene
 
-onready var income_stats_box : VBoxContainer = $"%IncomeStatsContainer"
-onready var expense_stats_box : VBoxContainer = $"%ExpenseStatsContainer"
-onready var currency_labels : Array = [$"%IncomeCurrencyLabel", $"%ExpensesCurrencyLabel"]
-onready var calendar_button : CalendarButton = $"%CalendarButton"
-onready var total_income_label : Label = $"%TotalIncomeLabel"
-onready var total_expenses_label : Label = $"%TotalExpensesLabel"
-onready var progress_bar : ProgressBar = $"%ProgressBar"
-onready var transaction_tree : TransactionHistoryTree = $"%TransactionHistoryTree"
+@onready var income_stats_box : VBoxContainer = $"%IncomeStatsContainer"
+@onready var expense_stats_box : VBoxContainer = $"%ExpenseStatsContainer"
+@onready var currency_labels : Array = [$"%IncomeCurrencyLabel", $"%ExpensesCurrencyLabel"]
+@onready var calendar_button : CalendarButton = $"%CalendarButton"
+@onready var total_income_label : Label = $"%TotalIncomeLabel"
+@onready var total_expenses_label : Label = $"%TotalExpensesLabel"
+@onready var progress_bar : ProgressBar = $"%ProgressBar"
+@onready var transaction_tree : TransactionHistoryTree = $"%TransactionHistoryTree"
 
 
 func _ready():
-	var error = ActiveAccount.connect("transactions_changed", self, "refresh_data")
+	var error = ActiveAccount.connect("transactions_changed", Callable(self, "refresh_data"))
 	assert(error == OK)
 	for currency_label in currency_labels:
 		currency_label.text = ActiveAccount.current_account.currency
@@ -47,7 +47,7 @@ func _setup_budget_stats() -> void:
 		
 	var budget : BudgetData = UserSettings.get_linked_budget(ActiveAccount.current_filepath)
 	for category in budget.categories:
-		var new_stat : BudgetTarget = stats_scene.instance()
+		var new_stat : BudgetTarget = stats_scene.instantiate()
 		if category.is_income:
 			income_stats_box.add_child(new_stat)
 		else:
@@ -56,9 +56,9 @@ func _setup_budget_stats() -> void:
 
 
 func _on_NewTransactionButton_pressed():
-	var transaction_dialog : TransactionDialog = transaction_popup.instance()
+	var transaction_dialog : TransactionDialog = transaction_popup.instantiate()
 	add_child(transaction_dialog)
-	var error = transaction_dialog.connect("confirmed", self, "_on_new_transaction_confirmed", [transaction_dialog])
+	var error = transaction_dialog.connect("confirmed", Callable(self, "_on_new_transaction_confirmed").bind(transaction_dialog))
 	assert(error == OK)
 	transaction_dialog.show()
 
@@ -71,7 +71,7 @@ func _on_new_transaction_confirmed(transaction_dialog : TransactionDialog):
 
 
 func _on_EditAccount_pressed():
-	var account_dialog : AccountDialog = account_popup.instance()
+	var account_dialog : AccountDialog = account_popup.instantiate()
 	add_child(account_dialog)
 	account_dialog.edit_current_account()
 	account_dialog.popup_centered()
@@ -79,4 +79,4 @@ func _on_EditAccount_pressed():
 
 func _on_ScenePopButtons_pressed():
 	var options = SceneManager.create_options(0)
-	SceneManager.change_scene("back", options, options, SceneManager.create_general_options())
+	SceneManager.change_scene_to_file("back", options, options, SceneManager.create_general_options())

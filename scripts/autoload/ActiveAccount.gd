@@ -30,7 +30,7 @@ func load_account(file_path : String, password : String) -> bool:
 
 
 func create_account(folder_path : String, account_data : AccountData, password : String) -> bool:
-	var file_path = folder_path.plus_file(account_data.name + ".ccf")
+	var file_path = folder_path.path_join(account_data.name + ".ccf")
 	if not save_account(account_data, file_path, password):
 		return false
 	if load_account(file_path, password):

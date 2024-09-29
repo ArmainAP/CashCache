@@ -9,35 +9,35 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
-custom_constants/separation = 0
+theme_override_constants/separation = 0
 
 [node name="Header" type="PanelContainer" parent="VBoxContainer"]
-margin_right = 446.0
-margin_bottom = 14.0
+offset_right = 446.0
+offset_bottom = 14.0
 size_flags_horizontal = 3
 
 [node name="Panel" type="Panel" parent="VBoxContainer/Header"]
-margin_left = 7.0
-margin_top = 7.0
-margin_right = 439.0
-margin_bottom = 7.0
+offset_left = 7.0
+offset_top = 7.0
+offset_right = 439.0
+offset_bottom = 7.0
 
 [node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/Header"]
-margin_left = 7.0
-margin_top = 7.0
-margin_right = 439.0
-margin_bottom = 7.0
+offset_left = 7.0
+offset_top = 7.0
+offset_right = 439.0
+offset_bottom = 7.0
 size_flags_horizontal = 3
 
 [node name="Body" type="PanelContainer" parent="VBoxContainer"]
-margin_top = 14.0
-margin_right = 446.0
-margin_bottom = 792.0
+offset_top = 14.0
+offset_right = 446.0
+offset_bottom = 792.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
 [node name="Panel" type="Panel" parent="VBoxContainer/Body"]
-margin_left = 7.0
-margin_top = 7.0
-margin_right = 439.0
-margin_bottom = 771.0
+offset_left = 7.0
+offset_top = 7.0
+offset_right = 439.0
+offset_bottom = 771.0

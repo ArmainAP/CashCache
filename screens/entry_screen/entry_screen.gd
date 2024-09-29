@@ -1,10 +1,10 @@
 extends Control
 
-export(PackedScene) var account_popup : PackedScene
-export(PackedScene) var password_popup : PackedScene
+@export var account_popup: PackedScene
+@export var password_popup: PackedScene
 
-onready var account_list : ItemList = $VBoxContainer/Body/ItemList
-onready var file_dialog : FileDialog = $FileDialog
+@onready var account_list : ItemList = $VBoxContainer/Body/ItemList
+@onready var file_dialog : FileDialog = $FileDialog
 var import_file_path : String
 
 func _ready():
@@ -14,7 +14,7 @@ func _ready():
 
 
 func _import_account() -> void:
-	if import_file_path.empty():
+	if import_file_path.is_empty():
 		import_file_path = file_dialog.current_path
 	if UserSettings.import_account(import_file_path):
 		account_list.add_item(import_file_path)
@@ -39,16 +39,16 @@ func _on_ItemList_item_selected(_index):
 		if not load_account(account_path, UserSettings.get_password(account_path)):
 			var success = UserSettings.erase_password(account_path)
 			assert(success)
-	var password_dialog : PasswordDialog = password_popup.instance()
+	var password_dialog : PasswordDialog = password_popup.instantiate()
 	add_child(password_dialog)
 	password_dialog.popup_centered()
-	var error := password_dialog.connect("confirmed", self, "_on_PasswordDialog_confirmed", [password_dialog])
+	var error := password_dialog.connect("confirmed", Callable(self, "_on_PasswordDialog_confirmed").bind(password_dialog))
 	assert(error == OK)
 
 
 func _on_ImportAccount_pressed():
 	if OS.get_name() == "HTML5":
-		import_file_path = yield(WebFileExchange.upload_file(), "completed")
+		import_file_path = await WebFileExchange.upload_file().completed
 		_import_account()
 	else:
 		file_dialog.show()
@@ -62,7 +62,7 @@ func load_account(account_path : String, password : String) -> bool:
 
 
 func _on_NewAccount_pressed():
-	var account_dialog : AccountDialog = account_popup.instance()
+	var account_dialog : AccountDialog = account_popup.instantiate()
 	add_child(account_dialog)
 	account_dialog.popup_centered()
 
@@ -73,4 +73,4 @@ func _on_SettingsButton_pressed():
 
 func _change_scene(scene : String) -> void:
 	var options = SceneManager.create_options(0)
-	SceneManager.change_scene(scene, options, options, SceneManager.create_general_options())
+	SceneManager.change_scene_to_file(scene, options, options, SceneManager.create_general_options())

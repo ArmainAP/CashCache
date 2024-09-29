@@ -4,17 +4,17 @@ extends Node
 
 signal read_completed
 
-var js_callback = JavaScript.create_callback(self, "load_handler");
+var js_callback = JavaScriptBridge.create_callback(load_handler);
 var js_interface;
 
 func _ready():
 	if is_web():
 		_define_js()
-		js_interface = JavaScript.get_interface("_HTML5FileExchange");
+		js_interface = JavaScriptBridge.get_interface("_HTML5FileExchange");
 
 func _define_js()->void:
 	#Define JS script
-	JavaScript.eval("""
+	JavaScriptBridge.eval("""
 	var _HTML5FileExchange = {};
 	_HTML5FileExchange.upload = function(gd_callback) {
 		canceled = true;
@@ -47,18 +47,17 @@ func load_handler(_args):
 
 func upload_file() -> String:
 	if !is_web():
-		return
+		return ""
 	
 	js_interface.upload(js_callback);
 	
-	yield(self, "read_completed")
+	await self.read_completed
 	
-	var file_name = JavaScript.eval("_HTML5FileExchange.fileName", true)
-	var file_data = JavaScript.eval("_HTML5FileExchange.result", true) # interface doesn't work as expected for some reason
-		
-	var file_path : String = UserSettings.get_default_folder().plus_file(file_name)
-	var file = File.new()
-	file.open(file_path, File.WRITE)
+	var file_name = JavaScriptBridge.eval("_HTML5FileExchange.fileName", true)
+	var file_data = JavaScriptBridge.eval("_HTML5FileExchange.result", true) # interface doesn't work as expected for some reason
+	
+	var file_path : String = UserSettings.get_default_folder().path_join(file_name)
+	var file = FileAccess.open(file_path, FileAccess.WRITE)
 	file.store_buffer(file_data)
 	file.close()
 	
@@ -71,6 +70,5 @@ func is_web() -> bool:
 
 func download(file_path : String) -> void:
 	if !is_web(): return
-	var file = File.new()
-	file.open(file_path, File.READ)
-	JavaScript.download_buffer(file.get_buffer(file.get_len()), file_path.get_file())
+	var file = FileAccess.open(file_path, FileAccess.READ)
+	JavaScriptBridge.download_buffer(file.get_buffer(file.get_length()), file_path.get_file())

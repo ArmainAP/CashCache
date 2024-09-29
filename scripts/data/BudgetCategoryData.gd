@@ -1,4 +1,4 @@
-extends Reference
+extends RefCounted
 class_name BudgetCategoryData
 
 var name : String
@@ -7,7 +7,7 @@ var allocation : int
 var color : Color
 var types : Array
 
-func _init(_name : String = "", _is_income : bool = false, _allocation : int = 100, _color : Color = Color.black, _types : Array = []):
+func _init(_name : String = "", _is_income : bool = false, _allocation : int = 100, _color : Color = Color.BLACK, _types : Array = []):
 	name = _name
 	is_income = _is_income
 	allocation = _allocation

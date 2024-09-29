@@ -1,4 +1,4 @@
-extends Reference
+extends RefCounted
 class_name BudgetData
 
 var name : String = ""
@@ -12,7 +12,7 @@ func _init(_name : String = ""):
 func delete_category(in_category : BudgetCategoryData):
 	var index = categories.find(in_category)
 	if index > -1:
-		categories.remove(index)
+		categories.remove_at(index)
 		return true
 	return false
 

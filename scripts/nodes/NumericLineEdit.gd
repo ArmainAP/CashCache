@@ -4,7 +4,7 @@ class_name NumericLineEdit
 var value : float = 0.0 # export as needed
 
 func _ready() -> void:
-	var error = connect("text_changed", self, "_on_LineEdit_text_changed")
+	var error = connect("text_changed", Callable(self, "_on_LineEdit_text_changed"))
 	assert(error == OK)
 
 func _on_LineEdit_text_changed(new_text: String) -> void:

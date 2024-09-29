@@ -7,12 +7,12 @@ const ACCOUNTS_KEY_NAME = "accounts"
 const BUDGETS_KEY_NAME = "budgets"
 const BUDGET_LINKS_KEY_NAME = "budget_links"
 
-onready var filesystem = Directory.new()
-onready var file := ConfigFile.new()
-onready var file_error := file.load(get_config_path())
-onready var account_paths : PoolStringArray = file.get_value(APP_SECTION_NAME, ACCOUNTS_KEY_NAME, PoolStringArray())
-onready var user_budgets : Array = file.get_value(APP_SECTION_NAME, BUDGETS_KEY_NAME, [default_budget()])
-onready var budget_links : Dictionary = file.get_value(APP_SECTION_NAME, BUDGET_LINKS_KEY_NAME, {})
+@onready var filesystem = DirAccess.open(OS.get_user_data_dir())
+@onready var file := ConfigFile.new()
+@onready var file_error := file.load(get_config_path())
+@onready var account_paths : PackedStringArray = file.get_value(APP_SECTION_NAME, ACCOUNTS_KEY_NAME, PackedStringArray())
+@onready var user_budgets : Array = file.get_value(APP_SECTION_NAME, BUDGETS_KEY_NAME, [default_budget()])
+@onready var budget_links : Dictionary = file.get_value(APP_SECTION_NAME, BUDGET_LINKS_KEY_NAME, {})
 
 var _saved_passwords = {}
 
@@ -25,18 +25,18 @@ func _ready():
 
 
 func _cull_invalid_paths() -> void:
-	var indices : PoolIntArray = []
+	var indices : PackedInt32Array = []
 	for idx in account_paths.size():
 		if !filesystem.file_exists(account_paths[idx]):
 			indices.append(idx)
 	if indices.size() > 0:
 		for idx in indices:
-			account_paths.remove(idx)
+			account_paths.remove_at(idx)
 		save_user_data()
 
 
 func _cull_invalid_budgets() -> void:
-	var indices : PoolIntArray = []
+	var indices : PackedInt32Array = []
 	for idx in user_budgets.size():
 		if user_budgets[idx] == null:
 			indices.append(idx)
@@ -44,7 +44,7 @@ func _cull_invalid_budgets() -> void:
 		user_budgets = [default_budget()]
 	elif indices.size() > 0:
 		for idx in indices:
-			user_budgets.remove(idx)
+			user_budgets.remove_at(idx)
 		save_user_data()
 
 
@@ -57,7 +57,7 @@ func get_default_folder() -> String:
 
 
 func get_config_path() -> String:
-	return get_default_folder().plus_file(CONFIG_FILE_NAME)
+	return get_default_folder().path_join(CONFIG_FILE_NAME)
 
 
 func save_user_data() -> void:
@@ -67,7 +67,7 @@ func save_user_data() -> void:
 	assert(error == OK)
 
 
-func import_account(var file_path : String) -> bool:
+func import_account(file_path : String) -> bool:
 	var found_account := account_paths.find(file_path) == -1
 	if found_account:
 		account_paths.append(file_path)
@@ -76,9 +76,9 @@ func import_account(var file_path : String) -> bool:
 
 
 func create_budget() -> BudgetData:
-	var new_budget = BudgetData.new("Budget " + String(user_budgets.size()))
-	new_budget.categories.append(BudgetCategoryData.new("Income", true, 100, Color.forestgreen, ["Income"]))
-	new_budget.categories.append(BudgetCategoryData.new("Expense", false, 100, Color.crimson, ["Expense"]))
+	var new_budget = BudgetData.new("Budget " + str(user_budgets.size()))
+	new_budget.categories.append(BudgetCategoryData.new("Income", true, 100, Color.FOREST_GREEN, ["Income"]))
+	new_budget.categories.append(BudgetCategoryData.new("Expense", false, 100, Color.CRIMSON, ["Expense"]))
 	user_budgets.append(new_budget)
 	save_user_data()
 	return new_budget
@@ -101,28 +101,28 @@ func get_linked_budget(account_path : String) -> BudgetData:
 
 static func default_budget() -> BudgetData:
 	var new_default_budget = BudgetData.new("Default")
-	new_default_budget.categories.append(BudgetCategoryData.new("Income", true, 100, Color.forestgreen,
+	new_default_budget.categories.append(BudgetCategoryData.new("Income", true, 100, Color.FOREST_GREEN,
 	[
 		"Salary", "Business", "Grant"
 	]))
-	new_default_budget.categories.append(BudgetCategoryData.new("Investment", true, 100, Color.olivedrab,
+	new_default_budget.categories.append(BudgetCategoryData.new("Investment", true, 100, Color.OLIVE_DRAB,
 	[
 		"Capital gains and dividends", "Real estate", "Royalties"
 	]))
 	
-	new_default_budget.categories.append(BudgetCategoryData.new("Expense", false, 60, Color.crimson,
+	new_default_budget.categories.append(BudgetCategoryData.new("Expense", false, 60, Color.CRIMSON,
 	[
 		"Food", "Clothes", "Home", "Credit", "Health", "Transport", "Communications", "Personal care", "Taxes"
 	]))
-	new_default_budget.categories.append(BudgetCategoryData.new("Investment", false, 20, Color.olivedrab,
+	new_default_budget.categories.append(BudgetCategoryData.new("Investment", false, 20, Color.OLIVE_DRAB,
 	[
 		"Education", "Savings", "Investements"
 	]))
-	new_default_budget.categories.append(BudgetCategoryData.new("Donation", false, 10, Color.orchid,
+	new_default_budget.categories.append(BudgetCategoryData.new("Donation", false, 10, Color.ORCHID,
 	[
 		"Gifts", "Charity"
 	]))
-	new_default_budget.categories.append(BudgetCategoryData.new("Fun", false, 10, Color.peru, 
+	new_default_budget.categories.append(BudgetCategoryData.new("Fun", false, 10, Color.PERU, 
 	[
 		"Joyful"
 	]))

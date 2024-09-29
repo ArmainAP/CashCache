@@ -1,19 +1,19 @@
 extends ConfirmationDialog
 class_name TransactionDialog
 
-onready var transaction_option : OptionButton = $"%TransactionOptionButton"
-onready var numeric_line_edit : NumericLineEdit = $"%NumericLineEdit"
-onready var calendar_button : CalendarButton = $"%CalendarButton"
+@onready var transaction_option : OptionButton = $"%TransactionOptionButton"
+@onready var numeric_line_edit : NumericLineEdit = $"%NumericLineEdit"
+@onready var calendar_button : CalendarButton = $"%CalendarButton"
 
-onready var transaction_date : Date = calendar_button.selected_date
-onready var transaction_type : String = ""
-onready var transaction_value : float = 0.0
+@onready var transaction_date : Date = calendar_button.selected_date
+@onready var transaction_type : String = ""
+@onready var transaction_value : float = 0.0
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	self.get_ok().disabled = true
-	var income_types : PoolStringArray = PoolStringArray()
-	var expense_types : PoolStringArray = PoolStringArray()
+	self.get_ok_button().disabled = true
+	var income_types : PackedStringArray = PackedStringArray()
+	var expense_types : PackedStringArray = PackedStringArray()
 	var budget = UserSettings.get_linked_budget(ActiveAccount.current_filepath)
 	for category in budget.categories:
 		if category.is_income:
@@ -37,7 +37,7 @@ func _on_TransactionOptionButton_item_selected(index):
 
 func _on_NumericLineEdit_text_changed(new_text):
 	transaction_value = new_text.to_float()
-	self.get_ok().disabled = transaction_value == 0
+	self.get_ok_button().disabled = transaction_value == 0
 
 
 func set_transaction(date : Date, type : String, value : float):
@@ -47,7 +47,7 @@ func set_transaction(date : Date, type : String, value : float):
 	calendar_button.selected_date = transaction_date
 	transaction_option.selected = transaction_option.items.find(transaction_type)
 	numeric_line_edit.text = String(transaction_value)
-	self.get_ok().disabled = transaction_value == 0
+	self.get_ok_button().disabled = transaction_value == 0
 
 
 func _on_TransactionPopup_visibility_changed():

@@ -18,19 +18,19 @@ enum buttons {
 	DELETE = 1
 }
 
-export(Texture) var add_icon : Texture = preload("res://icons/add_white_48dp.svg")
-export(Texture) var delete_icon : Texture = preload("res://icons/delete_white_48dp.svg")
-export(PackedScene) var ColorPickerPopup : PackedScene = preload("res://scripts/widgets/ColorPickerPopup/ColorPickerPopup.tscn")
+@export var add_icon: Texture2D = preload("res://icons/add_white_48dp.svg")
+@export var delete_icon: Texture2D = preload("res://icons/delete_white_48dp.svg")
+@export var ColorPickerPopup: PackedScene = preload("res://scripts/widgets/ColorPickerPopup/ColorPickerPopup.tscn")
 
-onready var tree_root = create_item()
+@onready var tree_root = create_item()
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	var pressed_error := connect("button_pressed", self, "_on_button_pressed")
+	var pressed_error := connect("button_pressed", Callable(self, "_on_button_pressed"))
 	assert(pressed_error == OK)
-	var edited_error = connect("item_edited", self, "_on_item_edited")
+	var edited_error = connect("item_edited", Callable(self, "_on_item_edited"))
 	assert(edited_error == OK)
-	var color_error = connect("item_selected", self, "_on_item_selected")
+	var color_error = connect("item_selected", Callable(self, "_on_item_selected"))
 	assert(color_error == OK)
 	columns = 4
 	tree_root.set_text(0, "Budgets")
@@ -70,12 +70,12 @@ func add_category(parent : TreeItem, category : BudgetCategoryData) -> void:
 	category_item.set_metadata(metadata.DEPTH, depth.CATEGORY)
 	category_item.set_metadata(metadata.DATA, category)
 	
-	var popup = ColorPickerPopup.instance()
+	var popup = ColorPickerPopup.instantiate()
 	add_child(popup)
 	var color_picker = popup.get_node("ColorPicker")
 	color_picker.edit_alpha = false
 	color_picker.color = category.color
-	popup.connect("confirmed", self, "_on_popup_confirmed", [category_item])
+	popup.connect("confirmed", Callable(self, "_on_popup_confirmed").bind(category_item))
 	category_item.set_metadata(metadata.COLOR, popup)
 	
 	# text 
@@ -124,7 +124,7 @@ func add_type(parent : TreeItem, type : String) -> void:
 func show_delete_dialog(text : String, confirm_method : String, item : TreeItem) -> void:
 	var popup : ConfirmationDialog = ConfirmationDialog.new()
 	get_tree().root.add_child(popup)
-	var confirmed_error := popup.connect("confirmed", self, confirm_method, [item])
+	var confirmed_error := popup.connect("confirmed", Callable(self, confirm_method).bind(item))
 	assert(confirmed_error == OK)
 	popup.dialog_text = text
 	popup.popup_centered()

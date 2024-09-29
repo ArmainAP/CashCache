@@ -6,94 +6,13 @@
 ;   [section] ; section goes between []
 ;   param=value ; assign values to parameters
 
-config_version=4
-
-_global_script_classes=[ {
-"base": "Reference",
-"class": "AccountData",
-"language": "GDScript",
-"path": "res://scripts/data/AccountData.gd"
-}, {
-"base": "ConfirmationDialog",
-"class": "AccountDialog",
-"language": "GDScript",
-"path": "res://scripts/widgets/AccountDialog/AccountDialog.gd"
-}, {
-"base": "Reference",
-"class": "BudgetCategoryData",
-"language": "GDScript",
-"path": "res://scripts/data/BudgetCategoryData.gd"
-}, {
-"base": "Reference",
-"class": "BudgetData",
-"language": "GDScript",
-"path": "res://scripts/data/BudgetData.gd"
-}, {
-"base": "VBoxContainer",
-"class": "BudgetTarget",
-"language": "GDScript",
-"path": "res://scripts/widgets/BudgetTarget/BudgetTarget.gd"
-}, {
-"base": "Button",
-"class": "CalendarButton",
-"language": "GDScript",
-"path": "res://scripts/widgets/CalendarPopup/CalendarPopup.gd"
-}, {
-"base": "AcceptDialog",
-"class": "ColorPickerDialog",
-"language": "GDScript",
-"path": "res://scripts/widgets/ColorPickerPopup/ColorPickerPopup.gd"
-}, {
-"base": "Reference",
-"class": "Date",
-"language": "GDScript",
-"path": "res://scripts/data/Date.gd"
-}, {
-"base": "Node",
-"class": "FullRectDialog",
-"language": "GDScript",
-"path": "res://scripts/nodes/FullRectDialog.gd"
-}, {
-"base": "LineEdit",
-"class": "NumericLineEdit",
-"language": "GDScript",
-"path": "res://scripts/nodes/NumericLineEdit.gd"
-}, {
-"base": "AcceptDialog",
-"class": "PasswordDialog",
-"language": "GDScript",
-"path": "res://scripts/widgets/PasswordDialog/PasswordDialog.gd"
-}, {
-"base": "ConfirmationDialog",
-"class": "TransactionDialog",
-"language": "GDScript",
-"path": "res://scripts/widgets/TransactionPopup/TransactionDialog.gd"
-}, {
-"base": "Tree",
-"class": "TransactionHistoryTree",
-"language": "GDScript",
-"path": "res://scripts/nodes/TransactionHistoryTree.gd"
-} ]
-_global_script_class_icons={
-"AccountData": "",
-"AccountDialog": "",
-"BudgetCategoryData": "",
-"BudgetData": "",
-"BudgetTarget": "",
-"CalendarButton": "",
-"ColorPickerDialog": "",
-"Date": "",
-"FullRectDialog": "",
-"NumericLineEdit": "",
-"PasswordDialog": "",
-"TransactionDialog": "",
-"TransactionHistoryTree": ""
-}
+config_version=5
 
 [application]
 
 config/name="CashCache"
 run/main_scene="res://screens/entry_screen/entry_screen.tscn"
+config/features=PackedStringArray("4.3")
 run/low_processor_mode=true
 config/icon="res://icons/currency_exchange_white_48dp.svg"
 
@@ -107,32 +26,31 @@ Scenes="*res://addons/scene_manager/scenes.gd"
 
 [debug]
 
-gdscript/warnings/treat_warnings_as_errors=true
-gdscript/warnings/unused_class_variable=true
 gdscript/warnings/unsafe_property_access=true
 gdscript/warnings/unsafe_method_access=true
 gdscript/warnings/unsafe_cast=true
 gdscript/warnings/unsafe_call_argument=true
+gdscript/warnings/treat_warnings_as_errors=true
+gdscript/warnings/unused_class_variable=true
 
 [display]
 
-window/size/width=720
-window/size/height=720
-window/size/test_width=720
-window/size/test_height=720
-window/dpi/allow_hidpi=true
-window/handheld/orientation="sensor"
+window/size/viewport_width=720
+window/size/viewport_height=720
+window/size/window_width_override=720
+window/size/window_height_override=720
 window/stretch/mode="2d"
 window/stretch/aspect="expand"
+window/handheld/orientation="sensor"
 
 [editor_plugins]
 
-enabled=PoolStringArray( "res://addons/scene_manager/plugin.cfg" )
+enabled=PackedStringArray("res://addons/scene_manager/plugin.cfg")
 
 [gui]
 
-common/drop_mouse_on_gui_input_disabled=true
 theme/custom_font="res://SourceCodePro/SourceCodePro-Regurlar.tres"
+common/drop_mouse_on_gui_input_disabled=true
 
 [physics]
 
@@ -140,9 +58,8 @@ common/enable_pause_aware_picking=true
 
 [rendering]
 
+environment/defaults/default_environment="res://default_env.tres"
 quality/driver/driver_name="GLES2"
 2d/options/use_nvidia_rect_flicker_workaround=true
 2d/snapping/use_gpu_pixel_snap=true
 vram_compression/import_etc=true
-vram_compression/import_etc2=false
-environment/default_environment="res://default_env.tres"

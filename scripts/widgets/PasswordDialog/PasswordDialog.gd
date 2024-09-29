@@ -1,8 +1,8 @@
 extends AcceptDialog
 class_name PasswordDialog
 
-onready var line_edit : LineEdit = $"%LineEdit"
-onready var check_button : CheckButton = $"%CheckButton"
+@onready var line_edit : LineEdit = $"%LineEdit"
+@onready var check_button : CheckButton = $"%CheckButton"
 
 func get_password() -> String:
 	return line_edit.text

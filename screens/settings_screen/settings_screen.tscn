@@ -2,58 +2,58 @@
 
 [ext_resource path="res://screens/generic_screen.tscn" type="PackedScene" id=2]
 [ext_resource path="res://screens/settings_screen/settings_screen.gd" type="Script" id=3]
-[ext_resource path="res://icons/cancel_white_48dp.svg" type="Texture" id=4]
+[ext_resource path="res://icons/cancel_white_48dp.svg" type="Texture2D" id=4]
 [ext_resource path="res://scripts/nodes/BudgetTree.gd" type="Script" id=5]
 
 [node name="Control" instance=ExtResource( 2 )]
 script = ExtResource( 3 )
 
 [node name="Header" parent="VBoxContainer" index="0"]
-margin_right = 720.0
-margin_bottom = 68.0
+offset_right = 720.0
+offset_bottom = 68.0
 
 [node name="Panel" parent="VBoxContainer/Header" index="0"]
-margin_right = 713.0
-margin_bottom = 61.0
+offset_right = 713.0
+offset_bottom = 61.0
 
 [node name="HBoxContainer" parent="VBoxContainer/Header" index="1"]
-margin_right = 713.0
-margin_bottom = 61.0
+offset_right = 713.0
+offset_bottom = 61.0
 
 [node name="ScenePopButtons" type="Button" parent="VBoxContainer/Header/HBoxContainer" index="0"]
-margin_right = 706.0
-margin_bottom = 54.0
+offset_right = 706.0
+offset_bottom = 54.0
 size_flags_horizontal = 3
 size_flags_vertical = 2
 text = "Exit"
 icon = ExtResource( 4 )
 
 [node name="Body" parent="VBoxContainer" index="1"]
-margin_top = 68.0
-margin_right = 720.0
-margin_bottom = 720.0
+offset_top = 68.0
+offset_right = 720.0
+offset_bottom = 720.0
 
 [node name="Panel" parent="VBoxContainer/Body" index="0"]
-margin_right = 713.0
-margin_bottom = 645.0
+offset_right = 713.0
+offset_bottom = 645.0
 
 [node name="MarginContainer" type="MarginContainer" parent="VBoxContainer/Body/Panel" index="0"]
 anchor_right = 1.0
 anchor_bottom = 1.0
-custom_constants/margin_right = 3
-custom_constants/margin_top = 3
-custom_constants/margin_left = 3
-custom_constants/margin_bottom = 0
+theme_override_constants/margin_right = 3
+theme_override_constants/margin_top = 3
+theme_override_constants/margin_left = 3
+theme_override_constants/margin_bottom = 0
 
 [node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/Body/Panel/MarginContainer" index="0"]
-margin_left = 3.0
-margin_top = 3.0
-margin_right = 703.0
-margin_bottom = 638.0
+offset_left = 3.0
+offset_top = 3.0
+offset_right = 703.0
+offset_bottom = 638.0
 
 [node name="BudgetTree" type="Tree" parent="VBoxContainer/Body/Panel/MarginContainer/VBoxContainer" index="0"]
-margin_right = 700.0
-margin_bottom = 635.0
+offset_right = 700.0
+offset_bottom = 635.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 script = ExtResource( 5 )

@@ -1,13 +1,13 @@
 extends Tree
 class_name TransactionHistoryTree
 
-export(Texture) var edit_button_texture : Texture = preload("res://icons/outline_edit_white_48dp.png")
-export(Texture) var delete_button_texture : Texture = preload("res://icons/delete_white_48dp.svg")
-export(PackedScene) var transaction_popup : PackedScene
+@export var edit_button_texture: Texture2D = preload("res://icons/outline_edit_white_48dp.png")
+@export var delete_button_texture: Texture2D = preload("res://icons/delete_white_48dp.svg")
+@export var transaction_popup: PackedScene
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	var error := self.connect("button_pressed", self, "_on_button_pressed")
+	var error := self.connect("button_pressed", Callable(self, "_on_button_pressed"))
 	assert(error == OK)
 	create_tree()
 
@@ -46,7 +46,7 @@ func create_tree():
 
 
 func create_item(parent : Object = null, idx : int = -1) -> TreeItem:
-	var new_item = .create_item(parent, idx)
+	var new_item = super.create_item(parent, idx)
 	new_item.set_selectable(0, false)
 	return new_item
 
@@ -56,16 +56,16 @@ func _on_button_pressed(_item: TreeItem, _column: int, _id: int):
 		0:
 			var transaction : Dictionary = _item.get_meta("transaction")
 			var date = _item.get_meta("date")
-			var transaction_dialog : TransactionDialog = transaction_popup.instance()
+			var transaction_dialog : TransactionDialog = transaction_popup.instantiate()
 			add_child(transaction_dialog)
-			var error = transaction_dialog.connect("confirmed", self, "_on_edit_transaction_confirmed", [transaction_dialog, _item])
+			var error = transaction_dialog.connect("confirmed", Callable(self, "_on_edit_transaction_confirmed").bind(transaction_dialog, _item))
 			assert(error == OK)
 			transaction_dialog.set_transaction(date, transaction[AccountData.TRANSACTION_TYPE_FIELD], transaction[AccountData.TRANSACTION_VALUE_FIELD])
 			transaction_dialog.show()
 		1:
 			var popup : ConfirmationDialog = ConfirmationDialog.new()
 			get_tree().root.add_child(popup)
-			var confirmed_error := popup.connect("confirmed", self, "_on_delete_confirmed", [_item])
+			var confirmed_error := popup.connect("confirmed", Callable(self, "_on_delete_confirmed").bind(_item))
 			assert(confirmed_error == OK)
 			popup.dialog_text = "Do you want to remove transaction?"
 			popup.popup_centered()
