@@ -33,9 +33,9 @@ func _setup_income(category : BudgetCategoryData, date : Date) -> void:
 	var total : float = ActiveAccount.get_total_income(date)
 	var percentage : int = int(budget / total * 100) if budget != 0 else 0
 	progress_texture.value = percentage
-	percentage_label.text = String(percentage) + "%"
-	total_value_label.text = String(total)
-	r_value_label.text = String(budget)
+	percentage_label.text = str(percentage) + "%"
+	total_value_label.text = str(total)
+	r_value_label.text = str(budget)
 
 
 func _setup_expense(category : BudgetCategoryData, date : Date) -> void:
@@ -44,6 +44,6 @@ func _setup_expense(category : BudgetCategoryData, date : Date) -> void:
 	var remaining : float = budget - total
 	var percentage : int = int(total / budget * 100) if budget != 0 else 0
 	progress_texture.value = percentage
-	percentage_label.text = String(percentage) + "%"
-	total_value_label.text = String(total)
-	r_value_label.text = String(remaining)
+	percentage_label.text = str(percentage) + "%"
+	total_value_label.text = str(total)
+	r_value_label.text = str(remaining)

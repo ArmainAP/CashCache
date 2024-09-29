@@ -58,7 +58,7 @@ func restrict_popup_inside_screen():
 		else:
 			pos_y = window_size_y - popup_y_size
 			
-	popup.set_global_position(Vector2(pos_x, pos_y))
+	#popup.set_global_position(Vector2(pos_x, pos_y))
 
 
 func grid_button_pressed(button : Button):

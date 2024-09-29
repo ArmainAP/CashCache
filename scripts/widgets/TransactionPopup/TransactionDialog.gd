@@ -46,7 +46,7 @@ func set_transaction(date : Date, type : String, value : float):
 	transaction_value = value
 	calendar_button.selected_date = transaction_date
 	transaction_option.selected = transaction_option.items.find(transaction_type)
-	numeric_line_edit.text = String(transaction_value)
+	numeric_line_edit.text = str(transaction_value)
 	self.get_ok_button().disabled = transaction_value == 0
 
 

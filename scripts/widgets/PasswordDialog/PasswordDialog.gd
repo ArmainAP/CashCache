@@ -9,4 +9,4 @@ func get_password() -> String:
 
 
 func should_remember_password() -> bool:
-	return check_button.pressed
+	return check_button.button_pressed

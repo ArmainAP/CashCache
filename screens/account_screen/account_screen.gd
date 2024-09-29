@@ -29,9 +29,9 @@ func refresh_data() -> void:
 
 func _setup_monthly_stats() -> void:
 	var total_income = ActiveAccount.get_total_income(calendar_button.selected_date)
-	total_income_label.text = String(total_income)
+	total_income_label.text = str(total_income)
 	var total_expenses = ActiveAccount.get_total_expenses(calendar_button.selected_date)
-	total_expenses_label.text = String(total_expenses)
+	total_expenses_label.text = str(total_expenses)
 	if total_income != 0:
 		progress_bar.ratio = total_expenses / total_income
 
@@ -79,4 +79,4 @@ func _on_EditAccount_pressed():
 
 func _on_ScenePopButtons_pressed():
 	var options = SceneManager.create_options(0)
-	SceneManager.change_scene_to_file("back", options, options, SceneManager.create_general_options())
+	SceneManager.change_scene("back", options, options, SceneManager.create_general_options())

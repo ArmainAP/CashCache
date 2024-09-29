@@ -7,7 +7,7 @@ class_name TransactionHistoryTree
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	var error := self.connect("button_pressed", Callable(self, "_on_button_pressed"))
+	var error := button_clicked.connect(_on_button_pressed)
 	assert(error == OK)
 	create_tree()
 
@@ -44,7 +44,7 @@ func create_tree():
 					date.day = day
 					transaction_item.set_meta("date", date)
 
-
+@warning_ignore("native_method_override")
 func create_item(parent : Object = null, idx : int = -1) -> TreeItem:
 	var new_item = super.create_item(parent, idx)
 	new_item.set_selectable(0, false)

@@ -48,7 +48,7 @@ func _on_ItemList_item_selected(_index):
 
 func _on_ImportAccount_pressed():
 	if OS.get_name() == "HTML5":
-		import_file_path = await WebFileExchange.upload_file().completed
+		import_file_path = await WebFileExchange.upload_file()
 		_import_account()
 	else:
 		file_dialog.show()
@@ -72,5 +72,5 @@ func _on_SettingsButton_pressed():
 	
 
 func _change_scene(scene : String) -> void:
-	var options = SceneManager.create_options(0)
-	SceneManager.change_scene_to_file(scene, options, options, SceneManager.create_general_options())
+	var options := SceneManager.create_options(0)
+	SceneManager.change_scene(scene, options, options, SceneManager.create_general_options())

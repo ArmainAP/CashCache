@@ -14,7 +14,7 @@ enum depth {
 }
 
 enum buttons {
-	ADD = 0
+	ADD = 0,
 	DELETE = 1
 }
 
@@ -26,11 +26,11 @@ enum buttons {
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	var pressed_error := connect("button_pressed", Callable(self, "_on_button_pressed"))
+	var pressed_error := button_clicked.connect(_on_button_pressed)
 	assert(pressed_error == OK)
-	var edited_error = connect("item_edited", Callable(self, "_on_item_edited"))
+	var edited_error = item_edited.connect(_on_item_edited)
 	assert(edited_error == OK)
-	var color_error = connect("item_selected", Callable(self, "_on_item_selected"))
+	var color_error = item_selected.connect(_on_item_selected)
 	assert(color_error == OK)
 	columns = 4
 	tree_root.set_text(0, "Budgets")
@@ -136,7 +136,7 @@ func _on_button_pressed(_item: TreeItem, _column: int, _id: int):
 		depth.BUDGET: match _id:
 			buttons.ADD:
 				var budget : BudgetData = _item.get_metadata(metadata.DATA)
-				var new_category : BudgetCategoryData = BudgetCategoryData.new("Category " + String(budget.categories.size()))
+				var new_category : BudgetCategoryData = BudgetCategoryData.new("Category " + str(budget.categories.size()))
 				budget.categories.append(new_category)
 				UserSettings.save_user_data()
 				add_category(_item, new_category)
@@ -147,7 +147,7 @@ func _on_button_pressed(_item: TreeItem, _column: int, _id: int):
 			buttons.ADD:
 				var category : BudgetCategoryData = _item.get_metadata(metadata.DATA)
 				var index : int = category.types.size()
-				var new_transaction := "Type " + String(index)
+				var new_transaction := "Type " + str(index)
 				category.types.append(new_transaction)
 				UserSettings.save_user_data()
 				add_type(_item, new_transaction)
@@ -218,6 +218,6 @@ func _on_type_delete_confirmed(_item) -> void:
 	var type : String = _item.get_text(0)
 	var index : int = category.types.find(type)
 	if index > -1:
-		category.types.remove(index)
+		category.types.remove_at(index)
 		UserSettings.save_user_data()
 		_item.free()

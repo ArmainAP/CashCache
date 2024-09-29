@@ -1,9 +1,9 @@
 [gd_scene load_steps=9 format=3 uid="uid://cqqjtissbhh1d"]
 
 [ext_resource type="PackedScene" path="res://screens/generic_screen.tscn" id="1"]
-[ext_resource type="PackedScene" path="res://scripts/widgets/AccountDialog/AccountDialog.tscn" id="2"]
+[ext_resource type="PackedScene" uid="uid://be014i3wlay22" path="res://scripts/widgets/AccountDialog/AccountDialog.tscn" id="2"]
 [ext_resource type="Script" path="res://screens/entry_screen/entry_screen.gd" id="4"]
-[ext_resource type="PackedScene" path="res://scripts/widgets/PasswordDialog/PasswordDialog.tscn" id="5"]
+[ext_resource type="PackedScene" uid="uid://bytdph0smdxva" path="res://scripts/widgets/PasswordDialog/PasswordDialog.tscn" id="5"]
 [ext_resource type="Texture2D" uid="uid://cjhc2sateko67" path="res://icons/note_add_white_48dp.svg" id="6"]
 [ext_resource type="Texture2D" uid="uid://df502y7rvcox2" path="res://icons/upload_file_white_48dp.svg" id="7"]
 [ext_resource type="Script" path="res://scripts/nodes/FullRectDialog.gd" id="8"]
@@ -12,12 +12,16 @@
 [node name="Control" instance=ExtResource("1")]
 layout_mode = 3
 anchors_preset = 15
+grow_horizontal = 2
+grow_vertical = 2
 script = ExtResource("4")
 account_popup = ExtResource("2")
 password_popup = ExtResource("5")
 
 [node name="VBoxContainer" parent="." index="0"]
 layout_mode = 0
+anchor_right = 0.0
+anchor_bottom = 0.0
 
 [node name="Header" parent="VBoxContainer" index="0"]
 layout_mode = 2

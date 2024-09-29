@@ -50,7 +50,7 @@ func _cull_invalid_budgets() -> void:
 
 func get_default_folder() -> String:
 	var default_folder = "/" if WebFileExchange.is_web() else OS.get_system_dir(OS.SYSTEM_DIR_DOCUMENTS)
-	default_folder = default_folder.plus_file(SAVE_FOLDER_NAME)
+	default_folder = default_folder.path_join(SAVE_FOLDER_NAME)
 	if not filesystem.dir_exists(default_folder):
 		filesystem.make_dir_recursive(default_folder)
 	return default_folder

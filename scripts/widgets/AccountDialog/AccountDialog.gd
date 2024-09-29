@@ -13,7 +13,7 @@ class_name AccountDialog
 func _ready():
 	file_dialog.current_dir = UserSettings.get_default_folder()
 	save_location_button.text = UserSettings.get_default_folder()
-	account_name_line_edit.text = "Account" + String(UserSettings.account_paths.size() + 1)
+	account_name_line_edit.text = "Account" + str(UserSettings.account_paths.size() + 1)
 
 
 func _on_password_text_changed(_new_text):
@@ -31,7 +31,7 @@ func _on_AccountDialog_confirmed():
 	var link_success := UserSettings.link_account_budget(ActiveAccount.current_filepath, budget_option_button.selected)
 	assert(link_success)
 	var options = SceneManager.create_options(0)
-	SceneManager.change_scene_to_file("account", options, options, SceneManager.create_general_options())
+	SceneManager.change_scene("account", options, options, SceneManager.create_general_options())
 
 
 func edit_current_account():
